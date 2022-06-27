@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 
 
-public class BoxUI : MonoBehaviour
+public class Box : MonoBehaviour
 {
     Text thisText;
     [SerializeField] string symbol;
@@ -20,12 +20,11 @@ public class BoxUI : MonoBehaviour
         thisText.text = symbol;
     }
 
-    private void Update()
-    {
+    public string GetSymbol() => symbol;
+    public void SetSymbol(string input) 
+    { 
+        symbol = input;
         thisText.text = symbol;
     }
-
-    public string GetSymbol() => symbol;
-    public void SetSymbol(string input) { symbol = input; }
 
 }

@@ -27,7 +27,7 @@ RectTransform:
   m_GameObject: {fileID: 8245494695791295631}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.1945}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8245494696785568906}
@@ -68,7 +68,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 50
+    m_FontSize: 80
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
@@ -91,9 +91,9 @@ GameObject:
   - component: {fileID: 8245494696785568906}
   - component: {fileID: 8245494696785568911}
   - component: {fileID: 8245494696785568908}
-  - component: {fileID: 8245494696785568909}
+  - component: {fileID: 2231081426711371296}
   m_Layer: 5
-  m_Name: BoxUI
+  m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118,7 +118,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 160, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8245494696785568911
 CanvasRenderer:
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8245494696785568909
+--- !u!114 &2231081426711371296
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8245494696785568907}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: addebcc18229d8f4aaf6e4751e2db70b, type: 3}
+  m_Script: {fileID: 11500000, guid: efaff34cd938e6146b9a57f4882aa2f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  symbol: '!'
+  symbol: X
