@@ -8,14 +8,16 @@ public class Boxes : MonoBehaviour
 {
     // CONFIGS
     [SerializeField] float canvasScale;
-    float moveSpeed = 5;
+    float moveSpeed = 4;
     [SerializeField] int boxCount = 5;
     public int startIndex = 5;
     Vector3 offset;
 
     // STATES
     bool isMoving = false;
-    bool isMovingRight = false;
+    [SerializeField] bool isMovingRight = false;
+    [SerializeField] bool isMovingLeft = false;
+
 
 
     // PROPERTIES
@@ -63,6 +65,55 @@ public class Boxes : MonoBehaviour
     {
         var distance = destination.x - transform.position.x;
         //Debug.Log(distance);
+        if (isMovingRight)
+        {
+            if (Mathf.Abs(distance) >= 0.01)
+            {
+
+                if (distance <= 0)
+                {
+                    Debug.Log("ke kanan gerak kanan");
+
+                    transform.Translate(Time.deltaTime * moveSpeed * Vector2.left);
+                }
+                //else
+                //{
+                //    Debug.Log("ke kanan gerak kiri");
+
+                //    transform.Translate(Time.deltaTime * (moveSpeed/2) * Vector2.right);
+                //}
+            }
+            else
+            {
+                isMoving = false;
+                isMovingRight = false;
+            }
+        } else if (isMovingLeft)
+        {
+            //Debug.Log("ke kiri");
+
+            if (Mathf.Abs(distance) >= 0.01)
+            {
+
+                if (distance >= 0)
+                {
+                    Debug.Log("ke kiri gerak kiri");
+
+                    transform.Translate(Time.deltaTime * moveSpeed * Vector2.right);
+                }
+                //else
+                //{
+                //    Debug.Log("ke kiri gerak kanan");
+
+                //    transform.Translate(Time.deltaTime * (moveSpeed/2) * Vector2.left);
+                //}
+            }
+            else
+            {
+                isMoving = false;
+                isMovingLeft = false;
+            }
+        }
         if(Mathf.Abs(distance) >= 0.01)
         {
 
@@ -144,6 +195,7 @@ public class Boxes : MonoBehaviour
         //return boxes[i];
 
         destination = transform.position - offset;
+        isMovingRight = true;
         isMoving = true;
 
         return boxes[i];
@@ -152,7 +204,9 @@ public class Boxes : MonoBehaviour
     public Box MoveLeft(int i)
     {
         destination = transform.position + offset;
+        isMovingLeft = true;
         isMoving = true;
+
 
         return boxes[i];
     }

@@ -1,0 +1,442 @@
+{
+    "operation": "Multiplication",
+    "type": "STP",
+    "tapeCount": 1,
+    "symbols": ["0","#","X","+","-"],
+    "blankSymbol": "B",
+    "startState": "Qa",
+    "acceptStates": ["Q8"],
+    "states": [
+        {
+            "name": "Qa",
+            "transitions": [
+                {
+                    "read": "-",
+                    "write": "-",
+                    "direction": "R",
+                    "nextState": "Qb"
+                },
+                {
+                    "read": "+",
+                    "write": "+",
+                    "direction": "R",
+                    "nextState": "Qc"
+                }
+            ]
+        },
+        {
+            "name": "Qb",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "Qb"
+                },
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "R",
+                    "nextState": "Qb"
+                },
+                {
+                    "read": "-",
+                    "write": "-",
+                    "direction": "R",
+                    "nextState": "Qd"
+                },
+                {
+                    "read": "+",
+                    "write": "+",
+                    "direction": "R",
+                    "nextState": "Qe"
+                }
+            ]
+        },
+        {
+            "name": "Qc",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "Qc"
+                },
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "R",
+                    "nextState": "Qc"
+                },
+                {
+                    "read": "-",
+                    "write": "-",
+                    "direction": "R",
+                    "nextState": "Qe"
+                },
+                {
+                    "read": "+",
+                    "write": "+",
+                    "direction": "R",
+                    "nextState": "Qd"
+                }
+            ]
+        },
+        {
+            "name": "Qd",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "Qd"
+                },
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "R",
+                    "nextState": "Qd"
+                },
+                {
+                    "read": "B",
+                    "write": "+",
+                    "direction": "L",
+                    "nextState": "Qf"
+                }
+            ]
+        },
+        {
+            "name": "Qe",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "Qe"
+                },
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "R",
+                    "nextState": "Qe"
+                },
+                {
+                    "read": "B",
+                    "write": "-",
+                    "direction": "L",
+                    "nextState": "Qf"
+                }
+            ]
+        },
+        {
+            "name": "Qf",
+            "transitions": [
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "L",
+                    "nextState": "Qf"
+                },
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "Qf"
+                },
+                {
+                    "read": "+",
+                    "write": "+",
+                    "direction": "L",
+                    "nextState": "Qg"
+                },
+                {
+                    "read": "-",
+                    "write": "-",
+                    "direction": "L",
+                    "nextState": "Qg"
+                }
+            ]
+        },
+        {
+            "name": "Qg",
+            "transitions": [
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "L",
+                    "nextState": "Qg"
+                },
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "Qg"
+                },
+                {
+                    "read": "+",
+                    "write": "+",
+                    "direction": "R",
+                    "nextState": "Q0"
+                },
+                {
+                    "read": "-",
+                    "write": "-",
+                    "direction": "R",
+                    "nextState": "Q0"
+                }
+            ]
+        },
+        {
+            "name": "Q0",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "B",
+                    "direction": "L",
+                    "nextState": "Q0"
+                },
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "L",
+                    "nextState": "Q0"
+                },
+                {
+                    "read": "+",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "Q6"
+                },
+                {
+                    "read": "-",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "Q6"
+                }
+            ]
+        },
+        {
+            "name": "Q1",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "Q1"
+                },
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "R",
+                    "nextState": "Q1"
+                },
+                {
+                    "read": "+",
+                    "write": "+",
+                    "direction": "R",
+                    "nextState": "Q2"
+                },
+                {
+                    "read": "-",
+                    "write": "-",
+                    "direction": "R",
+                    "nextState": "Q2"
+                }
+            ]
+        },
+        {
+            "name": "Q2",
+            "transitions": [
+                {
+                    "read": "+",
+                    "write": "+",
+                    "direction": "R",
+                    "nextState": "Q2"
+                },
+                {
+                    "read": "-",
+                    "write": "-",
+                    "direction": "R",
+                    "nextState": "Q2"
+                },
+                {
+                    "read": "0",
+                    "write": "X",
+                    "direction": "R",
+                    "nextState": "Q3"
+                },
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "L",
+                    "nextState": "Q5"
+                }
+            ]
+        },
+        {
+            "name": "Q3",
+            "transitions": [
+                {
+                    "read": "+",
+                    "write": "+",
+                    "direction": "R",
+                    "nextState": "Q3"
+                },
+                {
+                    "read": "-",
+                    "write": "-",
+                    "direction": "R",
+                    "nextState": "Q3"
+                },
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "R",
+                    "nextState": "Q3"
+                },
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "Q3"
+                },
+                {
+                    "read": "B",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "Q4"
+                }
+            ]
+        },
+        {
+            "name": "Q4",
+            "transitions": [
+                {
+                    "read": "+",
+                    "write": "+",
+                    "direction": "L",
+                    "nextState": "Q4"
+                },
+                {
+                    "read": "-",
+                    "write": "-",
+                    "direction": "L",
+                    "nextState": "Q4"
+                },
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "L",
+                    "nextState": "Q4"
+                },
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "Q4"
+                },
+                {
+                    "read": "X",
+                    "write": "X",
+                    "direction": "R",
+                    "nextState": "Q2"
+                }
+            ]
+        },
+        {
+            "name": "Q5",
+            "transitions": [
+                {
+                    "read": "+",
+                    "write": "+",
+                    "direction": "L",
+                    "nextState": "Q5"
+                },
+                {
+                    "read": "-",
+                    "write": "-",
+                    "direction": "L",
+                    "nextState": "Q5"
+                },
+                {
+                    "read": "X",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "Q5"
+                },
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "L",
+                    "nextState": "Q5"
+                },
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "Q5"
+                },
+                {
+                    "read": "B",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "Q0"
+                }
+            ]
+        },
+        {
+            "name": "Q6",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "Q6"
+                },
+                {
+                    "read": "#",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "Q7"
+                }
+            ]
+        },
+        {
+            "name": "Q7",
+            "transitions": [
+                {
+                    "read": "+",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "Q7"
+                },
+                {
+                    "read": "-",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "Q7"
+                },
+                {
+                    "read": "0",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "Q7"
+                },
+                {
+                    "read": "#",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "Q8"
+                }
+            ]
+        },
+        {
+            "name": "Q8",
+            "transitions": [
+        
+            ]
+        }
+
+
+    ]
+}
