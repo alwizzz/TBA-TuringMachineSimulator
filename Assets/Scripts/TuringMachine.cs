@@ -25,7 +25,10 @@ public class TuringMachine : MonoBehaviour
 
     // CACHES
     [SerializeField] TextAsset jsonFile;
-    [SerializeField] Boxes boxes;
+    [SerializeField] Boxes boxes1;
+    [SerializeField] Boxes boxes2;
+    [SerializeField] Boxes boxes3;
+
     TransitionTable transitionTable;
     [SerializeField] InfoDisplay infoDisplay;
     [SerializeField] Button stepButton;
@@ -54,10 +57,10 @@ public class TuringMachine : MonoBehaviour
         blankSymbol = transitionTable.blankSymbol;
         FetchStartState();
 
-        currentBox = boxes.GetStartBox();
+        currentBox = boxes1.GetStartBox();
         UpdateInfo();
 
-        currentIndex = boxes.startIndex;
+        currentIndex = boxes1.startIndex;
     }
 
     void FetchStartState()
@@ -92,8 +95,8 @@ public class TuringMachine : MonoBehaviour
                     if (currentSymbol != t.write) { currentBox.SetSymbol(t.write); }
 
                     // move tape
-                    if (t.direction == "L") { currentBox = boxes.MoveLeft(--currentIndex); }
-                    else if (t.direction == "R") { currentBox = boxes.MoveRight(++currentIndex); }
+                    if (t.direction == "L") { currentBox = boxes1.MoveLeft(--currentIndex); }
+                    else if (t.direction == "R") { currentBox = boxes1.MoveRight(++currentIndex); }
 
                     // if state get changed
                     if (currentStateName != t.nextState) { currentState = transitionTable.getStateWithName(t.nextState); }
@@ -154,7 +157,7 @@ public class TuringMachine : MonoBehaviour
 
         if (isAcceptingState)
         {
-            var inputOutputString = boxes.GetInputOutputString();
+            var inputOutputString = boxes1.GetInputOutputString();
             infoDisplay.UpdateDisplay($"Halts in {currentStateName} (accepting state)\n{inputOutputString}");
         } else
         {

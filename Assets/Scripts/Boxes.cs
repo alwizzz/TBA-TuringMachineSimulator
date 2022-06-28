@@ -8,15 +8,19 @@ public class Boxes : MonoBehaviour
 {
     // CONFIGS
     [SerializeField] float canvasScale;
-    //float moveSpeed = 10;
+    float moveSpeed = 5;
     [SerializeField] int boxCount = 5;
     public int startIndex = 5;
     Vector3 offset;
 
     // STATES
+    bool isMoving = false;
+    bool isMovingRight = false;
+
 
     // PROPERTIES
     [SerializeField] string inputString = "BBBBBBBBBB";
+    Vector3 destination;
 
 
     // CACHES
@@ -40,6 +44,39 @@ public class Boxes : MonoBehaviour
     void Start()
     {
 
+    }
+
+    private void Update()
+    {
+        if (isMoving)
+        {
+            //Debug.Log("oy");
+            Move();
+        }
+    //else if (isMovingRight)
+    //{
+
+    //}
+    }
+
+    void Move()
+    {
+        var distance = destination.x - transform.position.x;
+        Debug.Log(distance);
+        if(Mathf.Abs(distance) >= 0.01)
+        {
+
+            if(distance <= 0)
+            {
+                transform.Translate(Time.deltaTime * moveSpeed * Vector2.left);
+            } else
+            {
+                transform.Translate(Time.deltaTime * moveSpeed * Vector2.right);
+            }
+        } else
+        {
+            isMoving = false;
+        }
     }
 
     void Setup()
@@ -103,13 +140,20 @@ public class Boxes : MonoBehaviour
 
     public Box MoveRight(int i)
     {
-        transform.position -= offset;
+        //transform.position -= offset;
+        //return boxes[i];
+
+        destination = transform.position - offset;
+        isMoving = true;
+
         return boxes[i];
     }
 
     public Box MoveLeft(int i)
     {
-        transform.position += offset;
+        destination = transform.position + offset;
+        isMoving = true;
+
         return boxes[i];
     }
 
