@@ -92,7 +92,7 @@ public class TuringMachine : MonoBehaviour
                     found = true;
 
                     // if symbol get changed
-                    if (currentSymbol != t.write) { currentBox.SetSymbol(t.write); }
+                    if (currentSymbol != t.write) { currentBox.SetSymbol(t.write, true); }
 
                     // move tape
                     if (t.direction == "L") { currentBox = boxes1.MoveLeft(--currentIndex); }

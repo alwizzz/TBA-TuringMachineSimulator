@@ -62,7 +62,7 @@ public class Boxes : MonoBehaviour
     void Move()
     {
         var distance = destination.x - transform.position.x;
-        Debug.Log(distance);
+        //Debug.Log(distance);
         if(Mathf.Abs(distance) >= 0.01)
         {
 
