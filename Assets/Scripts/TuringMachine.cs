@@ -9,25 +9,15 @@ using UnityEngine.UI;
 public class TuringMachine : MonoBehaviour
 {
     // CONFIGS
+    [SerializeField] string inputString;
 
     // STATES
     [SerializeField] bool isHalting;
     [SerializeField] bool isRunning;
     [SerializeField] float runDelay;
 
-    // PROPERTIES
-    int currentIndex;
-    Box currentBox;
-    TransitionTable.State currentState;
-    string blankSymbol;
-    [SerializeField] string currentStateName;
-    [SerializeField] string currentSymbol;
-
     // CACHES
     [SerializeField] TextAsset jsonFile;
-    [SerializeField] Boxes boxes1;
-    [SerializeField] Boxes boxes2;
-    [SerializeField] Boxes boxes3;
 
     TransitionTable transitionTable;
     [SerializeField] InfoDisplay infoDisplay;
@@ -35,12 +25,66 @@ public class TuringMachine : MonoBehaviour
     [SerializeField] Button runButton;
     [SerializeField] Button stopButton;
 
+    // PROPERTIES
+    string type;
+    string blankSymbol;
+    int currentIndex;
+    TransitionTable.State currentState;
+    [SerializeField] string currentStateName; 
+    [SerializeField] string currentSymbol;
+    // STP PROPERTIES
+    [Header("STP")]
+    [SerializeField] Boxes boxesSTP;
+    Box currentBoxSTP;
+    // MTR PROPERTIES
+    [Header("MTR")]
+    [SerializeField] Boxes boxesMTR1;
+    [SerializeField] Boxes boxesMTR2;
+    Box currentBoxMTR1;
+    Box currentBoxMTR2;
+    // MTP PROPERTIES
+    [Header("MTP")]
+    [SerializeField] Boxes boxesMTP1;
+    [SerializeField] Boxes boxesMTP2;
+    [SerializeField] Boxes boxesMTP3;
+    Box currentBoxMTP1;
+    Box currentBoxMTP2;
+    Box currentBoxMTP3;
+    int currentIndexMTP1;
+    int currentIndexMTP2;
+    int currentIndexMTP3;
+
+    
+
 
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        transitionTable = JsonUtility.FromJson<TransitionTable>(jsonFile.ToString());
+        type = transitionTable.type;
+
+        if(type == "STP")
+        {
+            boxesSTP.Spawn(inputString);
+        } 
+        else if(type == "MTR")
+        {
+            boxesMTR1.Spawn(inputString);
+            boxesMTR2.Spawn("BB");
+        }
+        else if(type == "MTP")
+        {
+            boxesMTP1.Spawn(inputString);
+            boxesMTP2.Spawn("BB");
+            boxesMTP3.Spawn("BB");
+        }
+
+        Setup();
+    }
     void Start()
     {
         isHalting = false;
-        Setup();
 
         stopButton.interactable = false;
     }
@@ -52,15 +96,34 @@ public class TuringMachine : MonoBehaviour
 
     void Setup()
     {
-        transitionTable = JsonUtility.FromJson<TransitionTable>(jsonFile.ToString());
 
         blankSymbol = transitionTable.blankSymbol;
         FetchStartState();
 
-        currentBox = boxes1.GetStartBox();
-        UpdateInfo();
 
-        currentIndex = boxes1.startIndex;
+        if (type == "STP")
+        {
+            currentIndex = boxesSTP.startIndex;
+            currentBoxSTP = boxesSTP.GetStartBox();
+        }
+        else if (type == "MTR")
+        {
+            currentIndex = boxesMTR1.startIndex;
+            currentBoxMTR1 = boxesMTR1.GetStartBox();
+            currentBoxMTR2 = boxesMTR2.GetStartBox();
+        } 
+        else if(type == "MTP")
+        {
+            currentIndexMTP1 = boxesMTP1.startIndex;
+            currentIndexMTP2 = boxesMTP2.startIndex;
+            currentIndexMTP3 = boxesMTP3.startIndex;
+
+            currentBoxMTP1 = boxesMTP1.GetStartBox();
+            currentBoxMTP2 = boxesMTP2.GetStartBox();
+            currentBoxMTP3 = boxesMTP3.GetStartBox();
+        }
+
+        UpdateInfo();
     }
 
     void FetchStartState()
@@ -69,10 +132,26 @@ public class TuringMachine : MonoBehaviour
         currentState = transitionTable.getStateWithName(startState);
     }
 
+    // Updates currentStateName and currentSymbol
     void UpdateInfo()
     {
         currentStateName = currentState.name;
-        currentSymbol = currentBox.GetSymbol();
+        
+        if(type == "STP")
+        {
+            currentSymbol = currentBoxSTP.GetSymbol();
+        }
+        else if(type == "MTR")
+        {
+            currentSymbol = currentBoxMTR1.GetSymbol();
+            currentSymbol += currentBoxMTR2.GetSymbol();
+        }
+        else if(type == "MTP")
+        {
+            currentSymbol = currentBoxMTP1.GetSymbol();
+            currentSymbol += currentBoxMTP2.GetSymbol();
+            currentSymbol += currentBoxMTP3.GetSymbol();
+        }
     }
 
 
@@ -80,6 +159,10 @@ public class TuringMachine : MonoBehaviour
     {
         if (!isHalting)
         {
+            string nextStateName = "dummy";
+            string nextSymbol = "dummy";
+            string direction = "dummy";
+            
             bool found = false;
             foreach (TransitionTable.State.Transition t in currentState.transitions)
             {
@@ -92,22 +175,175 @@ public class TuringMachine : MonoBehaviour
                     found = true;
 
                     // if symbol get changed
-                    if (currentSymbol != t.write) { currentBox.SetSymbol(t.write, true); }
+                    if (currentSymbol != t.write)
+                    {
+                        ChangeSymbol(t.write);
+                    }
+                    nextSymbol = t.write;
 
                     // move tape
-                    if (t.direction == "L") { currentBox = boxes1.MoveLeft(--currentIndex); }
-                    else if (t.direction == "R") { currentBox = boxes1.MoveRight(++currentIndex); }
+                    MoveTape(t.direction);
+                    direction = t.direction;
+                    //if (t.direction == "L") { currentBoxSTP = boxesSTP.MoveLeft(--currentIndex); }
+                    //else if (t.direction == "R") { currentBoxSTP = boxesSTP.MoveRight(++currentIndex); }
 
                     // if state get changed
-                    if (currentStateName != t.nextState) { currentState = transitionTable.getStateWithName(t.nextState); }
+                    if (currentStateName != t.nextState) 
+                    {
+                        currentState = transitionTable.getStateWithName(t.nextState); 
+                    }
+                    nextStateName = t.nextState;
 
                     break;
                 }
             }
 
-            if (found) { UpdateInfo(); }
-            else { Halt(); }
+
+            if (found) 
+            {
+                Debug.Log($"\n<b>{currentStateName}</b> \"{currentSymbol}\" ==> <b>{nextStateName}</b> \"{nextSymbol}\" {direction}");
+                UpdateInfo(); 
+            }
+            else 
+            {
+                Debug.Log($"\n<b>{currentStateName}</b> \"{currentSymbol}\" ==> HALTS");
+                Halt(); 
+            }
         }
+    }
+
+    void ChangeSymbol(string write)
+    {
+        if(type == "STP")
+        {
+            currentBoxSTP.SetSymbol(write, true);
+        } 
+        else if(type == "MTR")
+        {
+            var writeSymbol1 = write.Substring(0, 1);
+            var currentSymbol1 = currentSymbol.Substring(0, 1);
+            if(writeSymbol1 != currentSymbol1)
+            {
+                currentBoxMTR1.SetSymbol(writeSymbol1, true);
+            }
+
+            var writeSymbol2 = write.Substring(1, 1);
+            var currentSymbol2 = currentSymbol.Substring(1, 1);
+            if (writeSymbol2 != currentSymbol2)
+            {
+                currentBoxMTR2.SetSymbol(writeSymbol2, true);
+            }
+        }
+        else if (type == "MTP")
+        {
+            var writeSymbol1 = write.Substring(0, 1);
+            var currentSymbol1 = currentSymbol.Substring(0, 1);
+            if (writeSymbol1 != currentSymbol1)
+            {
+                currentBoxMTP1.SetSymbol(writeSymbol1, true);
+            }
+
+            var writeSymbol2 = write.Substring(1, 1);
+            var currentSymbol2 = currentSymbol.Substring(1, 1);
+            if (writeSymbol2 != currentSymbol2)
+            {
+                currentBoxMTP2.SetSymbol(writeSymbol2, true);
+            }
+
+            var writeSymbol3 = write.Substring(2, 1);
+            var currentSymbol3 = currentSymbol.Substring(2, 1);
+            if (writeSymbol3 != currentSymbol3)
+            {
+                currentBoxMTP3.SetSymbol(writeSymbol3, true);
+            }
+        }
+
+    }
+
+    void MoveTape(string direction)
+    {
+        if(type == "STP")
+        {
+            if (direction == "L")
+            {
+                currentIndex--;
+                currentBoxSTP = boxesSTP.MoveLeft(currentIndex);
+
+            }
+            else if(direction == "R")
+            {
+                currentIndex++;
+                currentBoxSTP = boxesSTP.MoveRight(currentIndex);
+
+            }
+        }
+        else if(type == "MTR")
+        {
+            if (direction == "L")
+            {
+                currentIndex--;
+                currentBoxMTR1 = boxesMTR1.MoveLeft(currentIndex);
+                currentBoxMTR2 = boxesMTR2.MoveLeft(currentIndex);
+
+            }
+            else if (direction == "R")
+            {
+                currentIndex++;
+                currentBoxMTR1 = boxesMTR1.MoveRight(currentIndex);
+                currentBoxMTR2 = boxesMTR2.MoveRight(currentIndex);
+
+            }
+        }
+        else if(type == "MTP")
+        {
+            var dir1 = direction.Substring(0, 1);
+            if(dir1 != "S")
+            {
+                if(dir1 == "L")
+                {
+                    currentIndexMTP1--;
+                    currentBoxMTP1 = boxesMTP1.MoveLeft(currentIndexMTP1);
+                }
+                else if (dir1 == "R")
+                {
+                    currentIndexMTP1++;
+                    currentBoxMTP1 = boxesMTP1.MoveRight(currentIndexMTP1);
+                }
+            }
+            
+            var dir2 = direction.Substring(1, 1);
+            if (dir2 != "S")
+            {
+                if (dir2 == "L")
+                {
+                    currentIndexMTP2--;
+                    currentBoxMTP2 = boxesMTP2.MoveLeft(currentIndexMTP2);
+                }
+                else if (dir2 == "R")
+                {
+                    currentIndexMTP2++;
+                    currentBoxMTP2 = boxesMTP2.MoveRight(currentIndexMTP2);
+                }
+            }
+
+            var dir3 = direction.Substring(2, 1);
+            if (dir3 != "S")
+            {
+                if (dir3 == "L")
+                {
+                    currentIndexMTP3--;
+                    currentBoxMTP3 = boxesMTP3.MoveLeft(currentIndexMTP3);
+                }
+                else if (dir3 == "R")
+                {
+                    currentIndexMTP3++;
+                    currentBoxMTP3 = boxesMTP3.MoveRight(currentIndexMTP3);
+                }
+            }
+
+
+        }
+
     }
 
     public void Run()
@@ -157,7 +393,19 @@ public class TuringMachine : MonoBehaviour
 
         if (isAcceptingState)
         {
-            var inputOutputString = boxes1.GetInputOutputString();
+            string inputOutputString = "dummy";
+            if (type == "STP")
+            {
+                inputOutputString = boxesSTP.GetInputOutputString();
+            }
+            else if(type == "MTR")
+            {
+                inputOutputString = boxesMTR1.GetInputOutputString();
+            }
+            else if(type == "MTP")
+            {
+                inputOutputString = boxesMTP1.GetInputOutputString();
+            }
             infoDisplay.UpdateDisplay($"Halts in {currentStateName} (accepting state)\n{inputOutputString}");
         } else
         {

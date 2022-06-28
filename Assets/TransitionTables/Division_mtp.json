@@ -1,0 +1,224 @@
+{
+    "operation": "Division",
+    "type": "MTP",
+    "tapeCount": 3,
+    "symbols": ["0","1","+","-"],
+    "blankSymbol": "B",
+    "startState": "FTCH-01",
+    "acceptStates": ["ACC"],
+    "states": [
+        {
+            "name": "FTCH-01",
+            "transitions": [
+                {
+                    "read": "+BB",
+                    "write": "+BB",
+                    "direction": "RSS",
+                    "nextState": "FTCH-01"
+                },
+                {
+                    "read": "-BB",
+                    "write": "-BB",
+                    "direction": "RSS",
+                    "nextState": "FTCH-01"
+                },
+                {
+                    "read": "0BB",
+                    "write": "BB0",
+                    "direction": "RSR",
+                    "nextState": "FTCH-01"
+                },
+                {
+                    "read": "1BB",
+                    "write": "BBB",
+                    "direction": "RSS",
+                    "nextState": "FTCH-02"
+                }
+            ]
+        },
+        {
+            "name": "FTCH-02",
+            "transitions": [
+                {
+                    "read": "+BB",
+                    "write": "+BB",
+                    "direction": "RSS",
+                    "nextState": "FTCH-02"
+                },
+                {
+                    "read": "-BB",
+                    "write": "-BB",
+                    "direction": "RSS",
+                    "nextState": "FTCH-02"
+                },
+                {
+                    "read": "0BB",
+                    "write": "B0B",
+                    "direction": "RRS",
+                    "nextState": "FTCH-02"
+                },
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "SIGN-01"
+                }
+            ]
+        },
+        {
+            "name": "SIGN-01",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "SIGN-01"
+                },
+                {
+                    "read": "+BB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "SIGN-02"
+                },
+                {
+                    "read": "-BB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "SIGN-03"
+                }
+            ]
+        },
+        {
+            "name": "SIGN-02",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "SIGN-02"
+                },
+                {
+                    "read": "+BB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "SIGN-04"
+                },
+                {
+                    "read": "-BB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "SIGN-05"
+                }
+            ]
+        },
+        {
+            "name": "SIGN-03",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "SIGN-03"
+                },
+                {
+                    "read": "+BB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "SIGN-05"
+                },
+                {
+                    "read": "-BB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "SIGN-04"
+                }
+            ]
+        },
+        {
+            "name": "SIGN-04",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "+BB",
+                    "direction": "RLL",
+                    "nextState": "DIVS-01"
+                }
+            ]
+        },
+        {
+            "name": "SIGN-05",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "-BB",
+                    "direction": "RLL",
+                    "nextState": "DIVS-01"
+                }       
+            ]
+        },
+        {
+            "name": "DIVS-01",
+            "transitions": [
+                {
+                    "read": "B00",
+                    "write": "B0B",
+                    "direction": "SLL",
+                    "nextState": "DIVS-01"
+                },
+                {
+                    "read": "BB0",
+                    "write": "0B0",
+                    "direction": "RRS",
+                    "nextState": "DIVS-02"
+                },
+                {
+                    "read": "BBB",
+                    "write": "0BB",
+                    "direction": "RSS",
+                    "nextState": "ACC"
+                },
+                {
+                    "read": "B0B",
+                    "write": "B0B",
+                    "direction": "RSS",
+                    "nextState": "ACC"
+                }
+            ]
+        },
+        {
+            "name": "DIVS-02",
+            "transitions": [
+                {
+                    "read": "B00",
+                    "write": "B0B",
+                    "direction": "SRL",
+                    "nextState": "DIVS-02"
+                },
+                {
+                    "read": "BB0",
+                    "write": "0B0",
+                    "direction": "RLS",
+                    "nextState": "DIVS-01"
+                },
+                {
+                    "read": "BBB",
+                    "write": "0BB",
+                    "direction": "RSS",
+                    "nextState": "ACC"
+                },
+                {
+                    "read": "B0B",
+                    "write": "B0B",
+                    "direction": "RSS",
+                    "nextState": "ACC"
+                }
+            ]
+        },
+        {
+            "name": "ACC",
+            "transitions": [
+                
+            ]
+        }
+    ]
+}

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6989089211246970156}
   - component: {fileID: 6989089211246970157}
   m_Layer: 5
-  m_Name: Boxes
+  m_Name: BoxesSTP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52,6 +52,8 @@ MonoBehaviour:
   canvasScale: 0.00625
   boxCount: 99
   startIndex: 30
-  inputString: +001+00
+  isMovingRight: 0
+  isMovingLeft: 0
+  inputString: +00001+00
   boxPrefab: {fileID: 2231081426711371296, guid: d92c9744245abe24683c7b61d6c66f39, type: 3}
   boxes: []

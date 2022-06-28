@@ -21,7 +21,7 @@ public class Boxes : MonoBehaviour
 
 
     // PROPERTIES
-    [SerializeField] string inputString = "BBBBBBBBBB";
+    string inputString;
     Vector3 destination;
 
 
@@ -38,10 +38,7 @@ public class Boxes : MonoBehaviour
 
     private void Awake()
     {
-        Setup();
-
-        GenerateBox();
-        DistributeSymbols();
+        
     }
     void Start()
     {
@@ -61,74 +58,16 @@ public class Boxes : MonoBehaviour
     //}
     }
 
-    void Move()
+    public void Spawn(string inputStr)
     {
-        var distance = destination.x - transform.position.x;
-        //Debug.Log(distance);
-        if (isMovingRight)
-        {
-            if (Mathf.Abs(distance) >= 0.01)
-            {
+        inputString = inputStr;
+        Setup();
 
-                if (distance <= 0)
-                {
-                    Debug.Log("ke kanan gerak kanan");
-
-                    transform.Translate(Time.deltaTime * moveSpeed * Vector2.left);
-                }
-                //else
-                //{
-                //    Debug.Log("ke kanan gerak kiri");
-
-                //    transform.Translate(Time.deltaTime * (moveSpeed/2) * Vector2.right);
-                //}
-            }
-            else
-            {
-                isMoving = false;
-                isMovingRight = false;
-            }
-        } else if (isMovingLeft)
-        {
-            //Debug.Log("ke kiri");
-
-            if (Mathf.Abs(distance) >= 0.01)
-            {
-
-                if (distance >= 0)
-                {
-                    Debug.Log("ke kiri gerak kiri");
-
-                    transform.Translate(Time.deltaTime * moveSpeed * Vector2.right);
-                }
-                //else
-                //{
-                //    Debug.Log("ke kiri gerak kanan");
-
-                //    transform.Translate(Time.deltaTime * (moveSpeed/2) * Vector2.left);
-                //}
-            }
-            else
-            {
-                isMoving = false;
-                isMovingLeft = false;
-            }
-        }
-        if(Mathf.Abs(distance) >= 0.01)
-        {
-
-            if(distance <= 0)
-            {
-                transform.Translate(Time.deltaTime * moveSpeed * Vector2.left);
-            } else
-            {
-                transform.Translate(Time.deltaTime * moveSpeed * Vector2.right);
-            }
-        } else
-        {
-            isMoving = false;
-        }
+        GenerateBox();
+        DistributeSymbols();
     }
+
+    
 
     void Setup()
     {
@@ -189,6 +128,77 @@ public class Boxes : MonoBehaviour
 
     public Box GetStartBox() => boxes[startIndex];
 
+    void Move()
+    {
+        var distance = destination.x - transform.position.x;
+        //Debug.Log(distance);
+        if (isMovingRight)
+        {
+            if (Mathf.Abs(distance) >= 0.01)
+            {
+
+                if (distance <= 0)
+                {
+                    //Debug.Log("ke kanan gerak kanan");
+
+                    transform.Translate(Time.deltaTime * moveSpeed * Vector2.left);
+                }
+                //else
+                //{
+                //    Debug.Log("ke kanan gerak kiri");
+
+                //    transform.Translate(Time.deltaTime * (moveSpeed/2) * Vector2.right);
+                //}
+            }
+            else
+            {
+                isMoving = false;
+                isMovingRight = false;
+            }
+        }
+        else if (isMovingLeft)
+        {
+            //Debug.Log("ke kiri");
+
+            if (Mathf.Abs(distance) >= 0.01)
+            {
+
+                if (distance >= 0)
+                {
+                    //Debug.Log("ke kiri gerak kiri");
+
+                    transform.Translate(Time.deltaTime * moveSpeed * Vector2.right);
+                }
+                //else
+                //{
+                //    Debug.Log("ke kiri gerak kanan");
+
+                //    transform.Translate(Time.deltaTime * (moveSpeed/2) * Vector2.left);
+                //}
+            }
+            else
+            {
+                isMoving = false;
+                isMovingLeft = false;
+            }
+        }
+        if (Mathf.Abs(distance) >= 0.01)
+        {
+
+            if (distance <= 0)
+            {
+                transform.Translate(Time.deltaTime * moveSpeed * Vector2.left);
+            }
+            else
+            {
+                transform.Translate(Time.deltaTime * moveSpeed * Vector2.right);
+            }
+        }
+        else
+        {
+            isMoving = false;
+        }
+    }
     public Box MoveRight(int i)
     {
         //transform.position -= offset;
