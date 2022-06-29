@@ -19,7 +19,7 @@
                 {
                     "read": "-",
                     "write": "-",
-                    "direction": "L",
+                    "direction": "R",
                     "nextState": "Q23"
                 }
               
@@ -50,7 +50,7 @@
                     "read": "-",
                     "write": "-",
                     "direction": "L",
-                    "nextState": "Q25"
+                    "nextState": "Q26"
                 }
                
             ]
@@ -405,7 +405,14 @@
                     "write": "B",
                     "direction": "R",
                     "nextState": "Q24"
+                },
+                {
+                    "read": "-",
+                    "write": "B",
+                    "direction": "L",
+                    "nextState": "Q17"
                 }
+
             ]
         },
         {
@@ -431,7 +438,7 @@
                 {
                     "read": "-",
                     "write": "B",
-                    "direction": "R",
+                    "direction": "L",
                     "nextState": "Q19"
                 },
                 {
@@ -604,14 +611,14 @@
                     "nextState": "Q25"
                 },
                 {
-                    "read": "+",
-                    "write": "+",
+                    "read": "-",
+                    "write": "-",
                     "direction": "R",
                     "nextState": "Q2"
                 },
                 {
-                    "read": "-",
-                    "write": "-",
+                    "read": "+",
+                    "write": "+",
                     "direction": "R",
                     "nextState": "Q27"
                 }
@@ -638,6 +645,12 @@
                     "write": "+",
                     "direction": "R",
                     "nextState": "Q2"
+                },
+                {
+                    "read": "-",
+                    "write": "-",
+                    "direction": "R",
+                    "nextState": "Q27"
                 }
             ]
         },

@@ -336,14 +336,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d047f96f3d5a4b489463e0048c16e91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputString: +0000001+00
+  inputString: -110+111
   withMoveTapeAnim: 1
   withChangeSymbolAnim: 1
   moveSpeed: 4
   runDelay: 0.25
   isHalting: 0
   isRunning: 0
-  jsonFile: {fileID: 4900000, guid: b4624e9ad0cb44c4d9faa2b4606f4859, type: 3}
+  jsonFile: {fileID: 4900000, guid: 4e58498063fbf5f47989e8ad1c8f4274, type: 3}
   infoDisplay: {fileID: 1287279464}
   stepButton: {fileID: 891960305}
   runButton: {fileID: 1616120107}
