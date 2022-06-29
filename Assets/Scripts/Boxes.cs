@@ -58,9 +58,10 @@ public class Boxes : MonoBehaviour
     //}
     }
 
-    public void Spawn(string inputStr)
+    public void Spawn(string inputStr, float moveSpd)
     {
         inputString = inputStr;
+        moveSpeed = moveSpd;
         Setup();
 
         GenerateBox();
@@ -199,23 +200,36 @@ public class Boxes : MonoBehaviour
             isMoving = false;
         }
     }
-    public Box MoveRight(int i)
+    public Box MoveRight(int i, bool withAnim)
     {
         //transform.position -= offset;
         //return boxes[i];
-
-        destination = transform.position - offset;
-        isMovingRight = true;
-        isMoving = true;
+        if (withAnim)
+        {
+            destination = transform.position - offset;
+            isMovingRight = true;
+            isMoving = true;
+        }
+        else
+        {
+            transform.position -= offset;
+        }
 
         return boxes[i];
     }
 
-    public Box MoveLeft(int i)
+    public Box MoveLeft(int i, bool withAnim)
     {
-        destination = transform.position + offset;
-        isMovingLeft = true;
-        isMoving = true;
+        if (withAnim)
+        {
+            destination = transform.position + offset;
+            isMovingLeft = true;
+            isMoving = true;
+        }
+        else
+        {
+            transform.position += offset;
+        }
 
 
         return boxes[i];

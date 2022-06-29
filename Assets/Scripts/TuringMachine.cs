@@ -10,11 +10,14 @@ public class TuringMachine : MonoBehaviour
 {
     // CONFIGS
     [SerializeField] string inputString;
+    [SerializeField] bool withMoveTapeAnim;
+    [SerializeField] bool withChangeSymbolAnim;
+    [SerializeField] float moveSpeed;
+    [SerializeField] float runDelay;
 
     // STATES
     [SerializeField] bool isHalting;
     [SerializeField] bool isRunning;
-    [SerializeField] float runDelay;
 
     // CACHES
     [SerializeField] TextAsset jsonFile;
@@ -66,18 +69,18 @@ public class TuringMachine : MonoBehaviour
 
         if(type == "STP")
         {
-            boxesSTP.Spawn(inputString);
+            boxesSTP.Spawn(inputString, moveSpeed);
         } 
         else if(type == "MTR")
         {
-            boxesMTR1.Spawn(inputString);
-            boxesMTR2.Spawn("BB");
+            boxesMTR1.Spawn(inputString, moveSpeed);
+            boxesMTR2.Spawn("BB", moveSpeed);
         }
         else if(type == "MTP")
         {
-            boxesMTP1.Spawn(inputString);
-            boxesMTP2.Spawn("BB");
-            boxesMTP3.Spawn("BB");
+            boxesMTP1.Spawn(inputString, moveSpeed);
+            boxesMTP2.Spawn("BB", moveSpeed);
+            boxesMTP3.Spawn("BB", moveSpeed);
         }
 
         Setup();
@@ -216,7 +219,7 @@ public class TuringMachine : MonoBehaviour
     {
         if(type == "STP")
         {
-            currentBoxSTP.SetSymbol(write, true);
+            currentBoxSTP.SetSymbol(write, withChangeSymbolAnim);
         } 
         else if(type == "MTR")
         {
@@ -224,14 +227,14 @@ public class TuringMachine : MonoBehaviour
             var currentSymbol1 = currentSymbol.Substring(0, 1);
             if(writeSymbol1 != currentSymbol1)
             {
-                currentBoxMTR1.SetSymbol(writeSymbol1, true);
+                currentBoxMTR1.SetSymbol(writeSymbol1, withChangeSymbolAnim);
             }
 
             var writeSymbol2 = write.Substring(1, 1);
             var currentSymbol2 = currentSymbol.Substring(1, 1);
             if (writeSymbol2 != currentSymbol2)
             {
-                currentBoxMTR2.SetSymbol(writeSymbol2, true);
+                currentBoxMTR2.SetSymbol(writeSymbol2, withChangeSymbolAnim);
             }
         }
         else if (type == "MTP")
@@ -240,21 +243,21 @@ public class TuringMachine : MonoBehaviour
             var currentSymbol1 = currentSymbol.Substring(0, 1);
             if (writeSymbol1 != currentSymbol1)
             {
-                currentBoxMTP1.SetSymbol(writeSymbol1, true);
+                currentBoxMTP1.SetSymbol(writeSymbol1, withChangeSymbolAnim);
             }
 
             var writeSymbol2 = write.Substring(1, 1);
             var currentSymbol2 = currentSymbol.Substring(1, 1);
             if (writeSymbol2 != currentSymbol2)
             {
-                currentBoxMTP2.SetSymbol(writeSymbol2, true);
+                currentBoxMTP2.SetSymbol(writeSymbol2, withChangeSymbolAnim);
             }
 
             var writeSymbol3 = write.Substring(2, 1);
             var currentSymbol3 = currentSymbol.Substring(2, 1);
             if (writeSymbol3 != currentSymbol3)
             {
-                currentBoxMTP3.SetSymbol(writeSymbol3, true);
+                currentBoxMTP3.SetSymbol(writeSymbol3, withChangeSymbolAnim);
             }
         }
 
@@ -267,13 +270,13 @@ public class TuringMachine : MonoBehaviour
             if (direction == "L")
             {
                 currentIndex--;
-                currentBoxSTP = boxesSTP.MoveLeft(currentIndex);
+                currentBoxSTP = boxesSTP.MoveLeft(currentIndex, withMoveTapeAnim);
 
             }
             else if(direction == "R")
             {
                 currentIndex++;
-                currentBoxSTP = boxesSTP.MoveRight(currentIndex);
+                currentBoxSTP = boxesSTP.MoveRight(currentIndex, withMoveTapeAnim);
 
             }
         }
@@ -282,15 +285,15 @@ public class TuringMachine : MonoBehaviour
             if (direction == "L")
             {
                 currentIndex--;
-                currentBoxMTR1 = boxesMTR1.MoveLeft(currentIndex);
-                currentBoxMTR2 = boxesMTR2.MoveLeft(currentIndex);
+                currentBoxMTR1 = boxesMTR1.MoveLeft(currentIndex, withMoveTapeAnim);
+                currentBoxMTR2 = boxesMTR2.MoveLeft(currentIndex, withMoveTapeAnim);
 
             }
             else if (direction == "R")
             {
                 currentIndex++;
-                currentBoxMTR1 = boxesMTR1.MoveRight(currentIndex);
-                currentBoxMTR2 = boxesMTR2.MoveRight(currentIndex);
+                currentBoxMTR1 = boxesMTR1.MoveRight(currentIndex, withMoveTapeAnim);
+                currentBoxMTR2 = boxesMTR2.MoveRight(currentIndex, withMoveTapeAnim);
 
             }
         }
@@ -302,12 +305,12 @@ public class TuringMachine : MonoBehaviour
                 if(dir1 == "L")
                 {
                     currentIndexMTP1--;
-                    currentBoxMTP1 = boxesMTP1.MoveLeft(currentIndexMTP1);
+                    currentBoxMTP1 = boxesMTP1.MoveLeft(currentIndexMTP1, withMoveTapeAnim);
                 }
                 else if (dir1 == "R")
                 {
                     currentIndexMTP1++;
-                    currentBoxMTP1 = boxesMTP1.MoveRight(currentIndexMTP1);
+                    currentBoxMTP1 = boxesMTP1.MoveRight(currentIndexMTP1, withMoveTapeAnim);
                 }
             }
             
@@ -317,12 +320,12 @@ public class TuringMachine : MonoBehaviour
                 if (dir2 == "L")
                 {
                     currentIndexMTP2--;
-                    currentBoxMTP2 = boxesMTP2.MoveLeft(currentIndexMTP2);
+                    currentBoxMTP2 = boxesMTP2.MoveLeft(currentIndexMTP2, withMoveTapeAnim);
                 }
                 else if (dir2 == "R")
                 {
                     currentIndexMTP2++;
-                    currentBoxMTP2 = boxesMTP2.MoveRight(currentIndexMTP2);
+                    currentBoxMTP2 = boxesMTP2.MoveRight(currentIndexMTP2, withMoveTapeAnim);
                 }
             }
 
@@ -332,12 +335,12 @@ public class TuringMachine : MonoBehaviour
                 if (dir3 == "L")
                 {
                     currentIndexMTP3--;
-                    currentBoxMTP3 = boxesMTP3.MoveLeft(currentIndexMTP3);
+                    currentBoxMTP3 = boxesMTP3.MoveLeft(currentIndexMTP3, withMoveTapeAnim);
                 }
                 else if (dir3 == "R")
                 {
                     currentIndexMTP3++;
-                    currentBoxMTP3 = boxesMTP3.MoveRight(currentIndexMTP3);
+                    currentBoxMTP3 = boxesMTP3.MoveRight(currentIndexMTP3, withMoveTapeAnim);
                 }
             }
 

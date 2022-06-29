@@ -50,7 +50,7 @@
                     "read": "-",
                     "write": "-",
                     "direction": "L",
-                    "nextState": "Q26"
+                    "nextState": "Q25"
                 }
                
             ]

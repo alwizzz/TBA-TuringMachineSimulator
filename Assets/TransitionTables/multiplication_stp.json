@@ -212,6 +212,12 @@
                     "write": "B",
                     "direction": "R",
                     "nextState": "Q6"
+                },
+                {
+                    "read": "0",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "Q1"
                 }
             ]
         },
