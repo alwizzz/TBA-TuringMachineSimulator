@@ -50,7 +50,7 @@ public class NumberController : MonoBehaviour
 
     void DefaultValues()
     {
-        currentValue = (isSecondNumber) ? 0 : 1;
+        currentValue = 1;
         UpdateDisplay();
 
         if (hasSign)

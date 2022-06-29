@@ -44,16 +44,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1ee440e01329547bbab53c624178a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  additionTransitionTables: []
-  substractionTransitionTables: []
-  multiplicationTransitionTables: []
+  additionTransitionTables:
+  - {fileID: 4900000, guid: 8bd5c41b1f480ad42a6cef5755387fed, type: 3}
+  - {fileID: 4900000, guid: 8b243d1567085184094e6b56fae6f743, type: 3}
+  - {fileID: 4900000, guid: 4e58498063fbf5f47989e8ad1c8f4274, type: 3}
+  substractionTransitionTables:
+  - {fileID: 4900000, guid: 0c9e7d69a4f720f46bd6a52d1bab8120, type: 3}
+  - {fileID: 4900000, guid: 9ce0704600420f940aeb2061dc378f55, type: 3}
+  - {fileID: 4900000, guid: f354e6a66e9d8c848aa94b1ccb7962eb, type: 3}
+  multiplicationTransitionTables:
+  - {fileID: 4900000, guid: 12bd0faffdd9a0743ba11bc52259f6fa, type: 3}
+  - {fileID: 4900000, guid: 0abaeb0fc6b9353438f64faac51354d4, type: 3}
+  - {fileID: 4900000, guid: 51438eb4d973ebd4babe4457787603ff, type: 3}
   divisionTransitionTables:
-  - {fileID: 4900000, guid: 4f76fb6f6d21c1149abf3cd3e6f2b89c, type: 3}
-  - {fileID: 4900000, guid: 05ba37f6ba43f9d419c055e1cd165a5c, type: 3}
   - {fileID: 4900000, guid: b4624e9ad0cb44c4d9faa2b4606f4859, type: 3}
-  factorialTransitionTables: []
-  powerTransitionTables: []
-  binaryLogarithmTransitionTables: []
-  temperatureConversionTransitionTables: []
-  usedTransitionTables: []
-  operation: 
+  - {fileID: 4900000, guid: 05ba37f6ba43f9d419c055e1cd165a5c, type: 3}
+  - {fileID: 4900000, guid: 4f76fb6f6d21c1149abf3cd3e6f2b89c, type: 3}
+  factorialTransitionTables:
+  - {fileID: 4900000, guid: 7cf4957fab356754485a14b04a005102, type: 3}
+  - {fileID: 4900000, guid: 0da12ff3da38d7f468579a06b62cf8f3, type: 3}
+  - {fileID: 4900000, guid: 675db8107aa500742adf6b2929da0f86, type: 3}
+  powerTransitionTables:
+  - {fileID: 4900000, guid: 089b68cc81162694ab266cd013adfafb, type: 3}
+  - {fileID: 4900000, guid: ce8eec99ae918cf4699be621de54a7f4, type: 3}
+  - {fileID: 4900000, guid: ab70ca685e7e356418abe8c716c44f97, type: 3}
+  binaryLogarithmTransitionTables:
+  - {fileID: 4900000, guid: 2d2eb339d12580345b8cc14fd9a41bfd, type: 3}
+  - {fileID: 4900000, guid: 827d145632f91274d8acf503228fbb27, type: 3}
+  - {fileID: 4900000, guid: 3eebc6f5d584d954595f99d4cca2d46f, type: 3}
+  temperatureConversionTransitionTables:
+  - {fileID: 4900000, guid: 40b30d107de6be94ebb3707472ffa1f7, type: 3}
+  - {fileID: 4900000, guid: d9a15b9eaa149c04d994a6bb0bf57a2a, type: 3}
+  - {fileID: 4900000, guid: 82db002e1d7fccc4aae366f5db46cd5d, type: 3}
+  - {fileID: 4900000, guid: 2003d23fdc09fd2478c42f4ca466d404, type: 3}
+  - {fileID: 4900000, guid: ecfe03759e2c93c46baf39bfc215cee5, type: 3}
+  - {fileID: 4900000, guid: fb29921ace34c2144bc78cda91956a6c, type: 3}
+  - {fileID: 4900000, guid: c8cb5b12d7eb6c14fa232c795e04d2e9, type: 3}
+  - {fileID: 4900000, guid: 58a09cf2dd51f3b46a425ad5aa8a7386, type: 3}
+  - {fileID: 4900000, guid: 10dee8e101f66744c863bcd36495bbcd, type: 3}
+  - {fileID: 4900000, guid: db94def8a011c564ab2855b030aaf7aa, type: 3}
+  - {fileID: 4900000, guid: 45dc4095e99885b4ea874928e455e64a, type: 3}
+  - {fileID: 4900000, guid: 967345e71e2c2cc4781b8dc80f0387d0, type: 3}
+  - {fileID: 4900000, guid: aad9118a0e70379429e635f1bf9e4d5e, type: 3}
+  - {fileID: 4900000, guid: 4f3d5b0abc8870643ba67f67007e4704, type: 3}
+  - {fileID: 4900000, guid: 783ff27749da2824786bd6a8835ac2f0, type: 3}
+  - {fileID: 4900000, guid: 0971ebf9b195e6840b9f4dc60f376cfe, type: 3}
+  - {fileID: 4900000, guid: 7f8fd33bdb7187b45a6cc3cd98a8d34e, type: 3}
+  - {fileID: 4900000, guid: fbe0629353165d44c988172c2ed72c45, type: 3}

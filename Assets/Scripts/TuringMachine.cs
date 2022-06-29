@@ -27,6 +27,7 @@ public class TuringMachine : MonoBehaviour
     [SerializeField] Button stepButton;
     [SerializeField] Button runButton;
     [SerializeField] Button stopButton;
+    SceneLoader sceneLoader;
 
     // PROPERTIES
     string type;
@@ -64,6 +65,10 @@ public class TuringMachine : MonoBehaviour
 
     private void Awake()
     {
+        sceneLoader = FindObjectOfType<SceneLoader>();
+        jsonFile = sceneLoader.GetUsedJsonFile();
+        inputString = sceneLoader.GetInputString();
+
         transitionTable = JsonUtility.FromJson<TransitionTable>(jsonFile.ToString());
         type = transitionTable.type;
 

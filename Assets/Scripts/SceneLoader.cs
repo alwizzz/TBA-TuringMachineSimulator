@@ -15,9 +15,12 @@ public class SceneLoader : MonoBehaviour
     [SerializeField] TextAsset[] binaryLogarithmTransitionTables;
     [SerializeField] TextAsset[] temperatureConversionTransitionTables;
 
-    [SerializeField] TextAsset[] usedTransitionTables;
+    TextAsset[] usedTransitionTables;
+    TextAsset usedJsonFile;
+    string inputString = "+00001+00";
 
     string operation = "Division";
+    string machineType = "STP";
     string operatorSymbol = "/";
     bool hasTwoNumber = true;
     bool hasSign = true;
@@ -28,8 +31,10 @@ public class SceneLoader : MonoBehaviour
     private void Awake()
     {
         //DefaultValues();
+        //Debug.Log("TemperatureConversionCK".Substring(21,2));
 
         Singleton();
+        usedTransitionTables = divisionTransitionTables;
     }
 
     void Singleton()
@@ -46,15 +51,134 @@ public class SceneLoader : MonoBehaviour
         }
     }
 
-    void DefaultValues()
-    {
-        operation = "Division";
-    }
+    //void DefaultValues()
+    //{
+    //    operation = "Division";
+    //}
 
     public void QuitButton()
     {
         Application.Quit();
     }
+    public void BackToMainMenuButton()
+    {
+        SceneManager.LoadScene(0);
+    }
+    public void NextButton()
+    {
+        if(operation.Substring(0,4) != "Temp")
+        {
+            if(machineType == "STP") {
+                usedJsonFile = usedTransitionTables[2];
+            } else if(machineType == "MTR"){
+                usedJsonFile = usedTransitionTables[1];
+            } else if (machineType == "MTP"){
+                usedJsonFile = usedTransitionTables[0];
+            }
+        }
+        else
+        {
+            var subOperation = operation.Substring(21, 2);
+            if(subOperation == "CF")
+            {
+                if(machineType == "MTP")
+                {
+                    usedJsonFile = usedTransitionTables[0];
+                }
+                else if (machineType == "MTR")
+                {
+                    usedJsonFile = usedTransitionTables[1];
+                }
+                else if (machineType == "STP")
+                {
+                    usedJsonFile = usedTransitionTables[2];
+                }
+            }
+            else if (subOperation == "CK")
+            {
+                if (machineType == "MTP")
+                {
+                    usedJsonFile = usedTransitionTables[3];
+                }
+                else if (machineType == "MTR")
+                {
+                    usedJsonFile = usedTransitionTables[4];
+                }
+                else if (machineType == "STP")
+                {
+                    usedJsonFile = usedTransitionTables[5];
+                }
+            }
+            else if (subOperation == "FC")
+            {
+                if (machineType == "MTP")
+                {
+                    usedJsonFile = usedTransitionTables[6];
+                }
+                else if (machineType == "MTR")
+                {
+                    usedJsonFile = usedTransitionTables[7];
+                }
+                else if (machineType == "STP")
+                {
+                    usedJsonFile = usedTransitionTables[8];
+                }
+            }
+            else if (subOperation == "FK")
+            {
+                if (machineType == "MTP")
+                {
+                    usedJsonFile = usedTransitionTables[9];
+                }
+                else if (machineType == "MTR")
+                {
+                    usedJsonFile = usedTransitionTables[10];
+                }
+                else if (machineType == "STP")
+                {
+                    usedJsonFile = usedTransitionTables[11];
+                }
+            }
+            else if (subOperation == "KC")
+            {
+                if (machineType == "MTP")
+                {
+                    usedJsonFile = usedTransitionTables[12];
+                }
+                else if (machineType == "MTR")
+                {
+                    usedJsonFile = usedTransitionTables[13];
+                }
+                else if (machineType == "STP")
+                {
+                    usedJsonFile = usedTransitionTables[14];
+                }
+            }
+            else if (subOperation == "KF")
+            {
+                if (machineType == "MTP")
+                {
+                    usedJsonFile = usedTransitionTables[15];
+                }
+                else if (machineType == "MTR")
+                {
+                    usedJsonFile = usedTransitionTables[16];
+                }
+                else if (machineType == "STP")
+                {
+                    usedJsonFile = usedTransitionTables[17];
+                }
+            }
+        }
+
+        SceneManager.LoadScene("MachineScene");
+    }
+
+
+
+
+
+
 
     public void AdditionButton()
     {
@@ -131,10 +255,7 @@ public class SceneLoader : MonoBehaviour
     }
 
 
-    public void BackToMainMenuButton()
-    {
-        SceneManager.LoadScene(0);
-    }
+
 
 
 
@@ -142,6 +263,12 @@ public class SceneLoader : MonoBehaviour
 
     public string GetOperation() => operation;
     public string GetOperatorSymbol() => operatorSymbol;
+    public string GetInputString() => inputString;
+    public void SetInputString(string input) { inputString = input; }
+    public string GetMachineType() => machineType;
+    public void SetMachineType(string input) { machineType = input; }
+
+    public TextAsset GetUsedJsonFile() => usedJsonFile;
 
     public bool HasTwoNumber() => hasTwoNumber;
     public bool HasSign() => hasSign;

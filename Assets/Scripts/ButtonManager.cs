@@ -27,6 +27,15 @@ public class ButtonManager : MonoBehaviour
     {
         sceneLoader.BackToMainMenuButton();
     } //BackToMainMenu
+    public void NextButton()
+    {
+        sceneLoader.NextButton();
+    }
+
+
+
+
+
 
     public void AdditionButton()
     {

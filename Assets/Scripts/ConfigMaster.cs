@@ -40,10 +40,10 @@ public class ConfigMaster : MonoBehaviour
     {
         sceneLoader = FindObjectOfType<SceneLoader>();
         titleText.text = sceneLoader.GetOperation();
-        operation = sceneLoader.GetOperation();
-        operatorSymbolText.text = sceneLoader.GetOperatorSymbol();
         hasTwoNumber = sceneLoader.HasTwoNumber();
         hasSign = sceneLoader.HasSign();
+        operation = sceneLoader.GetOperation();
+        operatorSymbolText.text = sceneLoader.GetOperatorSymbol();
 
         Setup();
 
@@ -104,6 +104,7 @@ public class ConfigMaster : MonoBehaviour
             buttonMTP.interactable = false;
         }
 
+        sceneLoader.SetMachineType(machineType);
         UpdateInputString();
     }
 
@@ -222,6 +223,7 @@ public class ConfigMaster : MonoBehaviour
             result += DecimalToUnary(secondNumber, secondSign, "0");
 
             inputStringText.text = result;
+            sceneLoader.SetInputString(result);
         }
 
         else if (operation == "Factorial")
@@ -271,13 +273,11 @@ public class ConfigMaster : MonoBehaviour
 
             //}
             string result = "";
-            string divider = "1";
 
             result += DecimalToUnary(firstNumber, firstSign, "0");
-            result += divider;
             
             inputStringText.text = result;
-
+            sceneLoader.SetInputString(result);
         }
 
         else if (operation == "TemperatureConversion")
