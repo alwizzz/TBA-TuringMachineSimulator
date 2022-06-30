@@ -1,0 +1,201 @@
+{
+    "operation": "logaritma Biner",
+    "type": "MTR",
+    "tapeCount": 2,
+    "symbols": ["0","1","#"],
+    "blankSymbol": "B",
+    "startState": "MISC-01",
+    "acceptStates": ["ACC"],
+    "states": [
+        {
+            "name": "MISC-01",
+            "transitions": [
+                {
+                    "read": "0B",
+                    "write": "0B",
+                    "direction": "L",
+                    "nextState": "MISC-01"
+                },
+                {
+                    "read": "BB",
+                    "write": "##",
+                    "direction": "R",
+                    "nextState": "MISC-02"
+                }
+            ]
+        },
+        {
+            "name": "MISC-02",
+            "transitions": [
+                {
+                    "read": "0B",
+                    "write": "0B",
+                    "direction": "R",
+                    "nextState": "MISC-02"
+                },
+                {
+                    "read": "BB",
+                    "write": "##",
+                    "direction": "L",
+                    "nextState": "BNRY-01"
+                }
+            ]
+        },
+        {
+            "name": "BNRY-01",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "BB",
+                    "direction": "L",
+                    "nextState": "BNRY-01"
+                },
+                {
+                    "read": "B0",
+                    "write": "B0",
+                    "direction": "L",
+                    "nextState": "BNRY-01"
+                },
+                {
+                    "read": "B1",
+                    "write": "B1",
+                    "direction": "L",
+                    "nextState": "BNRY-01"
+                },
+                {
+                    "read": "0B",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "BNRY-02"
+                },
+                {
+                    "read": "##",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "MISC-03"
+                }
+            ]
+        },
+        {
+            "name": "BNRY-02",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "BNRY-02"
+                },
+                {
+                    "read": "B0",
+                    "write": "B0",
+                    "direction": "R",
+                    "nextState": "BNRY-02"
+                },
+                {
+                    "read": "B1",
+                    "write": "B1",
+                    "direction": "R",
+                    "nextState": "BNRY-02"
+                },
+                {
+                    "read": "##",
+                    "write": "##",
+                    "direction": "L",
+                    "nextState": "BNRY-03"
+                }
+            ]
+        },
+        {
+            "name": "BNRY-03",
+            "transitions": [   
+                {
+                    "read": "BB",
+                    "write": "B1",
+                    "direction": "L",
+                    "nextState": "BNRY-01"
+                },
+                {
+                    "read": "B0",
+                    "write": "B1",
+                    "direction": "L",
+                    "nextState": "BNRY-01"
+                },
+                {
+                    "read": "B1",
+                    "write": "B0",
+                    "direction": "L",
+                    "nextState": "BNRY-04"
+                }
+            ]
+        },
+        {
+            "name": "BNRY-04",
+            "transitions": [
+                {
+                    "read": "B1",
+                    "write": "B0",
+                    "direction": "L",
+                    "nextState": "BNRY-04"
+                },
+                {
+                    "read": "B0",
+                    "write": "B1",
+                    "direction": "L",
+                    "nextState": "BNRY-01"
+                },
+                {
+                    "read": "BB",
+                    "write": "B1",
+                    "direction": "L",
+                    "nextState": "BNRY-01"
+                }
+            ]
+        },
+        {
+            "name": "MISC-03",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "MISC-03"
+                },
+                {
+                    "read": "B1",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "LOGB-01"
+                }
+            ]
+        },
+        {
+            "name": "LOGB-01",
+            "transitions": [
+                {
+                    "read": "B0",
+                    "write": "0B",
+                    "direction": "R",
+                    "nextState": "LOGB-01"
+                },
+                {
+                    "read": "B1",
+                    "write": "0B",
+                    "direction": "R",
+                    "nextState": "LOGB-01"
+                },
+                {
+                    "read": "##",
+                    "write": "BB",
+                    "direction": "L",
+                    "nextState": "ACC"
+                }
+            ]
+        },
+        {
+            "name": "ACC",
+            "transitions": [
+        
+            ]
+        }
+    ]
+}

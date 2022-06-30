@@ -1,0 +1,132 @@
+{
+    "operation": "Logaritma Biner",
+    "type": "MTP",
+    "tapeCount": 3,
+    "symbols": ["0","1","#"],
+    "blankSymbol": "B",
+    "startState": "MISC-01",
+    "acceptStates": ["ACC"],
+    "states": [
+        {
+            "name": "MISC-01",
+            "transitions": [
+                {
+                    "read": "0BB",
+                    "write": "0#B",
+                    "direction": "SLS",
+                    "nextState": "BNRY-01"
+                }
+            ]  
+        },
+        {
+            "name": "BNRY-01",
+            "transitions": [
+                {
+                    "read": "0BB",
+                    "write": "B1B",
+                    "direction": "SRS",
+                    "nextState": "BNRY-03"
+                },
+                {
+                    "read": "00B",
+                    "write": "B1B",
+                    "direction": "SRS",
+                    "nextState": "BNRY-03"
+                },
+                {
+                    "read": "01B",
+                    "write": "B0B",
+                    "direction": "SLS",
+                    "nextState": "BNRY-02"
+                },
+                {
+                    "read": "B0B",
+                    "write": "B0B", 
+                    "direction": "SLS",
+                    "nextState": "LOGB-01"
+                },
+                {
+                    "read": "B1B",
+                    "write": "B1B",
+                    "direction": "SLS",
+                    "nextState": "LOGB-01"
+                }
+            ]
+        },
+        {
+            "name": "BNRY-02",
+            "transitions": [
+                {
+                    "read": "B1B",
+                    "write": "B0B",
+                    "direction": "SLS",
+                    "nextState": "BNRY-02"
+                },
+                {
+                    "read": "B0B",
+                    "write": "B1B",
+                    "direction": "SRS",
+                    "nextState": "BNRY-03"
+                },
+                {
+                    "read": "BBB",
+                    "write": "B1B",
+                    "direction": "SRS",
+                    "nextState": "BNRY-03"
+                }
+            ]
+        },
+        {
+            "name": "BNRY-03",
+            "transitions": [
+                {
+                    "read": "B0B",
+                    "write": "B0B",
+                    "direction": "SRS",
+                    "nextState": "BNRY-03"
+                },
+                {
+                    "read": "B1B",
+                    "write": "B1B",
+                    "direction": "SRS",
+                    "nextState": "BNRY-03"
+                },
+                {
+                    "read": "B#B",
+                    "write": "B#B",
+                    "direction": "RLS",
+                    "nextState": "BNRY-01"
+                }
+            ]
+        },
+        {
+            "name": "LOGB-01",
+            "transitions": [
+                {
+                    "read": "B0B",
+                    "write": "00B",
+                    "direction": "RLS",
+                    "nextState": "LOGB-01"
+                },
+                {
+                    "read": "B1B",
+                    "write": "01B",
+                    "direction": "RLS",
+                    "nextState": "LOGB-01"
+                },
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "LLS",
+                    "nextState": "ACC"
+                }
+            ]
+        },
+        {
+            "name": "ACC",
+            "transitions": [
+        
+            ]
+        }   
+    ]
+}

@@ -69,7 +69,7 @@ MonoBehaviour:
   - {fileID: 4900000, guid: ce8eec99ae918cf4699be621de54a7f4, type: 3}
   - {fileID: 4900000, guid: ab70ca685e7e356418abe8c716c44f97, type: 3}
   binaryLogarithmTransitionTables:
-  - {fileID: 4900000, guid: 2d2eb339d12580345b8cc14fd9a41bfd, type: 3}
+  - {fileID: 4900000, guid: 56a93ff0cc1492547bf18d17e5d4e454, type: 3}
   - {fileID: 4900000, guid: 827d145632f91274d8acf503228fbb27, type: 3}
   - {fileID: 4900000, guid: 3eebc6f5d584d954595f99d4cca2d46f, type: 3}
   temperatureConversionTransitionTables:

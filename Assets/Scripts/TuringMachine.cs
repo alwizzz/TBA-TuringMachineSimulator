@@ -165,6 +165,7 @@ public class TuringMachine : MonoBehaviour
     // Updates currentStateName and currentSymbol
     void UpdateInfo()
     {
+        var oldSymbol = currentSymbol;
         currentStateName = currentState.name;
         
         if(type == "STP")
@@ -179,9 +180,12 @@ public class TuringMachine : MonoBehaviour
         else if(type == "MTP")
         {
             currentSymbol = currentBoxMTP1.GetSymbol();
+            Debug.Log($"tape1's symbol: {currentSymbol}");
             currentSymbol += currentBoxMTP2.GetSymbol();
             currentSymbol += currentBoxMTP3.GetSymbol();
         }
+
+        Debug.Log($"Updating currentSymbol from {oldSymbol} to {currentSymbol}");
     }
 
 
@@ -270,6 +274,7 @@ public class TuringMachine : MonoBehaviour
             var currentSymbol1 = currentSymbol.Substring(0, 1);
             if (writeSymbol1 != currentSymbol1)
             {
+                Debug.Log($"Old: {currentSymbol1}, new: {writeSymbol1}");
                 currentBoxMTP1.SetSymbol(writeSymbol1, withChangeSymbolAnim);
             }
 
@@ -422,27 +427,8 @@ public class TuringMachine : MonoBehaviour
 
         isHalting = false;
         Setup();
-        //if (type == "STP")
-        //{
-        //    currentIndex = boxesSTP.startIndex;
-        //    currentBoxSTP = boxesSTP.GetStartBox();
-        //}
-        //else if (type == "MTR")
-        //{
-        //    currentIndex = boxesMTR1.startIndex;
-        //    currentBoxMTR1 = boxesMTR1.GetStartBox();
-        //    currentBoxMTR2 = boxesMTR2.GetStartBox();
-        //}
-        //else if (type == "MTP")
-        //{
-        //    currentIndexMTP1 = boxesMTP1.startIndex;
-        //    currentIndexMTP2 = boxesMTP2.startIndex;
-        //    currentIndexMTP3 = boxesMTP3.startIndex;
 
-        //    currentBoxMTP1 = boxesMTP1.GetStartBox();
-        //    currentBoxMTP2 = boxesMTP2.GetStartBox();
-        //    currentBoxMTP3 = boxesMTP3.GetStartBox();
-        //}
+        Debug.Log("<b>==> RESET <== </b>");
 
     }
 
@@ -598,7 +584,7 @@ public class TuringMachine : MonoBehaviour
             return output.Length.ToString();
         }
 
-        else if (operation.Substring(0,12) == "TemperatureConversion")
+        else if (operation.Substring(0,21) == "TemperatureConversion")
         {
             var subOperation = operation.Substring(21, 2);
             string result = "";
@@ -648,40 +634,6 @@ public class TuringMachine : MonoBehaviour
             }
             result += value.ToString();
             return result;
-
-            //if (subOperation == "CK" || subOperation == "KC")
-            //{
-            //    string signSymbol = output.Substring(0, 1);
-            //    int i;
-            //    for(i=1; ; i++)
-            //    {
-            //        var currentChar = output[i].ToString();
-            //        if(currentChar == "+" || currentChar == "-")
-            //        {
-            //            break;
-            //        }
-            //    }
-            //    value = i - 1;
-
-
-            //    if (value != 0)
-            //    {
-            //        result += (signSymbol == "+") ? "" : signSymbol;
-            //    }
-            //    result += value.ToString();
-
-            //}
-
-            //int value = output.Substring(1).Length;
-
-            //if (value != 0)
-            //{
-            //    result += (signSymbol == "+") ? "" : signSymbol;
-            //}
-            //result += value.ToString();
-
-            //return result;
-
 
         }
 

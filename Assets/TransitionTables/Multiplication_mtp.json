@@ -1,0 +1,190 @@
+{
+    "operation": "Multiplication",
+    "type": "MTP",
+    "tapeCount": 3,
+    "symbols": ["0","-","+"],
+    "blankSymbol": "B",
+    "startState": "FTCH-01",
+    "acceptStates": ["ACC"],
+    "states": [
+        {
+            "name": "FTCH-01",
+            "transitions": [
+                {
+                    "read": "+BB",
+                    "write": "+BB",
+                    "direction": "RSS",
+                    "nextState": "FTCH-01"
+                },
+                {
+                    "read": "-BB",
+                    "write": "-BB",
+                    "direction": "RSS",
+                    "nextState": "FTCH-01"
+                },
+                {
+                    "read": "0BB",
+                    "write": "BB0",
+                    "direction": "RSR",
+                    "nextState": "FTCH-01"
+                },
+                {
+                    "read": "1BB",
+                    "write": "BBB",
+                    "direction": "RSS",
+                    "nextState": "FTCH-02"
+                }
+            ]
+        },
+        {
+            "name": "FTCH-02",
+            "transitions": [
+                {
+                    "read": "+BB",
+                    "write": "+BB",
+                    "direction": "RSS",
+                    "nextState": "FTCH-02"
+                },
+                {
+                    "read": "-BB",
+                    "write": "-BB",
+                    "direction": "RSS",
+                    "nextState": "FTCH-02"
+                },
+                {
+                    "read": "0BB",
+                    "write": "B0B",
+                    "direction": "RRS",
+                    "nextState": "FTCH-02"
+                },
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "SIGN-01"
+                }
+            ]
+        },
+        {
+            "name": "SIGN-01",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "SIGN-01"
+                },
+                {
+                    "read": "+BB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "SIGN-02"
+                },
+                {
+                    "read": "-BB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "SIGN-03"
+                }
+            ]
+        },
+        {
+            "name": "SIGN-02",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "SIGN-02"
+                },
+                {
+                    "read": "+BB",
+                    "write": "+BB",
+                    "direction": "RLL",
+                    "nextState": "MULT-01"
+                },
+                {
+                    "read": "-BB",
+                    "write": "-BB",
+                    "direction": "RLL",
+                    "nextState": "MULT-01"
+                }
+            ]
+        },
+        {
+            "name": "SIGN-03",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "SIGN-03"
+                },
+                {
+                    "read": "+BB",
+                    "write": "-BB",
+                    "direction": "RLL",
+                    "nextState": "MULT-01"
+                },
+                {
+                    "read": "-BB",
+                    "write": "+BB",
+                    "direction": "RLL",
+                    "nextState": "MULT-01"
+                }
+            ]
+        },
+        {
+            "name": "MULT-01",
+            "transitions": [
+                {
+                    "read": "B00",
+                    "write": "000",
+                    "direction": "RLS",
+                    "nextState": "MULT-01"
+                },
+                {
+                    "read": "BB0",
+                    "write": "BBB",
+                    "direction": "SRL",
+                    "nextState": "MULT-02"
+                },
+                {
+                    "read": "B0B",
+                    "write": "B0B",
+                    "direction": "SSS",
+                    "nextState": "ACC"
+                }
+            ]
+        },
+        {
+            "name": "MULT-02",
+            "transitions": [
+                {
+                    "read": "B00",
+                    "write": "000",
+                    "direction": "RRS",
+                    "nextState": "MULT-02"
+                },
+                {
+                    "read": "BB0",
+                    "write": "BBB",
+                    "direction": "SLL",
+                    "nextState": "MULT-01"
+                },
+                {
+                    "read": "B0B",
+                    "write": "B0B",
+                    "direction": "SSS",
+                    "nextState": "ACC"
+                }
+            ]
+        },
+        {
+            "name": "ACC",
+            "transitions": [
+        
+            ]
+        }
+    ]
+}

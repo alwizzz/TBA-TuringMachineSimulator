@@ -258,30 +258,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3014487784676093041, guid: 320b1f1c202550e459bbc3e476a47138, type: 3}
-      propertyPath: substractionTransitionTables.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3014487784676093041, guid: 320b1f1c202550e459bbc3e476a47138, type: 3}
-      propertyPath: multiplicationTransitionTables.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3014487784676093041, guid: 320b1f1c202550e459bbc3e476a47138, type: 3}
-      propertyPath: binaryLogarithmTransitionTables.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3014487784676093041, guid: 320b1f1c202550e459bbc3e476a47138, type: 3}
-      propertyPath: substractionTransitionTables.Array.data[0]
-      value: 
-      objectReference: {fileID: 4900000, guid: f354e6a66e9d8c848aa94b1ccb7962eb, type: 3}
-    - target: {fileID: 3014487784676093041, guid: 320b1f1c202550e459bbc3e476a47138, type: 3}
-      propertyPath: multiplicationTransitionTables.Array.data[0]
-      value: 
-      objectReference: {fileID: 4900000, guid: 51438eb4d973ebd4babe4457787603ff, type: 3}
-    - target: {fileID: 3014487784676093041, guid: 320b1f1c202550e459bbc3e476a47138, type: 3}
-      propertyPath: binaryLogarithmTransitionTables.Array.data[0]
-      value: 
-      objectReference: {fileID: 4900000, guid: 3eebc6f5d584d954595f99d4cca2d46f, type: 3}
     - target: {fileID: 3014487784676093046, guid: 320b1f1c202550e459bbc3e476a47138, type: 3}
       propertyPath: m_Name
       value: SceneLoader

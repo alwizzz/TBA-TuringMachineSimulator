@@ -1,0 +1,445 @@
+{
+    "operation": "Farenheit to Celcius",
+    "type": "MTP",
+    "tapeCount": 3,
+    "symbols": ["0","G"],
+    "blankSymbol": "B",
+    "startState": "FTCH-01",
+    "acceptStates": ["ACC"],
+    "states": [
+        {
+            "name": "FTCH-01",
+            "transitions": [
+                {
+                    "read": "+BB",
+                    "write": "+BB",
+                    "direction": "RSS",
+                    "nextState": "FTCH-01"
+                },
+                {
+                    "read": "-BB",
+                    "write": "-BB",
+                    "direction": "RSS",
+                    "nextState": "FTCH-01"
+                },
+                {
+                    "read": "0BB",
+                    "write": "BB0",
+                    "direction": "RSR",
+                    "nextState": "FTCH-01"
+                },
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "SET5-01"
+                }
+            ]
+        },
+        {
+            "name": "SET5-01",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "B0B",
+                    "direction": "SRS",
+                    "nextState": "SET5-02"
+                }
+            ]
+        },
+        {
+            "name": "SET5-02",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "B0B",
+                    "direction": "SRS",
+                    "nextState": "SET5-03"
+                }
+            ]
+        },
+        {
+            "name": "SET5-03",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "B0B",
+                    "direction": "SRS",
+                    "nextState": "SET5-04"
+                }
+            ]
+        },
+        {
+            "name": "SET5-04",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "B0B",
+                    "direction": "SRS",
+                    "nextState": "SET5-05"
+                }
+            ]
+        },
+        {
+            "name": "SET5-05",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "B0B",
+                    "direction": "SRS",
+                    "nextState": "MISC-01"
+                }
+            ]
+        },
+        {
+            "name": "MISC-01",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "MISC-01"
+                },
+                {
+                    "read": "+BB",
+                    "write": "+BB",
+                    "direction": "RLL",
+                    "nextState": "MULT-01"
+                },
+                {
+                    "read": "-BB",
+                    "write": "-BB",
+                    "direction": "RLL",
+                    "nextState": "MULT-01"
+                }
+            ]
+        },
+        {
+            "name": "MULT-01",
+            "transitions": [
+                {
+                    "read": "B00",
+                    "write": "000",
+                    "direction": "RLS",
+                    "nextState": "MULT-01"
+                },
+                {
+                    "read": "BB0",
+                    "write": "BBB",
+                    "direction": "SRL",
+                    "nextState": "MULT-02"
+                },
+                {
+                    "read": "B0B",
+                    "write": "B0B",
+                    "direction": "SRS",
+                    "nextState": "CLNS-01"
+                }
+            ]
+        },
+        {
+            "name": "MULT-02",
+            "transitions": [
+                {
+                    "read": "B00",
+                    "write": "000",
+                    "direction": "RRS",
+                    "nextState": "MULT-02"
+                },
+                {
+                    "read": "BB0",
+                    "write": "BBB",
+                    "direction": "SLL",
+                    "nextState": "MULT-01"
+                },
+                {
+                    "read": "B0B",
+                    "write": "B0B",
+                    "direction": "SRS",
+                    "nextState": "CLNS-01"
+                }
+            ]
+        },
+        {
+            "name": "CLNS-01",
+            "transitions": [
+                {
+                    "read": "B0B",
+                    "write": "B0B",
+                    "direction": "SRS",
+                    "nextState": "CLNS-01"
+                },
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "SLS",
+                    "nextState": "CLNS-02"
+                }
+            ]
+        },
+        {
+            "name": "CLNS-02",
+            "transitions": [
+                {
+                    "read": "B0B",
+                    "write": "BBB",
+                    "direction": "SLS",
+                    "nextState": "CLNS-02"
+                },
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "SSS",
+                    "nextState": "MISC-02"
+                }
+            ]
+        },
+        {
+            "name": "MISC-02",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "FTCH-02"
+                }
+            ]
+        },
+        {
+            "name": "FTCH-02",
+            "transitions": [
+                {
+                    "read": "0BB",
+                    "write": "BB0",
+                    "direction": "LSR",
+                    "nextState": "FTCH-02"
+                },
+                {
+                    "read": "+BB",
+                    "write": "+BB",
+                    "direction": "RSS",
+                    "nextState": "SET9-01"
+                },
+                {
+                    "read": "-BB",
+                    "write": "-BB",
+                    "direction": "RSS",
+                    "nextState": "SET9-01"
+                }
+            ]
+        },
+        {
+            "name": "SET9-01",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "B0B",
+                    "direction": "SRS",
+                    "nextState": "SET9-02"
+                }
+            ]
+        },
+        {
+            "name": "SET9-02",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "B0B",
+                    "direction": "SRS",
+                    "nextState": "SET9-03"
+                }
+            ]
+        },
+        {
+            "name": "SET9-03",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "B0B",
+                    "direction": "SRS",
+                    "nextState": "SET9-04"
+                }
+            ]
+        },
+        {
+            "name": "SET9-04",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "B0B",
+                    "direction": "SRS",
+                    "nextState": "SET9-05"
+                }
+            ]
+        },
+        {
+            "name": "SET9-05",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "B0B",
+                    "direction": "SRS",
+                    "nextState": "SET9-06"
+                }
+            ]
+        },
+        {
+            "name": "SET9-06",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "B0B",
+                    "direction": "SRS",
+                    "nextState": "SET9-07"
+                }
+            ]
+        },
+        {
+            "name": "SET9-07",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "B0B",
+                    "direction": "SRS",
+                    "nextState": "SET9-08"
+                }
+            ]
+        },
+        {
+            "name": "SET9-08",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "B0B",
+                    "direction": "SRS",
+                    "nextState": "SET9-09"
+                }
+            ]
+        },
+        {
+            "name": "SET9-09",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "B0B",
+                    "direction": "SRS",
+                    "nextState": "MISC-03"
+                }
+            ]
+        },
+        {
+            "name": "MISC-03",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "SLL",
+                    "nextState": "DIVS-01"
+                }
+            ]
+        },
+        {
+            "name": "DIVS-01",
+            "transitions": [
+                {
+                    "read": "B00",
+                    "write": "B0B",
+                    "direction": "SLL",
+                    "nextState": "DIVS-01"
+                },
+                {
+                    "read": "BB0",
+                    "write": "0B0",
+                    "direction": "RRS",
+                    "nextState": "DIVS-02"
+                },
+                {
+                    "read": "BBB",
+                    "write": "0BB",
+                    "direction": "RSS",
+                    "nextState": "MISC-04"
+                },
+                {
+                    "read": "B0B",
+                    "write": "B0B",
+                    "direction": "SLS",
+                    "nextState": "MISC-04"
+                }
+            ]
+        },
+        {
+            "name": "DIVS-02",
+            "transitions": [
+                {
+                    "read": "B00",
+                    "write": "B0B",
+                    "direction": "SRL",
+                    "nextState": "DIVS-02"
+                },
+                {
+                    "read": "BB0",
+                    "write": "0B0",
+                    "direction": "RLS",
+                    "nextState": "DIVS-01"
+                },
+                {
+                    "read": "BBB",
+                    "write": "0BB",
+                    "direction": "RSS",
+                    "nextState": "MISC-04"
+                },
+                {
+                    "read": "B0B",
+                    "write": "B0B",
+                    "direction": "SLS",
+                    "nextState": "MISC-04"
+                }
+            ]
+        },
+        {
+            "name": "MISC-04",
+            "transitions": [
+                {
+                    "read": "B0B",
+                    "write": "B0B",
+                    "direction": "SLS",
+                    "nextState": "MISC-04"
+                },
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "SSS",
+                    "nextState": "MING-01"
+                }
+            ]
+        },
+        {
+            "name": "MING-01",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "-BB",
+                    "direction": "RSS",
+                    "nextState": "MING-02"
+                }
+            ]
+        },
+        {
+            "name": "MING-02",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "GBB",
+                    "direction": "RSS",
+                    "nextState": "ACC"
+                }
+            ]
+        },
+        {
+            "name": "ACC",
+            "transitions": [
+        
+            ]
+        }
+    ]
+}
