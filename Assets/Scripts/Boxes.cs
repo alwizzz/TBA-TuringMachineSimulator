@@ -23,6 +23,7 @@ public class Boxes : MonoBehaviour
     // PROPERTIES
     string inputString;
     Vector3 destination;
+    Vector3 initialPosition;
 
 
     // CACHES
@@ -38,7 +39,7 @@ public class Boxes : MonoBehaviour
 
     private void Awake()
     {
-        
+        initialPosition = transform.position;
     }
     void Start()
     {
@@ -66,6 +67,25 @@ public class Boxes : MonoBehaviour
 
         GenerateBox();
         DistributeSymbols();
+    }
+
+    public void Despawn()
+    {
+        if(boxes != null)
+        {
+            foreach (Box box in boxes)
+            {
+                Destroy(box.gameObject);
+                //boxes.Remove(box);
+            }
+            boxes.Clear();
+
+            //var oldBoxes = boxes;
+            boxes = new List<Box>();
+            //oldBoxes.Clear();
+
+            transform.position = initialPosition;
+        }
     }
 
     
@@ -235,7 +255,7 @@ public class Boxes : MonoBehaviour
         return boxes[i];
     }
 
-    public string GetInputOutputString()
+    public string GetOutputString()
     {
         string outputString = "";
         bool isReading = false;
@@ -251,8 +271,11 @@ public class Boxes : MonoBehaviour
             }
         }
 
-        var result = $"input: {inputString}" + "\n" + $"output: {outputString}";
-        return result;
+        //var result = 
+        //    $"input: {inputString}\n" + 
+        //    $"output: {outputString}\n" +
+        //    $"Result: result";
+        return outputString;
     }
 
 }

@@ -20,6 +20,7 @@ public class SceneLoader : MonoBehaviour
     string inputString = "+00001+00";
 
     string operation = "Division";
+    string operationString = "4 / 20";
     string machineType = "STP";
     string operatorSymbol = "/";
     bool hasTwoNumber = true;
@@ -169,6 +170,8 @@ public class SceneLoader : MonoBehaviour
                     usedJsonFile = usedTransitionTables[17];
                 }
             }
+
+            //operation == "TemperatureConversion";
         }
 
         SceneManager.LoadScene("MachineScene");
@@ -262,6 +265,9 @@ public class SceneLoader : MonoBehaviour
 
 
     public string GetOperation() => operation;
+    public void SetOperation(string input) { operation = input; }
+    public string GetOperationString() => operationString;
+    public void SetOperationString(string input) { operationString = input; }
     public string GetOperatorSymbol() => operatorSymbol;
     public string GetInputString() => inputString;
     public void SetInputString(string input) { inputString = input; }

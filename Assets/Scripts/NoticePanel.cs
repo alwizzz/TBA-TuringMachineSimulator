@@ -1,16 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class InfoDisplay : MonoBehaviour
+public class NoticePanel : MonoBehaviour
 {
-
-    [SerializeField] Text thisText;
     // Start is called before the first frame update
     void Start()
     {
-        //thisText = GetComponent<Text>();
+        
     }
 
     // Update is called once per frame
@@ -19,8 +16,13 @@ public class InfoDisplay : MonoBehaviour
         
     }
 
-    public void UpdateDisplay(string input)
+    public void CloseButton()
     {
-        thisText.text = input;
+        gameObject.SetActive(false);
+    }
+
+    public void Show()
+    {
+        gameObject.SetActive(true);
     }
 }

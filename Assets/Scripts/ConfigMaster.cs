@@ -30,23 +30,43 @@ public class ConfigMaster : MonoBehaviour
     [SerializeField] TextMeshProUGUI inputStringText;
     [SerializeField] NumberController firstNumberController;
     [SerializeField] NumberController secondNumberController;
+    [SerializeField] Canvas extraCanvas;
+    [SerializeField] Button[] extraButtons;
 
 
     SceneLoader sceneLoader;
+    string TemperatureConversionString = "TemperatureConversion";
 
 
 
     private void Awake()
     {
         sceneLoader = FindObjectOfType<SceneLoader>();
-        titleText.text = sceneLoader.GetOperation();
         hasTwoNumber = sceneLoader.HasTwoNumber();
         hasSign = sceneLoader.HasSign();
         operation = sceneLoader.GetOperation();
+
+        if(operation == "TemperatureConversion")
+        {
+            titleText.text = "Temperature Conversion";
+        }
+        else if (operation == "BinaryLogarithm")
+        {
+            titleText.text = "Binary Logarithm";
+        }
+        else
+        {
+            titleText.text = sceneLoader.GetOperation();
+        }
+
         operatorSymbolText.text = sceneLoader.GetOperatorSymbol();
 
         Setup();
-
+        if(operation == "TemperatureConversion")
+        {
+            ExtraSetup();
+            CKButton();
+        }
 
         DefaultValues();
         
@@ -75,6 +95,12 @@ public class ConfigMaster : MonoBehaviour
                 secondNumberController.buttonSign.gameObject.SetActive(false);
             }
         }
+    }
+
+    void ExtraSetup()
+    {
+        extraCanvas.gameObject.SetActive(true);
+        //TemperatureConversionString = operation;
     }
 
     void DefaultValues()
@@ -108,6 +134,22 @@ public class ConfigMaster : MonoBehaviour
         UpdateInputString();
     }
 
+    void UpdateExtraButton(string subOperation)
+    {
+        foreach(Button btn in extraButtons)
+        {
+            if(btn.gameObject.name == $"Button {subOperation}")
+            {
+                btn.interactable = false;
+            } else
+            {
+                btn.interactable = true;
+            }
+        }
+
+        sceneLoader.SetOperation(operation);
+    }
+
     public void STPButton()
     {
         machineType = "STP";
@@ -122,6 +164,42 @@ public class ConfigMaster : MonoBehaviour
     {
         machineType = "MTP";
         UpdateButton();
+    }
+    public void CKButton()
+    {
+        var subOperation = "CK";
+        operation = TemperatureConversionString + subOperation;
+        UpdateExtraButton(subOperation);
+    }
+    public void CFButton()
+    {
+        var subOperation = "CF";
+        operation = TemperatureConversionString + subOperation;
+        UpdateExtraButton(subOperation);
+    }
+    public void KFButton()
+    {
+        var subOperation = "KF";
+        operation = TemperatureConversionString + subOperation;
+        UpdateExtraButton(subOperation);
+    }
+    public void FCButton()
+    {
+        var subOperation = "FC";
+        operation = TemperatureConversionString + subOperation;
+        UpdateExtraButton(subOperation);
+    }
+    public void KCButton()
+    {
+        var subOperation = "KC";
+        operation = TemperatureConversionString + subOperation;
+        UpdateExtraButton(subOperation);
+    }
+    public void FKButton()
+    {
+        var subOperation = "FK";
+        operation = TemperatureConversionString + subOperation;
+        UpdateExtraButton(subOperation);
     }
 
     public void UpdateNumber(int value, string sign, bool isSecondNumber)
@@ -187,34 +265,19 @@ public class ConfigMaster : MonoBehaviour
 
         else if (operation == "Multiplication")
         {
-            if (machineType == "STP")
-            {
+            string result = "";
+            string divider = "1";
 
-            }
-            else if (machineType == "MTR")
-            {
+            result += DecimalToUnary(firstNumber, firstSign, "0");
+            result += divider;
+            result += DecimalToUnary(secondNumber, secondSign, "0");
 
-            }
-            else if (machineType == "MTP")
-            {
-
-            }
+            inputStringText.text = result;
+            sceneLoader.SetInputString(result);
         }
 
         else if (operation == "Division")
         {
-            //if (machineType == "STP")
-            //{
-
-            //}
-            //else if (machineType == "MTR")
-            //{
-
-            //}
-            //else if (machineType == "MTP")
-            //{
-
-            //}
             string result = "";
             string divider = "1";
 
@@ -260,18 +323,6 @@ public class ConfigMaster : MonoBehaviour
 
         else if (operation == "BinaryLogarithm")
         {
-            //if (machineType == "STP")
-            //{
-
-            //}
-            //else if (machineType == "MTR")
-            //{
-
-            //}
-            //else if (machineType == "MTP")
-            //{
-
-            //}
             string result = "";
 
             result += DecimalToUnary(firstNumber, firstSign, "0");
@@ -280,21 +331,66 @@ public class ConfigMaster : MonoBehaviour
             sceneLoader.SetInputString(result);
         }
 
-        else if (operation == "TemperatureConversion")
+        else if (operation.Substring(0,21) == "TemperatureConversion")
         {
-            if (machineType == "STP")
-            {
+            string result = "";
+            result += DecimalToUnary(firstNumber, firstSign, "0");
 
+            inputStringText.text = result;
+            sceneLoader.SetInputString(result);
+        }
+    }
+
+
+    private void OnDestroy()
+    {
+        string operationString = "";
+
+
+        if(operation.Length > 21 &&  operation.Substring(0,21) == "TemperatureConversion")
+        {
+            var subOperation = operation.Substring(21, 2);
+
+            operationString += (hasSign && firstSign == "+") ? firstSign : "";
+            operationString += firstNumber;
+
+            if (subOperation == "CK" || subOperation == "CF")
+            {
+                operationString += " °C";
             }
-            else if (machineType == "MTR")
+            else if (subOperation == "FC" || subOperation == "FK")
             {
-
+                operationString += " °F";
             }
-            else if (machineType == "MTP")
+            else if (subOperation == "KC" || subOperation == "KF")
             {
-
+                operationString += " K";
             }
         }
+        else if (operation == "BinaryLogarithm")
+        {
+            operationString += "Log_2(";
+            operationString += firstNumber;
+            operationString += ")";
+        }
+        else
+        {
+            operationString += (hasSign && firstSign == "-") ? firstSign : "";
+            operationString += firstNumber;
+            operationString += " ";
+            operationString += sceneLoader.GetOperatorSymbol();
+
+            if (hasTwoNumber)
+            {
+                operationString += " ";
+                operationString += (hasSign && secondSign == "-") ? secondSign : "";
+                operationString += secondNumber;
+            }
+        }
+
+
+
+        sceneLoader.SetOperationString(operationString);
     }
 }
 

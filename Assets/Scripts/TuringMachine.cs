@@ -27,9 +27,14 @@ public class TuringMachine : MonoBehaviour
     [SerializeField] Button stepButton;
     [SerializeField] Button runButton;
     [SerializeField] Button stopButton;
+    [SerializeField] Button resetButton;
+    [SerializeField] NoticePanel panelNotice;
+
     SceneLoader sceneLoader;
 
     // PROPERTIES
+    string operation;
+    string operationString;
     string type;
     string blankSymbol;
     int currentIndex;
@@ -58,35 +63,43 @@ public class TuringMachine : MonoBehaviour
     int currentIndexMTP2;
     int currentIndexMTP3;
 
+
+    // DEBUG
+    [Header("Debug")]
+    [SerializeField] TextAsset debugJsonFile;
     
-
-
     // Start is called before the first frame update
 
     private void Awake()
     {
         sceneLoader = FindObjectOfType<SceneLoader>();
+        operation = sceneLoader.GetOperation();
+        operationString = sceneLoader.GetOperationString();
+        Debug.Log(operationString);
+
         jsonFile = sceneLoader.GetUsedJsonFile();
+        jsonFile = (jsonFile == null) ? debugJsonFile : jsonFile;
+        
         inputString = sceneLoader.GetInputString();
 
         transitionTable = JsonUtility.FromJson<TransitionTable>(jsonFile.ToString());
         type = transitionTable.type;
 
-        if(type == "STP")
-        {
-            boxesSTP.Spawn(inputString, moveSpeed);
-        } 
-        else if(type == "MTR")
-        {
-            boxesMTR1.Spawn(inputString, moveSpeed);
-            boxesMTR2.Spawn("BB", moveSpeed);
-        }
-        else if(type == "MTP")
-        {
-            boxesMTP1.Spawn(inputString, moveSpeed);
-            boxesMTP2.Spawn("BB", moveSpeed);
-            boxesMTP3.Spawn("BB", moveSpeed);
-        }
+        //if(type == "STP")
+        //{
+        //    boxesSTP.Spawn(inputString, moveSpeed);
+        //} 
+        //else if(type == "MTR")
+        //{
+        //    boxesMTR1.Spawn(inputString, moveSpeed);
+        //    boxesMTR2.Spawn("BB", moveSpeed);
+        //}
+        //else if(type == "MTP")
+        //{
+        //    boxesMTP1.Spawn(inputString, moveSpeed);
+        //    boxesMTP2.Spawn("BB", moveSpeed);
+        //    boxesMTP3.Spawn("BB", moveSpeed);
+        //}
 
         Setup();
     }
@@ -111,17 +124,26 @@ public class TuringMachine : MonoBehaviour
 
         if (type == "STP")
         {
+            boxesSTP.Spawn(inputString, moveSpeed);
+
             currentIndex = boxesSTP.startIndex;
             currentBoxSTP = boxesSTP.GetStartBox();
         }
         else if (type == "MTR")
         {
+            boxesMTR1.Spawn(inputString, moveSpeed);
+            boxesMTR2.Spawn("BB", moveSpeed);
+
             currentIndex = boxesMTR1.startIndex;
             currentBoxMTR1 = boxesMTR1.GetStartBox();
             currentBoxMTR2 = boxesMTR2.GetStartBox();
         } 
         else if(type == "MTP")
         {
+            boxesMTP1.Spawn(inputString, moveSpeed);
+            boxesMTP2.Spawn("BB", moveSpeed);
+            boxesMTP3.Spawn("BB", moveSpeed);
+
             currentIndexMTP1 = boxesMTP1.startIndex;
             currentIndexMTP2 = boxesMTP2.startIndex;
             currentIndexMTP3 = boxesMTP3.startIndex;
@@ -359,6 +381,7 @@ public class TuringMachine : MonoBehaviour
         stopButton.interactable = true;
         runButton.interactable = false;
         stepButton.interactable = false;
+        resetButton.interactable = false;
 
         isRunning = true;
         StartCoroutine(RunCoroutine());
@@ -383,6 +406,44 @@ public class TuringMachine : MonoBehaviour
         stopButton.interactable = false;
         runButton.interactable = true;
         stepButton.interactable = true;
+        resetButton.interactable = true;
+    }
+
+    public void ResetSession()
+    {
+        boxesSTP.Despawn();
+
+        boxesMTR1.Despawn();
+        boxesMTR2.Despawn();
+
+        boxesMTP1.Despawn();
+        boxesMTP2.Despawn();
+        boxesMTP3.Despawn();
+
+        isHalting = false;
+        Setup();
+        //if (type == "STP")
+        //{
+        //    currentIndex = boxesSTP.startIndex;
+        //    currentBoxSTP = boxesSTP.GetStartBox();
+        //}
+        //else if (type == "MTR")
+        //{
+        //    currentIndex = boxesMTR1.startIndex;
+        //    currentBoxMTR1 = boxesMTR1.GetStartBox();
+        //    currentBoxMTR2 = boxesMTR2.GetStartBox();
+        //}
+        //else if (type == "MTP")
+        //{
+        //    currentIndexMTP1 = boxesMTP1.startIndex;
+        //    currentIndexMTP2 = boxesMTP2.startIndex;
+        //    currentIndexMTP3 = boxesMTP3.startIndex;
+
+        //    currentBoxMTP1 = boxesMTP1.GetStartBox();
+        //    currentBoxMTP2 = boxesMTP2.GetStartBox();
+        //    currentBoxMTP3 = boxesMTP3.GetStartBox();
+        //}
+
     }
 
     void Halt()
@@ -401,24 +462,229 @@ public class TuringMachine : MonoBehaviour
 
         if (isAcceptingState)
         {
-            string inputOutputString = "dummy";
+            string outputString = "dummy";
+            string result = "dummy";
+
             if (type == "STP")
             {
-                inputOutputString = boxesSTP.GetInputOutputString();
+                outputString = boxesSTP.GetOutputString();
             }
             else if(type == "MTR")
             {
-                inputOutputString = boxesMTR1.GetInputOutputString();
+                outputString = boxesMTR1.GetOutputString();
             }
             else if(type == "MTP")
             {
-                inputOutputString = boxesMTP1.GetInputOutputString();
+                outputString = boxesMTP1.GetOutputString();
             }
-            infoDisplay.UpdateDisplay($"Halts in {currentStateName} (accepting state)\n{inputOutputString}");
+
+            result = ResultParser(outputString);
+
+            infoDisplay.UpdateDisplay(
+                $"Halted in {currentStateName} (accepting state)\n" +
+                $"Operation: {operationString}\n" +
+                $"Input: {inputString}\n" +
+                $"Output: {outputString}\n" +
+                $"Result: {result}"
+            ); ;
         } else
         {
-            infoDisplay.UpdateDisplay($"Halts in {currentStateName} (non accepting state)");
+            infoDisplay.UpdateDisplay($"Halted in {currentStateName} (non accepting state)");
         }
+
+        panelNotice.Show();
     }
     
+    string ResultParser(string output)
+    {
+        if (operation == "Addition")
+        {
+            if (type == "STP")
+            {
+
+            }
+            else if (type == "MTR")
+            {
+
+            }
+            else if (type == "MTP")
+            {
+
+            }
+        }
+
+        else if (operation == "Substraction")
+        {
+            if (type == "STP")
+            {
+
+            }
+            else if (type == "MTR")
+            {
+
+            }
+            else if (type == "MTP")
+            {
+
+            }
+        }
+
+        else if (operation == "Multiplication")
+        {
+            if (type == "STP")
+            {
+
+            }
+            else if (type == "MTR")
+            {
+
+            }
+            else if (type == "MTP")
+            {
+
+            }
+        }
+
+        else if (operation == "Division")
+        {
+            string result = "";
+
+            string signSymbol = output.Substring(0, 1);
+            int value = output.Substring(1).Length;
+
+            if(value != 0)
+            {
+                result += (signSymbol == "+") ? "" : signSymbol;
+            }
+            result += value.ToString();
+
+            return result;
+        }
+
+        else if (operation == "Factorial")
+        {
+            if (type == "STP")
+            {
+
+            }
+            else if (type == "MTR")
+            {
+
+            }
+            else if (type == "MTP")
+            {
+
+            }
+        }
+
+        else if (operation == "Power")
+        {
+            if (type == "STP")
+            {
+
+            }
+            else if (type == "MTR")
+            {
+
+            }
+            else if (type == "MTP")
+            {
+
+            }
+        }
+
+        else if (operation == "BinaryLogarithm")
+        {
+            return output.Length.ToString();
+        }
+
+        else if (operation.Substring(0,12) == "TemperatureConversion")
+        {
+            var subOperation = operation.Substring(21, 2);
+            string result = "";
+            int value = 0;
+
+            string signSymbol = output.Substring(0, 1);
+            int i;
+            for (i = 1; ; i++)
+            {
+                var currentChar = output[i].ToString();
+                if (currentChar == "+" || currentChar == "-")
+                {
+                    break;
+                }
+            }
+            value = i - 1;
+
+            if(subOperation == "CK")
+            {
+                value += 273;
+            }
+            else if (subOperation == "KC")
+            {
+                value -= 273;
+            }
+            else if (subOperation == "CF")
+            {
+                value += 32;
+            }
+            else if (subOperation == "FC")
+            {
+                value -= 18;
+            }
+            else if (subOperation == "KF")
+            {
+                value -= 459;
+            }
+            else if (subOperation == "FK")
+            {
+                value += 255;
+            }
+
+
+            if (value != 0)
+            {
+                result += (signSymbol == "+") ? "" : signSymbol;
+            }
+            result += value.ToString();
+            return result;
+
+            //if (subOperation == "CK" || subOperation == "KC")
+            //{
+            //    string signSymbol = output.Substring(0, 1);
+            //    int i;
+            //    for(i=1; ; i++)
+            //    {
+            //        var currentChar = output[i].ToString();
+            //        if(currentChar == "+" || currentChar == "-")
+            //        {
+            //            break;
+            //        }
+            //    }
+            //    value = i - 1;
+
+
+            //    if (value != 0)
+            //    {
+            //        result += (signSymbol == "+") ? "" : signSymbol;
+            //    }
+            //    result += value.ToString();
+
+            //}
+
+            //int value = output.Substring(1).Length;
+
+            //if (value != 0)
+            //{
+            //    result += (signSymbol == "+") ? "" : signSymbol;
+            //}
+            //result += value.ToString();
+
+            //return result;
+
+
+        }
+
+        return "error on ResultParser";
+    }
 }

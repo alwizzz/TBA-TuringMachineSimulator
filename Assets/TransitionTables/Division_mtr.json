@@ -419,13 +419,13 @@
                     "read": "BB",
                     "write": "BB",
                     "direction": "R",
-                    "nextState": "DIVS-08"
+                    "nextState": "DIVS-09"
                 },
                 {
                     "read": "00",
                     "write": "BB",
                     "direction": "R",
-                    "nextState": "CLNS-01"
+                    "nextState": "DIVS-09"
                 }
             ]
         },
