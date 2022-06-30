@@ -180,12 +180,12 @@ public class TuringMachine : MonoBehaviour
         else if(type == "MTP")
         {
             currentSymbol = currentBoxMTP1.GetSymbol();
-            Debug.Log($"tape1's symbol: {currentSymbol}");
+            //Debug.Log($"tape1's symbol: {currentSymbol}");
             currentSymbol += currentBoxMTP2.GetSymbol();
             currentSymbol += currentBoxMTP3.GetSymbol();
         }
 
-        Debug.Log($"Updating currentSymbol from {oldSymbol} to {currentSymbol}");
+        //Debug.Log($"Updating currentSymbol from {oldSymbol} to {currentSymbol}");
     }
 
 
@@ -274,7 +274,7 @@ public class TuringMachine : MonoBehaviour
             var currentSymbol1 = currentSymbol.Substring(0, 1);
             if (writeSymbol1 != currentSymbol1)
             {
-                Debug.Log($"Old: {currentSymbol1}, new: {writeSymbol1}");
+                //Debug.Log($"Old: {currentSymbol1}, new: {writeSymbol1}");
                 currentBoxMTP1.SetSymbol(writeSymbol1, withChangeSymbolAnim);
             }
 
@@ -487,7 +487,15 @@ public class TuringMachine : MonoBehaviour
         {
             if (type == "STP")
             {
+                string result = "";
 
+                string signSymbol = output.Substring(0, 1);
+                int value = output.Substring(1).Length;
+                if (signSymbol == "-") { value *= -1; }
+
+                result += value.ToString();
+
+                return result;
             }
             else if (type == "MTR")
             {
@@ -501,13 +509,17 @@ public class TuringMachine : MonoBehaviour
 
         else if (operation == "Substraction")
         {
-            if (type == "STP")
+            if (type == "STP" || type == "MTR")
             {
+                string result = "";
 
-            }
-            else if (type == "MTR")
-            {
+                string signSymbol = output.Substring(0, 1);
+                int value = output.Substring(1).Length;
+                if (signSymbol == "-") { value *= -1; }
 
+                result += value.ToString();
+
+                return result;
             }
             else if (type == "MTP")
             {
@@ -517,18 +529,15 @@ public class TuringMachine : MonoBehaviour
 
         else if (operation == "Multiplication")
         {
-            if (type == "STP")
-            {
+            string result = "";
 
-            }
-            else if (type == "MTR")
-            {
+            string signSymbol = output.Substring(0, 1);
+            int value = output.Substring(1).Length;
+            if(signSymbol == "-") { value *= -1; }
 
-            }
-            else if (type == "MTP")
-            {
+            result += value.ToString();
 
-            }
+            return result;
         }
 
         else if (operation == "Division")
@@ -537,11 +546,8 @@ public class TuringMachine : MonoBehaviour
 
             string signSymbol = output.Substring(0, 1);
             int value = output.Substring(1).Length;
+            if (signSymbol == "-") { value *= -1; }
 
-            if(value != 0)
-            {
-                result += (signSymbol == "+") ? "" : signSymbol;
-            }
             result += value.ToString();
 
             return result;
@@ -601,37 +607,41 @@ public class TuringMachine : MonoBehaviour
                 }
             }
             value = i - 1;
+            if(signSymbol == "-") { value *= -1; }
+            result += value.ToString();
+            result += " ";
 
-            if(subOperation == "CK")
+            if (subOperation == "CK")
             {
+                result += "+ 273 = ";
                 value += 273;
             }
             else if (subOperation == "KC")
             {
+                result += "- 273 = ";
                 value -= 273;
             }
             else if (subOperation == "CF")
             {
+                result += "+ 32 = ";
                 value += 32;
             }
             else if (subOperation == "FC")
             {
+                result += "- 18 = ";
                 value -= 18;
             }
             else if (subOperation == "KF")
             {
+                result += "+ 32 - 491 = ";
                 value -= 459;
             }
             else if (subOperation == "FK")
             {
+                result += "- 18 + 273 = ";
                 value += 255;
             }
 
-
-            if (value != 0)
-            {
-                result += (signSymbol == "+") ? "" : signSymbol;
-            }
             result += value.ToString();
             return result;
 

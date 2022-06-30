@@ -1,0 +1,57 @@
+{
+    "operation": "Celcius To Kelvin",
+    "type": "STP",
+    "tapeCount": 1,
+    "symbols": ["0","+","-","K"],
+    "blankSymbol": "B",
+    "startState": "ADDK-01",
+    "acceptStates": ["ACC"],
+    "states": [
+        {
+            "name": "ADDK-01",
+            "transitions": [
+                {
+                    "read": "+",
+                    "write": "+",
+                    "direction": "R",
+                    "nextState": "ADDK-01"
+                },
+                {
+                    "read": "-",
+                    "write": "-",
+                    "direction": "R",
+                    "nextState": "ADDK-01"
+                },
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "ADDK-01"
+                },
+                {
+                    "read": "B",
+                    "write": "+",
+                    "direction": "R",
+                    "nextState": "ADDK-02"
+                }
+            ]
+        },
+        {
+            "name": "ADDK-02",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "K",
+                    "direction": "R",
+                    "nextState": "ACC"
+                }
+            ]
+        },
+        {
+            "name": "ACC",
+            "transitions": [
+                
+            ]
+        }
+    ]
+}

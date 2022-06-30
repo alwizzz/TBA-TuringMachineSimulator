@@ -1,0 +1,82 @@
+{
+    "operation": "MTP Power",
+    "type": "MTP", 
+    "tapeCount": 3,
+    "symbols": ["0","1","+","-","#","X"],
+    "blankSymbol": "B",
+    "startState": "Q0",
+    "acceptStates": ["ACC"],
+    "states": [
+        {
+            "name": "Q0",
+            "transitions": [
+                {
+                    "read": "0BB",
+                    "write": "B0B",
+                    "direction": "RRS",
+                    "nextState": "Q0"
+                },
+                {
+                    "read": "1BB",
+                    "write": "BBB",
+                    "direction": "RSS",
+                    "nextState": "Q1"
+                }
+            ]
+        },
+        {
+            "name": "Q1",
+            "transitions": [
+                {
+                    "read": "0BB",
+                    "write": "B0B",
+                    "direction": "SLS",
+                    "nextState": "Q2"
+                },
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "SSS",
+                    "nextState": "Q4"
+                }
+            ]
+        },
+        {
+            "name": "Q2",
+            "transitions": [
+                {
+                    "read": "00B",
+                    "write": "00B",
+                    "direction": "SRS",
+                    "nextState": "Q3"
+                },
+                {
+                    "read": "0BB",
+                    "write": "0BB",
+                    "direction": "SRR",
+                    "nextState": "Q3"
+                }
+              
+            ]
+        },     
+        {
+            "name": "Q3",
+            "transitions": [
+                {
+                    "read": "00B",
+                    "write": "000",
+                    "direction": "SRR",
+                    "nextState": "Q3"
+                },
+                {
+                    "read": "0BB",
+                    "write": "BBB",
+                    "direction": "RSS",
+                    "nextState": "Q1"
+                }
+              
+            ]
+        }
+        
+    ]
+}

@@ -233,13 +233,17 @@ public class ConfigMaster : MonoBehaviour
     {
         if (operation == "Addition")
         {
-            if(machineType == "STP")
+            if(machineType == "STP" || machineType == "MTR")
             {
+                string result = "";
+                string divider = "0";
 
-            }
-            else if (machineType == "MTR")
-            {
+                result += DecimalToUnary(firstNumber, firstSign, "1");
+                result += divider;
+                result += DecimalToUnary(secondNumber, secondSign, "1");
 
+                inputStringText.text = result;
+                sceneLoader.SetInputString(result);
             }
             else if (machineType == "MTP")
             {
@@ -251,7 +255,15 @@ public class ConfigMaster : MonoBehaviour
         {
             if (machineType == "STP")
             {
+                string result = "";
+                string divider = "0";
 
+                result += DecimalToUnary(firstNumber, firstSign, "1");
+                result += divider;
+                result += DecimalToUnary(secondNumber, secondSign, "1");
+
+                inputStringText.text = result;
+                sceneLoader.SetInputString(result);
             }
             else if (machineType == "MTR")
             {
@@ -309,7 +321,17 @@ public class ConfigMaster : MonoBehaviour
         {
             if (machineType == "STP")
             {
+                string result = "";
+                string divider = "1";
 
+                result += DecimalToUnary(firstNumber, firstSign, "0");
+                result += divider;
+                result += DecimalToUnary(secondNumber, secondSign, "0");
+                result += divider;
+
+
+                inputStringText.text = result;
+                sceneLoader.SetInputString(result);
             }
             else if (machineType == "MTR")
             {
@@ -351,7 +373,7 @@ public class ConfigMaster : MonoBehaviour
         {
             var subOperation = operation.Substring(21, 2);
 
-            operationString += (hasSign && firstSign == "+") ? firstSign : "";
+            operationString += (hasSign && firstSign == "-") ? firstSign : "";
             operationString += firstNumber;
 
             if (subOperation == "CK" || subOperation == "CF")

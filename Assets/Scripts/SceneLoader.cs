@@ -280,4 +280,7 @@ public class SceneLoader : MonoBehaviour
     public bool HasSign() => hasSign;
 
 
+    public int GetMinValue() => minValue;
+    public int GetMaxValue() => maxValue;
+
 }

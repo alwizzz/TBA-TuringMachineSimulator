@@ -1,0 +1,57 @@
+{
+    "operation": "Kelvin To Celcius",
+    "type": "STP",
+    "tapeCount": 1,
+    "symbols": ["0","+","-","K"],
+    "blankSymbol": "B",
+    "startState": "MINK-01",
+    "acceptStates": ["ACC"],
+    "states": [
+        {
+            "name": "MINK-01",
+            "transitions": [
+                {
+                    "read": "+",
+                    "write": "+",
+                    "direction": "R",
+                    "nextState": "MINK-01"
+                },
+                {
+                    "read": "-",
+                    "write": "-",
+                    "direction": "R",
+                    "nextState": "MINK-01"
+                },
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "MINK-01"
+                },
+                {
+                    "read": "B",
+                    "write": "-",
+                    "direction": "R",
+                    "nextState": "MINK-02"
+                }
+            ]
+        },
+        {
+            "name": "MINK-02",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "K",
+                    "direction": "R",
+                    "nextState": "ACC"
+                }
+            ]
+        },
+        {
+            "name": "ACC",
+            "transitions": [
+                
+            ]
+        }
+    ]
+}

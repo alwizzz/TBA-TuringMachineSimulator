@@ -1,0 +1,57 @@
+{
+    "operation": "Celcius To Kelvin",
+    "type": "MTP",
+    "tapeCount": 3,
+    "symbols": ["0","+","-","K"],
+    "blankSymbol": "B",
+    "startState": "ADDK-01",
+    "acceptStates": ["ACC"],
+    "states": [
+        {
+            "name": "ADDK-01",
+            "transitions": [
+                {
+                    "read": "+BB",
+                    "write": "+BB",
+                    "direction": "RSS",
+                    "nextState": "ADDK-01"
+                },
+                {
+                    "read": "-BB",
+                    "write": "-BB",
+                    "direction": "RSS",
+                    "nextState": "ADDK-01"
+                },
+                {
+                    "read": "0BB",
+                    "write": "0BB",
+                    "direction": "RSS",
+                    "nextState": "ADDK-01"
+                },
+                {
+                    "read": "BBB",
+                    "write": "+BB",
+                    "direction": "RSS",
+                    "nextState": "ADDK-02"
+                }
+            ]
+        },
+        {
+            "name": "ADDK-02",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "KBB",
+                    "direction": "RSS",
+                    "nextState": "ACC"
+                }
+            ]
+        },
+        {
+            "name": "ACC",
+            "transitions": [
+                
+            ]
+        }
+    ]
+}

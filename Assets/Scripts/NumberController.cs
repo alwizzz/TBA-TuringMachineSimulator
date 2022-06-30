@@ -26,11 +26,17 @@ public class NumberController : MonoBehaviour
     public Button buttonSign;
     TextMeshProUGUI signText;
     ConfigMaster configMaster;
+    SceneLoader sceneLoader;
 
 
     private void Awake()
     {
         configMaster = FindObjectOfType<ConfigMaster>();
+        sceneLoader = FindObjectOfType<SceneLoader>();
+
+        minValue = sceneLoader.GetMinValue();
+        maxValue = sceneLoader.GetMaxValue();
+
     }
 
     // Start is called before the first frame update

@@ -1,6 +1,6 @@
 {
     "operation": "Addition",
-    "type": "STP", 
+    "type": "MTR", 
     "tapeCount": 1,
     "symbols": ["0","1","+","-"],
     "blankSymbol": "B",
@@ -11,14 +11,14 @@
             "name": "Q0",
             "transitions": [
                 {
-                    "read": "+",
-                    "write": "+",
+                    "read": "+B",
+                    "write": "+B",
                     "direction": "R",
                     "nextState": "Q23"
                 },
                 {
-                    "read": "-",
-                    "write": "-",
+                    "read": "-B",
+                    "write": "-B",
                     "direction": "R",
                     "nextState": "Q23"
                 }
@@ -29,26 +29,26 @@
             "name": "Q1",
             "transitions": [
                 {
-                    "read": "1",
-                    "write": "1",
+                    "read": "1B",
+                    "write": "1B",
                     "direction": "R",
                     "nextState": "Q1"
                 },
                 {
-                    "read": "0",
-                    "write": "0",
+                    "read": "0B",
+                    "write": "0B",
                     "direction": "R",
                     "nextState": "Q1"
                 },
                 {
-                    "read": "+",
-                    "write": "+",
+                    "read": "+B",
+                    "write": "+B",
                     "direction": "L",
                     "nextState": "Q25"
                 },
                 {
-                    "read": "-",
-                    "write": "-",
+                    "read": "-B",
+                    "write": "-B",
                     "direction": "L",
                     "nextState": "Q26"
                 }
@@ -59,26 +59,26 @@
             "name": "Q2",
             "transitions": [
                 {
-                    "read": "1",
-                    "write": "1",
+                    "read": "1B",
+                    "write": "1B",
                     "direction": "L",
                     "nextState": "Q2"
                 },
                 {
-                    "read": "0",
-                    "write": "0",
+                    "read": "0B",
+                    "write": "0B",
                     "direction": "L",
                     "nextState": "Q2"
                 },
                 {
-                    "read": "+",
-                    "write": "+",
+                    "read": "+B",
+                    "write": "+B",
                     "direction": "R",
                     "nextState": "Q3"
                 },
                 {
-                    "read": "-",
-                    "write": "-",
+                    "read": "-B",
+                    "write": "-B",
                     "direction": "R",
                     "nextState": "Q3"
                 }
@@ -89,20 +89,20 @@
             "name": "Q3",
             "transitions": [
                 {
-                    "read": "B",
-                    "write": "B",
+                    "read": "BB",
+                    "write": "BB",
                     "direction": "R",
                     "nextState": "Q3"
                 },
                 {
-                    "read": "0",
-                    "write": "B",
+                    "read": "0B",
+                    "write": "BB",
                     "direction": "R",
                     "nextState": "Q14"
                 },
                 {
-                    "read": "1",
-                    "write": "B",
+                    "read": "1B",
+                    "write": "BB",
                     "direction": "R",
                     "nextState": "Q4"
                 }
@@ -112,26 +112,26 @@
             "name": "Q4",
             "transitions": [
                 {
-                    "read": "1",
-                    "write": "1",
+                    "read": "1B",
+                    "write": "1B",
                     "direction": "R",
                     "nextState": "Q4"
                 },
                 {
-                    "read": "0",
-                    "write": "0",
+                    "read": "0B",
+                    "write": "0B",
                     "direction": "R",
                     "nextState": "Q4"
                 },
                 {
-                    "read": "+",
-                    "write": "+",
+                    "read": "+B",
+                    "write": "+B",
                     "direction": "R",
                     "nextState": "Q5"
                 },
                 {
-                    "read": "-",
-                    "write": "-",
+                    "read": "-B",
+                    "write": "-B",
                     "direction": "R",
                     "nextState": "Q5"
                 }
@@ -143,14 +143,14 @@
             "transitions": [
               
                 {
-                    "read": "1",
-                    "write": "1",
+                    "read": "1B",
+                    "write": "1B",
                     "direction": "R",
                     "nextState": "Q5"
                 },
                 {
-                    "read": "B",
-                    "write": "B",
+                    "read": "BB",
+                    "write": "BB",
                     "direction": "L",
                     "nextState": "Q6"
                 }
@@ -160,26 +160,26 @@
             "name": "Q6",
             "transitions": [
                 {
-                    "read": "+",
-                    "write": "B",
+                    "read": "+B",
+                    "write": "BB",
                     "direction": "L",
                     "nextState": "Q8"
                 },
                 {
-                    "read": "B",
-                    "write": "B",
+                    "read": "BB",
+                    "write": "BB",
                     "direction": "L",
                     "nextState": "Q8"
                 },
                 {
-                    "read": "-",
-                    "write": "B",
+                    "read": "-B",
+                    "write": "BB",
                     "direction": "L",
                     "nextState": "Q8"
                 },
                 {
-                    "read": "1",
-                    "write": "B",
+                    "read": "1B",
+                    "write": "BB",
                     "direction": "L",
                     "nextState": "Q7"
                 }
@@ -189,32 +189,32 @@
             "name": "Q7",
             "transitions": [
                 {
-                    "read": "1",
-                    "write": "1",
+                    "read": "1B",
+                    "write": "1B",
                     "direction": "L",
                     "nextState": "Q7"
                 },
                 {
-                    "read": "0",
-                    "write": "0",
+                    "read": "0B",
+                    "write": "0B",
                     "direction": "L",
                     "nextState": "Q7"
                 },
                 {
-                    "read": "+",
-                    "write": "+",
+                    "read": "+B",
+                    "write": "+B",
                     "direction": "R",
                     "nextState": "Q21"
                 },
                 {
-                    "read": "-",
-                    "write": "-",
+                    "read": "-B",
+                    "write": "-B",
                     "direction": "R",
                     "nextState": "Q21"
                 },
                  {
-                    "read": "B",
-                    "write": "B",
+                    "read": "BB",
+                    "write": "BB",
                     "direction": "L",
                     "nextState": "Q7"
                 }
@@ -224,8 +224,8 @@
             "name": "Q8",
             "transitions": [
                 {
-                    "read": "0",
-                    "write": "1",
+                    "read": "0B",
+                    "write": "1B",
                     "direction": "L",
                     "nextState": "Q9"
                 }
@@ -235,26 +235,26 @@
             "name": "Q9",
             "transitions": [
                 {
-                    "read": "1",
-                    "write": "1",
+                    "read": "1B",
+                    "write": "1B",
                     "direction": "L",
                     "nextState": "Q9"
                 },
                 {
-                    "read": "B",
-                    "write": "B",
+                    "read": "BB",
+                    "write": "BB",
                     "direction": "L",
                     "nextState": "Q9"
                 },
                 {
-                    "read": "-",
-                    "write": "B",
+                    "read": "-B",
+                    "write": "BB",
                     "direction": "R",
                     "nextState": "Q18"
                 },
                 {
-                    "read": "+",
-                    "write": "B",
+                    "read": "+B",
+                    "write": "BB",
                     "direction": "R",
                     "nextState": "Q10"
                 }
@@ -265,15 +265,15 @@
             "transitions": [
                
                 {
-                    "read": "B",
-                    "write": "+",
+                    "read": "BB",
+                    "write": "+B",
                     "direction": "R",
                     "nextState": "Q10"
                 },
                
                 {
-                    "read": "1",
-                    "write": "1",
+                    "read": "1B",
+                    "write": "1B",
                     "direction": "L",
                     "nextState": "Q11"
                 }
@@ -284,14 +284,14 @@
             "transitions": [
              
                 {
-                    "read": "+",
-                    "write": "+",
+                    "read": "+B",
+                    "write": "+B",
                     "direction": "L",
                     "nextState": "Q12"
                 },
                 {
-                    "read": "-",
-                    "write": "-",
+                    "read": "-B",
+                    "write": "-B",
                     "direction": "L",
                     "nextState": "Q19"
                 }
@@ -301,15 +301,15 @@
             "name": "Q12",
             "transitions": [
                 {
-                    "read": "B",
-                    "write": "B",
+                    "read": "BB",
+                    "write": "BB",
                     "direction": "L",
                     "nextState": "Q13"
                 },
                
                 {
-                    "read": "+",
-                    "write": "B",
+                    "read": "+B",
+                    "write": "BB",
                     "direction": "L",
                     "nextState": "Q12"
                 }
@@ -325,20 +325,20 @@
             "name": "Q14",
             "transitions": [
                 {
-                    "read": "B",
-                    "write": "-",
+                    "read": "BB",
+                    "write": "-B",
                     "direction": "R",
                     "nextState": "Q15"
                 },
                 {
-                    "read": "+",
-                    "write": "+",
+                    "read": "+B",
+                    "write": "+B",
                     "direction": "R",
                     "nextState": "Q15"
                 },
                 {
-                    "read": "-",
-                    "write": "-",
+                    "read": "-B",
+                    "write": "-B",
                     "direction": "R",
                     "nextState": "Q15"
                 }
@@ -348,26 +348,26 @@
             "name": "Q15",
             "transitions": [
                 {
-                    "read": "-",
-                    "write": "B",
+                    "read": "-B",
+                    "write": "BB",
                     "direction": "L",
                     "nextState": "Q15"
                 },
                 {
-                    "read": "B",
-                    "write": "B",
+                    "read": "BB",
+                    "write": "BB",
                     "direction": "L",
                     "nextState": "Q17"
                 },
                 {
-                    "read": "+",
-                    "write": "B",
+                    "read": "+B",
+                    "write": "BB",
                     "direction": "L",
                     "nextState": "Q13"
                 },
                 {
-                    "read": "1",
-                    "write": "1",
+                    "read": "1B",
+                    "write": "1B",
                     "direction": "L",
                     "nextState": "Q16"
                 }
@@ -377,14 +377,14 @@
             "name": "Q16",
             "transitions": [
                 {
-                    "read": "-",
-                    "write": "-",
+                    "read": "-B",
+                    "write": "-B",
                     "direction": "L",
                     "nextState": "Q20"
                 },
                 {
-                    "read": "+",
-                    "write": "+",
+                    "read": "+B",
+                    "write": "+B",
                     "direction": "L",
                     "nextState": "Q20"
                 }
@@ -395,20 +395,20 @@
             "transitions": [
                
                 {
-                    "read": "B",
-                    "write": "B",
+                    "read": "BB",
+                    "write": "BB",
                     "direction": "R",
                     "nextState": "Q20"
                 },
                 {
-                    "read": "+",
-                    "write": "B",
+                    "read": "+B",
+                    "write": "BB",
                     "direction": "R",
                     "nextState": "Q24"
                 },
                 {
-                    "read": "-",
-                    "write": "B",
+                    "read": "-B",
+                    "write": "BB",
                     "direction": "L",
                     "nextState": "Q17"
                 }
@@ -419,14 +419,14 @@
             "name": "Q18",
             "transitions": [
                 {
-                    "read": "B",
-                    "write": "-",
+                    "read": "BB",
+                    "write": "-B",
                     "direction": "R",
                     "nextState": "Q18"
                 },
                 {
-                    "read": "1",
-                    "write": "1",
+                    "read": "1B",
+                    "write": "1B",
                     "direction": "L",
                     "nextState": "Q11"
                 }
@@ -436,14 +436,14 @@
             "name": "Q19",
             "transitions": [
                 {
-                    "read": "-",
-                    "write": "B",
+                    "read": "-B",
+                    "write": "BB",
                     "direction": "L",
                     "nextState": "Q19"
                 },
                 {
-                    "read": "B",
-                    "write": "B",
+                    "read": "BB",
+                    "write": "BB",
                     "direction": "L",
                     "nextState": "Q13"
                 }
@@ -453,21 +453,21 @@
             "name": "Q20",
             "transitions": [
                 {
-                    "read": "B",
-                    "write": "B",
+                    "read": "BB",
+                    "write": "BB",
                     "direction": "L",
                     "nextState": "Q20"
                 },
                 
                 {
-                    "read": "+",
-                    "write": "B",
+                    "read": "+B",
+                    "write": "BB",
                     "direction": "R",
                     "nextState": "Q13"
                 },
                 {
-                    "read": "-",
-                    "write": "B",
+                    "read": "-B",
+                    "write": "BB",
                     "direction": "L",
                     "nextState": "Q13"
                 }
@@ -477,32 +477,32 @@
             "name": "Q21",
             "transitions": [
                 {
-                    "read": "1",
-                    "write": "1",
+                    "read": "1B",
+                    "write": "1B",
                     "direction": "L",
                     "nextState": "Q21"
                 },
                 {
-                    "read": "0",
-                    "write": "0",
+                    "read": "0B",
+                    "write": "0B",
                     "direction": "L",
                     "nextState": "Q21"
                 },
                 {
-                    "read": "B",
-                    "write": "B",
+                    "read": "BB",
+                    "write": "BB",
                     "direction": "L",
                     "nextState": "Q21"
                 },
                 {
-                    "read": "+",
-                    "write": "+",
+                    "read": "+B",
+                    "write": "+B",
                     "direction": "L",
                     "nextState": "Q22"
                 },
                 {
-                    "read": "-",
-                    "write": "-",
+                    "read": "-B",
+                    "write": "-B",
                     "direction": "L",
                     "nextState": "Q22"
                 }
@@ -512,32 +512,32 @@
             "name": "Q22",
             "transitions": [
                 {
-                    "read": "1",
-                    "write": "1",
+                    "read": "1B",
+                    "write": "1B",
                     "direction": "L",
                     "nextState": "Q22"
                 },
                 {
-                    "read": "0",
-                    "write": "0",
+                    "read": "0B",
+                    "write": "0B",
                     "direction": "L",
                     "nextState": "Q22"
                 },
                 {
-                    "read": "B",
-                    "write": "B",
+                    "read": "BB",
+                    "write": "BB",
                     "direction": "L",
                     "nextState": "Q22"
                 },
                 {
-                    "read": "+",
-                    "write": "+",
+                    "read": "+B",
+                    "write": "+B",
                     "direction": "R",
                     "nextState": "Q3"
                 },
                 {
-                    "read": "-",
-                    "write": "-",
+                    "read": "-B",
+                    "write": "-B",
                     "direction": "R",
                     "nextState": "Q3"
                 }
@@ -547,26 +547,26 @@
             "name": "Q23",
             "transitions": [
                 {
-                    "read": "1",
-                    "write": "1",
+                    "read": "1B",
+                    "write": "1B",
                     "direction": "R",
                     "nextState": "Q23"
                 },
                 {
-                    "read": "0",
-                    "write": "0",
+                    "read": "0B",
+                    "write": "0B",
                     "direction": "R",
                     "nextState": "Q23"
                 },
                 {
-                    "read": "+",
-                    "write": "+",
+                    "read": "+B",
+                    "write": "+B",
                     "direction": "L",
                     "nextState": "Q1"
                 },
                 {
-                    "read": "-",
-                    "write": "-",
+                    "read": "-B",
+                    "write": "-B",
                     "direction": "L",
                     "nextState": "Q1"
                 }
@@ -576,20 +576,20 @@
             "name": "Q24",
             "transitions": [
                 {
-                    "read": "B",
-                    "write": "B",
+                    "read": "BB",
+                    "write": "BB",
                     "direction": "L",
                     "nextState": "Q24"
                 },
                 {
-                    "read": "-",
-                    "write": "B",
+                    "read": "-B",
+                    "write": "BB",
                     "direction": "L",
                     "nextState": "Q13"
                 },
                 {
-                    "read": "+",
-                    "write": "B",
+                    "read": "+B",
+                    "write": "BB",
                     "direction": "L",
                     "nextState": "Q13"
                 }
@@ -599,26 +599,26 @@
             "name": "Q25",
             "transitions": [
                 {
-                    "read": "1",
-                    "write": "1",
+                    "read": "1B",
+                    "write": "1B",
                     "direction": "L",
                     "nextState": "Q25"
                 },
                 {
-                    "read": "0",
-                    "write": "0",
+                    "read": "0B",
+                    "write": "0B",
                     "direction": "L",
                     "nextState": "Q25"
                 },
                 {
-                    "read": "-",
-                    "write": "-",
+                    "read": "-B",
+                    "write": "-B",
                     "direction": "R",
                     "nextState": "Q2"
                 },
                 {
-                    "read": "+",
-                    "write": "+",
+                    "read": "+B",
+                    "write": "+B",
                     "direction": "R",
                     "nextState": "Q27"
                 }
@@ -628,27 +628,27 @@
             "name": "Q26",
             "transitions": [
                 {
-                    "read": "1",
-                    "write": "1",
+                    "read": "1B",
+                    "write": "1B",
                     "direction": "L",
                     "nextState": "Q26"
                 },
                 {
-                    "read": "0",
-                    "write": "0",
+                    "read": "0B",
+                    "write": "0B",
                     "direction": "L",
                     "nextState": "Q26"
                 },
                
                 {
-                    "read": "+",
-                    "write": "+",
+                    "read": "+B",
+                    "write": "+B",
                     "direction": "R",
                     "nextState": "Q2"
                 },
                 {
-                    "read": "-",
-                    "write": "-",
+                    "read": "-B",
+                    "write": "-B",
                     "direction": "R",
                     "nextState": "Q27"
                 }
@@ -659,20 +659,20 @@
             "transitions": [
                 
                 {
-                    "read": "B",
-                    "write": "B",
+                    "read": "BB",
+                    "write": "BB",
                     "direction": "R",
                     "nextState": "Q27"
                 },
                 {
-                    "read": "1",
-                    "write": "B",
+                    "read": "1B",
+                    "write": "BB",
                     "direction": "R",
                     "nextState": "Q28"
                 },
                 {
-                    "read": "0",
-                    "write": "B",
+                    "read": "0B",
+                    "write": "BB",
                     "direction": "R",
                     "nextState": "Q13"
                 }
@@ -682,32 +682,32 @@
             "name": "Q28",
             "transitions": [
                 {
-                    "read": "B",
-                    "write": "1",
+                    "read": "BB",
+                    "write": "1B",
                     "direction": "L",
                     "nextState": "Q29"
                 },
                 {
-                    "read": "1",
-                    "write": "1",
+                    "read": "1B",
+                    "write": "1B",
                     "direction": "R",
                     "nextState": "Q28"
                 },
                 {
-                    "read": "0",
-                    "write": "0",
+                    "read": "0B",
+                    "write": "0B",
                     "direction": "R",
                     "nextState": "Q28"
                 },
                 {
-                    "read": "-",
-                    "write": "-",
+                    "read": "-B",
+                    "write": "-B",
                     "direction": "R",
                     "nextState": "Q28"
                 },
                 {
-                    "read": "+",
-                    "write": "+",
+                    "read": "+B",
+                    "write": "+B",
                     "direction": "R",
                     "nextState": "Q28"
                 }
@@ -717,32 +717,32 @@
             "name": "Q29",
             "transitions": [
                 {
-                    "read": "1",
-                    "write": "1",
+                    "read": "1B",
+                    "write": "1B",
                     "direction": "L",
                     "nextState": "Q29"
                 },
                 {
-                    "read": "+",
-                    "write": "+",
+                    "read": "+B",
+                    "write": "+B",
                     "direction": "L",
                     "nextState": "Q29"
                 },
                 {
-                    "read": "0",
-                    "write": "0",
+                    "read": "0B",
+                    "write": "0B",
                     "direction": "L",
                     "nextState": "Q29"
                 },
                 {
-                    "read": "-",
-                    "write": "-",
+                    "read": "-B",
+                    "write": "-B",
                     "direction": "L",
                     "nextState": "Q29"
                 },
                 {
-                    "read": "B",
-                    "write": "B",
+                    "read": "BB",
+                    "write": "BB",
                     "direction": "L",
                     "nextState": "Q30"
                 }
@@ -752,20 +752,20 @@
             "name": "Q30",
             "transitions": [
                 {
-                    "read": "-",
-                    "write": "B",
+                    "read": "-B",
+                    "write": "BB",
                     "direction": "R",
                     "nextState": "Q27"
                 },
                 {
-                    "read": "+",
-                    "write": "B",
+                    "read": "+B",
+                    "write": "BB",
                     "direction": "R",
                     "nextState": "Q27"
                 },
                 {
-                    "read": "B",
-                    "write": "B",
+                    "read": "BB",
+                    "write": "BB",
                     "direction": "R",
                     "nextState": "Q27"
                 }

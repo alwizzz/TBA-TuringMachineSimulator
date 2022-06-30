@@ -1,0 +1,934 @@
+{
+    "operation": "FAHRENHEIT --> Kelvin",
+    "type": "STP", 
+    "tapeCount": 1,
+    "symbols": ["0","1","+","-","#","X"],
+    "blankSymbol": "B",
+    "startState": "SET5-01",
+    "acceptStates": ["ACC"],
+    "states": [
+        {
+            "name": "SET5-01",
+            "transitions": [
+                {
+                    "read": "+",
+                    "write": "+",
+                    "direction": "R",
+                    "nextState": "SET5-01"
+                },
+                {
+                    "read": "-",
+                    "write": "-",
+                    "direction": "R",
+                    "nextState": "SET5-01"
+                },
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "SET5-01"
+                },
+                {
+                    "read": "B",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "SET5-02"
+                }
+            ]
+        },
+        {
+            "name": "SET5-02",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "SET5-03"
+                }
+            ]
+        },
+        {
+            "name": "SET5-03",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "SET5-04"
+                }
+            ]
+        },
+        {
+            "name": "SET5-04",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "SET5-05"
+                }
+            ]
+        },
+        {
+            "name": "SET5-05",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "SET5-06"
+                }
+            ]
+        },
+        {
+            "name": "SET5-06",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "MISC-01"
+                }
+            ]
+        },
+        {
+            "name": "MISC-01",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "#",
+                    "direction": "L",
+                    "nextState": "SIGN-01"
+                }
+            ]
+        },
+        {
+            "name": "SIGN-01",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "SIGN-01"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "L",
+                    "nextState": "SIGN-01"
+                },
+                {
+                    "read": "+",
+                    "write": "#",
+                    "direction": "R",
+                    "nextState": "SIGN-02"
+                },
+                {
+                    "read": "-",
+                    "write": "#",
+                    "direction": "R",
+                    "nextState": "SIGN-03"
+                }
+            ]
+        },
+        {
+            "name": "SIGN-02",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "SIGN-02"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "SIGN-02"
+                },
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "R",
+                    "nextState": "SIGN-02"
+                },
+                {
+                    "read": "B",
+                    "write": "+",
+                    "direction": "L",
+                    "nextState": "MISC-02"
+                }
+            ]
+        },
+        {
+            "name": "SIGN-03",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "SIGN-03"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "SIGN-03"
+                },
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "R",
+                    "nextState": "SIGN-03"
+                },
+                {
+                    "read": "B",
+                    "write": "-",
+                    "direction": "L",
+                    "nextState": "MISC-02"
+                }
+            ]
+        },
+        {
+            "name": "MISC-02",
+            "transitions": [
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "L",
+                    "nextState": "MULT-01"
+                }
+            ]
+        },
+        {
+            "name": "MULT-01",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "MULT-01"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "L",
+                    "nextState": "MULT-02"
+                }
+            ]
+        },
+        {
+            "name": "MULT-02",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "B",
+                    "direction": "L",
+                    "nextState": "MULT-02"
+                },
+                {
+                    "read": "0",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "MULT-03"
+                },
+                {
+                    "read": "#",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "CLNS-01"
+                }
+            ]
+        },
+        {
+            "name": "MULT-03",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "MULT-03"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "MULT-03"
+                },
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "MULT-03"
+                },
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "L",
+                    "nextState": "MULT-04"
+                }
+            ]
+        },
+        {
+            "name": "MULT-04",
+            "transitions": [
+                {
+                    "read": "X",
+                    "write": "X",
+                    "direction": "L",
+                    "nextState": "MULT-04"
+                },
+                {
+                    "read": "0",
+                    "write": "X",
+                    "direction": "R",
+                    "nextState": "MULT-05"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "MULT-07"
+                }
+            ]
+        },
+        {
+            "name": "MULT-05",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "MULT-05"
+                },
+                {
+                    "read": "X",
+                    "write": "X",
+                    "direction": "R",
+                    "nextState": "MULT-05"
+                },
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "R",
+                    "nextState": "MULT-05"
+                },
+                {
+                    "read": "+",
+                    "write": "+",
+                    "direction": "R",
+                    "nextState": "MULT-05"
+                },
+                {
+                    "read": "-",
+                    "write": "-",
+                    "direction": "R",
+                    "nextState": "MULT-05"
+                },
+                {
+                    "read": "B",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "MULT-06"
+                }
+            ]
+        },
+        {
+            "name": "MULT-06",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "MULT-06"
+                },
+                {
+                    "read": "+",
+                    "write": "+",
+                    "direction": "L",
+                    "nextState": "MULT-06"
+                },
+                {
+                    "read": "-",
+                    "write": "-",
+                    "direction": "L",
+                    "nextState": "MULT-06"
+                },
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "L",
+                    "nextState": "MULT-04"
+                }
+            ]
+        },
+        {
+            "name": "MULT-07",
+            "transitions": [
+                {
+                    "read": "X",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "MULT-07"
+                },
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "L",
+                    "nextState": "MULT-01"
+                }
+            ]
+        },
+        {
+            "name": "CLNS-01",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "CLNS-01"
+                },
+                {
+                    "read": "1",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "CLNS-01"
+                },
+                {
+                    "read": "X",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "CLNS-01"
+                },
+                {
+                    "read": "0",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "CLNS-01"
+                },
+                {
+                    "read": "#",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "SET9-01"
+                }
+            ]
+        },
+        {           
+            "name": "SET9-01",
+            "transitions": [
+                {
+                    "read": "+",
+                    "write": "+",
+                    "direction": "R",
+                    "nextState": "SET9-01"
+                },
+                {
+                    "read": "-",
+                    "write": "-",
+                    "direction": "R",
+                    "nextState": "SET9-01"
+                },
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "SET9-01"
+                },
+                {
+                    "read": "B",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "SET9-02"
+                }
+            ]
+        },
+        {
+            "name": "SET9-02",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "SET9-03"
+                }                         
+            ]
+        },
+        {
+            "name": "SET9-03",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "SET9-04"
+                }                         
+            ]
+        },
+        {
+            "name": "SET9-04",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "SET9-05"
+                }                         
+            ]
+        },
+        {
+            "name": "SET9-05",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "SET9-06"
+                }                         
+            ]
+        },
+        {
+            "name": "SET9-06",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "SET9-07"
+                }                         
+            ]
+        },
+        {
+            "name": "SET9-07",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "SET9-08"
+                }                         
+            ]
+        },
+        {
+            "name": "SET9-08",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "SET9-09"
+                }                         
+            ]
+        },
+        {
+            "name": "SET9-09",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "SET9-10"
+                }                         
+            ]
+        },
+        {
+            "name": "SET9-10",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "MISC-03"
+                }                         
+            ]
+        },
+        {
+            "name": "MISC-03",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "#",
+                    "direction": "L",
+                    "nextState": "SIGN-04"
+                }                         
+            ]
+        },
+        {
+        "name": "SIGN-04",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "SIGN-04"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "L",
+                    "nextState": "SIGN-04"
+                },
+                {
+                    "read": "+",
+                    "write": "#",
+                    "direction": "R",
+                    "nextState": "SIGN-05"
+                },
+                {
+                    "read": "-",
+                    "write": "#",
+                    "direction": "R",
+                    "nextState": "SIGN-06"
+                }
+            ]
+        },
+        {
+            "name": "SIGN-05",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "SIGN-05"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "SIGN-05"
+                },
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "R",
+                    "nextState": "SIGN-05"
+                },
+                {
+                    "read": "B",
+                    "write": "+",
+                    "direction": "L",
+                    "nextState": "MISC-04"
+                }
+            ]
+        },
+        {
+            "name": "SIGN-06",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "SIGN-06"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "SIGN-06"
+                },
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "R",
+                    "nextState": "SIGN-06"
+                },
+                {
+                    "read": "B",
+                    "write": "-",
+                    "direction": "L",
+                    "nextState": "MISC-04"
+                }
+                
+            ]
+        },
+        {
+            "name": "MISC-04",
+            "transitions": [
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "L",
+                    "nextState": "DIVS-01"
+                }
+            ]
+        },     
+        {
+            "name": "DIVS-01",
+            "transitions": [
+                {
+                    "read": "X",
+                    "write": "X",
+                    "direction": "L",
+                    "nextState": "DIVS-01"
+                },
+                {
+                    "read": "0",
+                    "write": "X",
+                    "direction": "L",
+                    "nextState": "DIVS-02"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "DIVS-05"
+                }
+            ]
+        },
+        {
+            "name": "DIVS-02",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "DIVS-02"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "L",
+                    "nextState": "DIVS-03"
+                }
+            ]
+        },
+        {
+            "name": "DIVS-03",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "B",
+                    "direction": "L",
+                    "nextState": "DIVS-03"
+                },
+                {
+                    "read": "0",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "DIVS-04"
+                },
+                {
+                    "read": "#",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "CLNS-02"
+                }
+            ]
+        },
+        {
+            "name": "DIVS-04",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "DIVS-04"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "DIVS-04"
+                },
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "DIVS-04"
+                },
+                {
+                    "read": "X",
+                    "write": "X",
+                    "direction": "R",
+                    "nextState": "DIVS-04"
+                },
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "L",
+                    "nextState": "DIVS-01"
+                }
+            ]
+        },
+        {
+            "name": "DIVS-05",
+            "transitions": [
+                {
+                    "read": "X",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "DIVS-05"
+                },
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "R",
+                    "nextState": "DIVS-06"
+                }
+            ]
+        },
+        {
+            "name" : "DIVS-06",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "DIVS-06"
+                },
+                {
+                    "read": "+",
+                    "write": "+",
+                    "direction": "R",
+                    "nextState": "DIVS-06"
+                },
+                {
+                    "read": "-",
+                    "write": "-",
+                    "direction": "R",
+                    "nextState": "DIVS-06"
+                },
+                {
+                    "read": "B",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "DIVS-07"
+                }
+            ]
+        },
+        {
+            "name": "DIVS-07",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "DIVS-07"
+                },
+                {
+                    "read": "+",
+                    "write": "+",
+                    "direction": "L",
+                    "nextState": "DIVS-07"
+                },
+                {
+                    "read": "-",
+                    "write": "-",
+                    "direction": "L",
+                    "nextState": "DIVS-07"
+                },
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "L",
+                    "nextState": "DIVS-01"
+                }
+            ]
+        },
+        {
+            "name": "CLNS-02",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "CLNS-02"
+                },
+                {
+                    "read": "X",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "CLNS-02"
+                },
+                {
+                    "read": "1",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "CLNS-02"
+                },
+                {
+                    "read": "0",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "CLNS-02"
+                },
+                {
+                    "read": "#",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "MING-01"
+                }
+            ]
+        },
+        {
+            "name": "MING-01",
+            "transitions": [
+                {
+                    "read": "+",
+                    "write": "+",
+                    "direction": "R",
+                    "nextState": "MING-01"
+                },
+                {
+                    "read": "-",
+                    "write": "-",
+                    "direction": "R",
+                    "nextState": "MING-01"
+                },
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "MING-01"
+                },
+                {
+                    "read": "B",
+                    "write": "-",
+                    "direction": "R",
+                    "nextState": "MING-02"
+                }
+            ]
+        },
+        {
+            "name": "MING-02",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "G",
+                    "direction": "R",
+                    "nextState": "ADDK-01"
+                }
+            ]
+        },
+        {
+            "name": "ADDK-01",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "+",
+                    "direction": "R",
+                    "nextState": "ADDK-02"
+                }
+            ]
+        },
+        {
+            "name": "ADDK-02",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "K",
+                    "direction": "R",
+                    "nextState": "ACC"
+                }
+            ]
+        },
+        {
+            "name": "ACC",
+            "transitions": [
+              
+            ]
+        }
+
+    ]
+}
+

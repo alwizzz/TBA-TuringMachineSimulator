@@ -309,6 +309,79 @@
                     "read": "1B",
                     "write": "BB",
                     "direction": "R",
+                    "nextState": "CLNS-02"
+                }
+            ]
+        },
+        {
+            "name": "CLNS-02",
+            "transitions": [
+                {
+                    "read": "+B",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "CLNS-03"
+                },
+                {
+                    "read": "-B",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "CLNS-05"
+                }
+            ]
+        },
+        {
+            "name": "CLNS-03",
+            "transitions": [
+                {
+                    "read": "00",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "CLNS-03"
+                },
+                {
+                    "read": "0B",
+                    "write": "0B",
+                    "direction": "L",
+                    "nextState": "CLNS-04"
+                }
+            ]
+        },
+        {
+            "name": "CLNS-04",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "+B",
+                    "direction": "R",
+                    "nextState": "ACC"
+                }
+            ]
+        },
+        {
+            "name": "CLNS-05",
+            "transitions": [
+                {
+                    "read": "00",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "CLNS-05"
+                },
+                {
+                    "read": "0B",
+                    "write": "0B",
+                    "direction": "L",
+                    "nextState": "CLNS-06"
+                }
+            ]
+        },
+        {
+            "name": "CLNS-06",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "-B",
+                    "direction": "R",
                     "nextState": "ACC"
                 }
             ]
