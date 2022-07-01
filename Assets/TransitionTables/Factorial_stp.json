@@ -1,0 +1,598 @@
+{
+    "operation": "Factorial",
+    "type": "STP", 
+    "tapeCount": 1,
+    "symbols": ["0","1","+","-"],
+    "blankSymbol": "B",
+    "startState": "Q0",
+    "acceptStates": ["Q34"],
+    "states": [
+        {
+            "name": "Q0",
+            "transitions": [
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "Q1"
+                }
+              
+            ]
+        },
+        {
+            "name": "Q1",
+            "transitions": [
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "Q5"
+                },
+                {
+                    "read": "0",
+                    "write": "X",
+                    "direction": "R",
+                    "nextState": "Q2"
+                }
+               
+            ]
+        },
+        {
+            "name": "Q2",
+            "transitions": [
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "Q2"
+                },
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "Q2"
+                },
+                {
+                    "read": "B",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "Q3"
+                }
+               
+            ]
+        },
+        {
+            "name": "Q3",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "Q3"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "L",
+                    "nextState": "Q4"
+                }
+            ]
+        },
+        {
+            "name": "Q4",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "Q4"
+                },
+                {
+                    "read": "X",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "Q1"
+                }
+               
+            ]
+        },
+        {
+            "name": "Q5",
+            "transitions": [
+              
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "Q5"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "Q5"
+                },
+                {
+                    "read": "B",
+                    "write": "B",
+                    "direction": "L",
+                    "nextState": "Q6"
+                }
+            ]
+        },
+        {
+            "name": "Q6",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "1",
+                    "direction": "L",
+                    "nextState": "Q7"
+                },
+                {
+                    "read": "1",
+                    "write": "B",
+                    "direction": "L",
+                    "nextState": "Q8"
+                }
+            ]
+        },
+        {
+            "name": "Q7",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "Q1"
+                }
+            ]
+        },
+        {
+            "name": "Q8",
+            "transitions": [
+                {
+                    "read": "1",
+                    "write": "B",
+                    "direction": "L",
+                    "nextState": "Q8"
+                },
+                {
+                    "read": "0",
+                    "write": "B",
+                    "direction": "L",
+                    "nextState": "Q9"
+                }
+            ]
+        },
+        {
+            "name": "Q9",
+            "transitions": [
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "L",
+                    "nextState": "Q10"
+                }
+            ]
+        },
+        {
+            "name": "Q10",
+            "transitions": [
+               
+                {
+                    "read": "0",
+                    "write": "X",
+                    "direction": "L",
+                    "nextState": "Q11"
+                }
+            ]
+        },
+        {
+            "name": "Q11",
+            "transitions": [
+             
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "Q11"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "L",
+                    "nextState": "Q12"
+                }
+            ]
+        },
+        {
+            "name": "Q12",
+            "transitions": [
+                {
+                    "read": "X",
+                    "write": "X",
+                    "direction": "L",
+                    "nextState": "Q12"
+                },
+                {
+                    "read": "0",
+                    "write": "X",
+                    "direction": "R",
+                    "nextState": "Q13"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "Q18"
+                },
+                {
+                    "read": "B",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "Q32"
+                }
+            ]
+        },
+        {
+            "name": "Q13",
+            "transitions": [
+                {
+                    "read": "X",
+                    "write": "X",
+                    "direction": "R",
+                    "nextState": "Q13"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "Q14"
+                }
+            ]
+        },
+        {
+            "name": "Q14",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "Q14"
+                },
+                {
+                    "read": "X",
+                    "write": "X",
+                    "direction": "R",
+                    "nextState": "Q14"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "Q15"
+                }
+            ]
+        },
+        {
+            "name": "Q15",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "Q15"
+                },
+                {
+                    "read": "B",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "Q16"
+                }
+            ]
+        },
+        {
+            "name": "Q16",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "Q16"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "L",
+                    "nextState": "Q17"
+                }
+            ]
+        },
+        {
+            "name": "Q17",
+            "transitions": [
+               
+                {
+                    "read": "X",
+                    "write": "X",
+                    "direction": "L",
+                    "nextState": "Q17"
+                },
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "Q17"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "L",
+                    "nextState": "Q12"
+                }
+            ]
+        },
+        {
+            "name": "Q18",
+            "transitions": [
+                {
+                    "read": "X",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "Q18"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "Q19"
+                }
+            ]
+        },
+        {
+            "name": "Q19",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "Q19"
+                },
+                {
+                    "read": "X",
+                    "write": "X",
+                    "direction": "L",
+                    "nextState": "Q20"
+                }
+            ]
+        },
+        {
+            "name": "Q20",
+            "transitions": [
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "Q21"
+                },
+                
+                {
+                    "read": "0",
+                    "write": "X",
+                    "direction": "L",
+                    "nextState": "Q11"
+                }
+            ]
+        },
+        {
+            "name": "Q21",
+            "transitions": [
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "L",
+                    "nextState": "Q22"
+                },
+                {
+                    "read": "X",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "Q21"
+                }
+            ]
+        },
+        {
+            "name": "Q22",
+            "transitions": [
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "L",
+                    "nextState": "Q22"
+                },
+                {
+                    "read": "0",
+                    "write": "1",
+                    "direction": "L",
+                    "nextState": "Q23"
+                }
+            ]
+        },
+        {
+            "name": "Q23",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "1",
+                    "direction": "L",
+                    "nextState": "Q23"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "Q24"
+                }
+            ]
+        },
+        {
+            "name": "Q24",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "Q24"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "Q24"
+                },
+                {
+                    "read": "B",
+                    "write": "B",
+                    "direction": "L",
+                    "nextState": "Q25"
+                }
+            ]
+        },
+        {
+            "name": "Q25",
+            "transitions": [
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "L",
+                    "nextState": "Q26"
+                },
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "Q25"
+                }
+            ]
+        },
+        {
+            "name": "Q26",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "Q30"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "Q27"
+                }
+            ]
+        },
+        {
+            "name": "Q27",
+            "transitions": [             
+                {
+                    "read": "1",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "Q28"
+                }
+            ]
+        },
+        {
+            "name": "Q28",
+            "transitions": [
+                {
+                    "read": "B",
+                    "write": "B",
+                    "direction": "L",
+                    "nextState": "Q29"
+                },
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "Q28"
+                }
+            ]
+        },
+        {
+            "name": "Q29",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "B",
+                    "direction": "L",
+                    "nextState": "Q25"
+                }
+            ]
+        },
+        {
+            "name": "Q30",
+            "transitions": [
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "Q31"
+                }
+            ]
+        },
+        {
+            "name": "Q31",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "Q31"
+                },
+                {
+                    "read": "B",
+                    "write": "1",
+                    "direction": "L",
+                    "nextState": "Q10"
+                }
+            ]
+        },
+        {
+            "name": "Q32",
+            "transitions": [
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "Q33"
+                }
+            ]
+        },
+        {
+            "name": "Q33",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "Q33"
+                },
+                {
+                    "read": "X",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "Q34"
+                }
+            ]
+        },
+        {
+            "name": "Q34",
+            "transitions": [
+                
+            ]
+        }
+    ]
+}

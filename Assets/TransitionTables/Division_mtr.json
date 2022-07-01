@@ -70,13 +70,13 @@
                 },
                 {
                     "read": "+B",
-                    "write": "+B",
+                    "write": "-B",
                     "direction": "R",
                     "nextState": "MISC-01"
                 },
                 {
                     "read": "-B",
-                    "write": "-B",
+                    "write": "+B",
                     "direction": "R",
                     "nextState": "MISC-01"
                 }
@@ -455,6 +455,12 @@
                     "write": "-B",
                     "direction": "R",
                     "nextState": "DIVS-10"
+                },
+                {
+                    "read": "00",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "DIVS-09"
                 }
             ]
         },

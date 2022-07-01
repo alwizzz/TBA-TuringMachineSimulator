@@ -1,0 +1,1152 @@
+{
+    "operation": "Celcius --> Fahrenheit",
+    "type": "MTR", 
+    "tapeCount": 2,
+    "symbols": ["0","1","+","-","#","X"],
+    "blankSymbol": "B",
+    "startState": "SIGN-01",
+    "acceptStates": ["ACC"],
+    "states": [
+        {
+            "name": "SIGN-01",
+            "transitions": [
+                {
+                    "read": "+B",
+                    "write": "##",
+                    "direction": "R",
+                    "nextState": "SIGN-02"
+                },
+                {
+                    "read": "-B",
+                    "write": "##",
+                    "direction": "R",
+                    "nextState": "SIGN-04"
+                }
+              
+            ]
+        },
+        {
+            "name": "SIGN-02",
+            "transitions": [
+                {
+                    "read": "0B",
+                    "write": "0B",
+                    "direction": "R",
+                    "nextState": "SIGN-02"
+                },
+                {
+                    "read": "BB",
+                    "write": "1B",
+                    "direction": "R",
+                    "nextState": "SIGN-03"
+                }
+            ]
+        },
+        {
+            "name": "SIGN-03",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "+B",
+                    "direction": "R",
+                    "nextState": "SET9-01"
+                }
+            ]
+        },
+        {
+            "name": "SIGN-04",
+            "transitions": [
+                {
+                    "read": "0B",
+                    "write": "0B",
+                    "direction": "R",
+                    "nextState": "SIGN-03"
+                },
+                {
+                    "read": "BB",
+                    "write": "1B",
+                    "direction": "R",
+                    "nextState": "SIGN-05"
+                }
+            ]
+        },
+        {
+            "name": "SIGN-05",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "-B",
+                    "direction": "R",
+                    "nextState": "SET9-01"
+                }
+               
+            ]
+        },
+        {
+            "name": "SET5-01",
+            "transitions": [
+              
+                {
+                    "read": "BB",
+                    "write": "0B",
+                    "direction": "R",
+                    "nextState": "SET5-02"
+                }
+            ]
+        },
+        {
+            "name": "SET5-02",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "0B",
+                    "direction": "R",
+                    "nextState": "SET5-03"
+                }
+            ]
+        },
+        {
+            "name": "SET5-03",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "0B",
+                    "direction": "R",
+                    "nextState": "SET5-04"
+                }
+            ]
+        },
+        {
+            "name": "SET5-04",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "0B",
+                    "direction": "R",
+                    "nextState": "SET5-05"
+                }
+            ]
+        },
+        {
+            "name": "SET5-05",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "0B",
+                    "direction": "R",
+                    "nextState": "MISC-04"
+                }
+            ]
+        },
+        {
+            "name": "MISC-02",
+            "transitions": [
+               
+                {
+                    "read": "00",
+                    "write": "00",
+                    "direction": "L",
+                    "nextState": "MISC-02"
+                },
+               
+                {
+                    "read": "+B",
+                    "write": "+B",
+                    "direction": "L",
+                    "nextState": "MISC-02"
+                },
+                {
+                    "read": "-B",
+                    "write": "-B",
+                    "direction": "L",
+                    "nextState": "MISC-02"
+                },
+               
+                {
+                    "read": "1B",
+                    "write": "1B",
+                    "direction": "L",
+                    "nextState": "MULT-01"
+                }
+            ]
+        },
+        {
+            "name": "MULT-01",
+            "transitions": [
+             
+                {
+                    "read": "BB",
+                    "write": "BB",
+                    "direction": "L",
+                    "nextState": "MULT-01"
+                },
+                {
+                    "read": "0B",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "MULT-02"
+                },
+                {
+                    "read": "##",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "CLNS-01"
+                }
+            ]
+        },
+        {
+            "name": "MULT-02",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "MULT-02"
+                },
+               
+                {
+                    "read": "1B",
+                    "write": "1B",
+                    "direction": "R",
+                    "nextState": "MULT-03"
+                }
+            ]
+        },
+        {
+            "name": "MULT-03",
+            "transitions": [
+                {
+                    "read": "0X",
+                    "write": "0X",
+                    "direction": "R",
+                    "nextState": "MULT-03"
+                },
+                {
+                    "read": "+B",
+                    "write": "+B",
+                    "direction": "R",
+                    "nextState": "MULT-03"
+                },
+                {
+                    "read": "-B",
+                    "write": "-B",
+                    "direction": "R",
+                    "nextState": "MULT-03"
+                },
+                {
+                    "read": "00",
+                    "write": "0X",
+                    "direction": "R",
+                    "nextState": "MULT-04"
+                },
+                {
+                    "read": "0B",
+                    "write": "0B",
+                    "direction": "L",
+                    "nextState": "MULT-06"
+                }
+            ]
+        },
+        {
+            "name": "MULT-04",
+            "transitions": [
+                {
+                    "read": "00",
+                    "write": "00",
+                    "direction": "R",
+                    "nextState": "MULT-04"
+                },
+                {
+                    "read": "0B",
+                    "write": "0B",
+                    "direction": "R",
+                    "nextState": "MULT-04"
+                },
+                {
+                    "read": "BB",
+                    "write": "0B",
+                    "direction": "L",
+                    "nextState": "MULT-05"
+                }
+            ]
+        },
+        {
+            "name": "MULT-05",
+            "transitions": [
+                {
+                    "read": "0B",
+                    "write": "0B",
+                    "direction": "L",
+                    "nextState": "MULT-05"
+                },
+                {
+                    "read": "00",
+                    "write": "00",
+                    "direction": "L",
+                    "nextState": "MULT-05"
+                },
+                {
+                    "read": "0X",
+                    "write": "0X",
+                    "direction": "L",
+                    "nextState": "MULT-05"
+                },
+                {
+                    "read": "+B",
+                    "write": "+B",
+                    "direction": "L",
+                    "nextState": "MULT-05"
+                },
+                {
+                    "read": "-B",
+                    "write": "-B",
+                    "direction": "L",
+                    "nextState": "MULT-05"
+                },
+                {
+                    "read": "1B",
+                    "write": "1B",
+                    "direction": "R",
+                    "nextState": "MULT-03"
+                }
+            ]
+        },
+        {
+            "name": "MULT-06",
+            "transitions": [
+                {
+                    "read": "0X",
+                    "write": "00",
+                    "direction": "L",
+                    "nextState": "MULT-06"
+                },
+                {
+                    "read": "+B",
+                    "write": "+B",
+                    "direction": "L",
+                    "nextState": "MULT-06"
+                },
+                {
+                    "read": "-B",
+                    "write": "-B",
+                    "direction": "L",
+                    "nextState": "MULT-06"
+                },
+                {
+                    "read": "1B",
+                    "write": "1B",
+                    "direction": "L",
+                    "nextState": "MULT-01"
+                }
+            ]
+        },
+        {
+            "name": "CLNS-01",
+            "transitions": [
+               
+                {
+                    "read": "BB",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "CLNS-01"
+                },
+                {
+                    "read": "1B",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "CLNS-01"
+                },
+                {
+                    "read": "00",
+                    "write": "0B",
+                    "direction": "R",
+                    "nextState": "CLNS-01"
+                },
+                {
+                    "read": "+B",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "CLNS-02"
+                },
+                {
+                    "read": "-B",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "CLNS-04"
+                }
+            ]
+        },
+        {
+            "name": "CLNS-02",
+            "transitions": [
+                {
+                    "read": "00",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "CLNS-02"
+                },
+                {
+                    "read": "0B",
+                    "write": "0B",
+                    "direction": "L",
+                    "nextState": "CLNS-03"
+                }
+            ]
+        },
+        {
+            "name": "CLNS-03",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "+B",
+                    "direction": "R",
+                    "nextState": "MISC-03"
+                }
+            ]
+        },
+        {
+            "name": "CLNS-04",
+            "transitions": [
+                {
+                    "read": "00",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "CLNS-04"
+                },
+                {
+                    "read": "0B",
+                    "write": "0B",
+                    "direction": "L",
+                    "nextState": "CLNS-05"
+                }
+            ]
+        },
+        {
+            "name": "CLNS-05",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "-B",
+                    "direction": "R",
+                    "nextState": "MISC-03"
+                }
+            ]
+        },
+        {
+            "name": "MISC-03",
+            "transitions": [
+                {
+                    "read": "0B",
+                    "write": "0B",
+                    "direction": "L",
+                    "nextState": "MISC-03"
+                },
+                {
+                    "read": "+B",
+                    "write": "+B",
+                    "direction": "L",
+                    "nextState": "MISC-03"
+                },
+                {
+                    "read": "-B",
+                    "write": "-B",
+                    "direction": "L",
+                    "nextState": "MISC-03"
+                },
+                {
+                    "read": "BB",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "SIGN-06"
+                }
+            ]
+        },
+        {
+            "name": "SIGN-06",
+            "transitions": [
+                {
+                    "read": "+B",
+                    "write": "##",
+                    "direction": "R",
+                    "nextState": "SIGN-07"
+                },
+                {
+                    "read": "-B",
+                    "write": "##",
+                    "direction": "R",
+                    "nextState": "SIGN-09"
+                }
+            ]
+        },
+        {
+            "name": "SIGN-07",
+            "transitions": [
+                {
+                    "read": "0B",
+                    "write": "0B",
+                    "direction": "R",
+                    "nextState": "SIGN-07"
+                },
+                
+                {
+                    "read": "BB",
+                    "write": "##",
+                    "direction": "R",
+                    "nextState": "SIGN-08"
+                }
+            ]
+        },
+        {
+            "name": "SIGN-08",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "+B",
+                    "direction": "R",
+                    "nextState": "SET5-01"
+                }
+            ]
+        },
+        {
+            "name": "SIGN-09",
+            "transitions": [
+                {
+                    "read": "0B",
+                    "write": "0B",
+                    "direction": "R",
+                    "nextState": "SIGN-06"
+                },
+                {
+                    "read": "BB",
+                    "write": "##",
+                    "direction": "R",
+                    "nextState": "SIGN-10"
+                }
+            ]
+        },
+        {
+            "name": "SIGN-10",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "-B",
+                    "direction": "R",
+                    "nextState": "SET5-01"
+                }
+            ]
+        },
+        {
+            "name": "SET9-01",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "00",
+                    "direction": "R",
+                    "nextState": "SET9-02"
+                }
+            ]
+        },
+        {
+            "name": "SET9-02",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "00",
+                    "direction": "R",
+                    "nextState": "SET9-03"
+                }
+            ]
+        },
+        {
+            "name": "SET9-03",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "00",
+                    "direction": "R",
+                    "nextState": "SET9-04"
+                }
+            ]
+        },
+        {
+            "name": "SET9-04",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "00",
+                    "direction": "R",
+                    "nextState": "SET9-05"
+                }
+            ]
+        },
+        {
+            "name": "SET9-05",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "00",
+                    "direction": "R",
+                    "nextState": "SET9-06"
+                }
+            ]
+        },
+        {
+            "name": "SET9-06",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "00",
+                    "direction": "R",
+                    "nextState": "SET9-07"
+                }
+            ]
+        },
+        {
+            "name": "SET9-07",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "00",
+                    "direction": "R",
+                    "nextState": "SET9-08"
+                }
+            ]
+        },
+        {
+            "name": "SET9-08",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "00",
+                    "direction": "R",
+                    "nextState": "SET9-09"
+                }
+            ]
+        },
+        {
+            "name": "SET9-09",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "00",
+                    "direction": "L",
+                    "nextState": "MISC-02"
+                }
+            ]
+        },
+        {
+            "name": "MISC-04",
+            "transitions": [
+                
+                {
+                    "read": "BB",
+                    "write": "BB",
+                    "direction": "L",
+                    "nextState": "FTCH-01"
+                }
+            ]
+        },
+        {
+            "name": "FTCH-01",
+            "transitions": [
+                {
+                    "read": "0B",
+                    "write": "BB",
+                    "direction": "L",
+                    "nextState": "FTCH-02"
+                },
+                {
+                    "read": "-B",
+                    "write": "-B",
+                    "direction": "L",
+                    "nextState": "MISC-05"
+                },
+                {
+                    "read": "+B",
+                    "write": "+B",
+                    "direction": "L",
+                    "nextState": "MISC-05"
+                }
+            ]
+        },
+        {
+            "name": "FTCH-02",
+            "transitions": [
+                {
+                    "read": "0B",
+                    "write": "0B",
+                    "direction": "L",
+                    "nextState": "FTCH-02"
+                },
+                {
+                    "read": "+B",
+                    "write": "+B",
+                    "direction": "L",
+                    "nextState": "FTCH-02"
+                },
+                {
+                    "read": "-B",
+                    "write": "-B",
+                    "direction": "L",
+                    "nextState": "FTCH-02"
+                },
+                {
+                    "read": "##",
+                    "write": "##",
+                    "direction": "L",
+                    "nextState": "FTCH-03"
+                }
+            ]
+        },
+        {
+            "name": "FTCH-03",
+            "transitions": [
+                {
+                    "read": "00",
+                    "write": "00",
+                    "direction": "L",
+                    "nextState": "FTCH-03"
+                },
+                {
+                    "read": "0B",
+                    "write": "00",
+                    "direction": "R",
+                    "nextState": "FTCH-04"
+                },
+                {
+                    "read": "##",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "CLNS-07"
+                }
+            ]
+        },
+        {
+            "name": "FTCH-04",
+            "transitions": [
+                {
+                    "read": "00",
+                    "write": "00",
+                    "direction": "R",
+                    "nextState": "FTCH-04"
+                },
+                {
+                    "read": "##",
+                    "write": "##",
+                    "direction": "R",
+                    "nextState": "FTCH-04"
+                },
+                {
+                    "read": "+B",
+                    "write": "+B",
+                    "direction": "R",
+                    "nextState": "FTCH-04"
+                },
+                {
+                    "read": "-B",
+                    "write": "-B",
+                    "direction": "R",
+                    "nextState": "FTCH-04"
+                },
+                {
+                    "read": "0B",
+                    "write": "0B",
+                    "direction": "R",
+                    "nextState": "FTCH-04"
+                },
+                {
+                    "read": "BB",
+                    "write": "BB",
+                    "direction": "L",
+                    "nextState": "FTCH-01"
+                }
+            ]
+        },
+        {
+            "name": "MISC-05",
+            "transitions": [
+                {
+                    "read": "##",
+                    "write": "##",
+                    "direction": "L",
+                    "nextState": "DIVS-01"
+                }
+            ]
+        },
+        {
+            "name": "DIVS-01",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "BB",
+                    "direction": "L",
+                    "nextState": "DIVS-01"
+                },
+                {
+                    "read": "00",
+                    "write": "BB",
+                    "direction": "L",
+                    "nextState": "DIVS-02"
+                },
+                {
+                    "read": "0X",
+                    "write": "0X",
+                    "direction": "L",
+                    "nextState": "DIVS-04"
+                }
+            ]
+        },
+        {
+            "name": "DIVS-02",
+            "transitions": [
+                {
+                    "read": "00",
+                    "write": "00",
+                    "direction": "L",
+                    "nextState": "DIVS-02"
+                },
+                {
+                    "read": "0X",
+                    "write": "0X",
+                    "direction": "L",
+                    "nextState": "DIVS-02"
+                },
+                {
+                    "read": "0B",
+                    "write": "0X",
+                    "direction": "R",
+                    "nextState": "DIVS-03"
+                },
+                {
+                    "read": "##",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "DIVS-08"
+                }
+            ]
+        },
+        {
+            "name": "DIVS-03",
+            "transitions": [
+                {
+                    "read": "0X",
+                    "write": "0X",
+                    "direction": "R",
+                    "nextState": "DIVS-03"
+                },
+                {
+                    "read": "00",
+                    "write": "00",
+                    "direction": "R",
+                    "nextState": "DIVS-03"
+                },
+                {
+                    "read": "BB",
+                    "write": "BB",
+                    "direction": "L",
+                    "nextState": "DIVS-01"
+                }
+            ]
+        },
+        {
+            "name": "DIVS-04",
+            "transitions": [
+                {
+                    "read": "0X",
+                    "write": "0X",
+                    "direction": "L",
+                    "nextState": "DIVS-04"
+                },
+                {
+                    "read": "0B",
+                    "write": "0B",
+                    "direction": "R",
+                    "nextState": "DIVS-05"
+                },
+                {
+                    "read": "##",
+                    "write": "##",
+                    "direction": "R",
+                    "nextState": "DIVS-05"
+                }
+            ]
+        },
+        {
+            "name": "DIVS-05",
+            "transitions": [
+                {
+                    "read": "0X",
+                    "write": "00",
+                    "direction": "R",
+                    "nextState": "DIVS-05"
+                },
+                {
+                    "read": "BB",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "DIVS-05"
+                },
+                {
+                    "read": "##",
+                    "write": "##",
+                    "direction": "R",
+                    "nextState": "DIVS-05"
+                },
+                {
+                    "read": "+B",
+                    "write": "+B",
+                    "direction": "R",
+                    "nextState": "DIVS-06"
+                },
+                {
+                    "read": "-B",
+                    "write": "-B",
+                    "direction": "R",
+                    "nextState": "DIVS-06"
+                }
+            ]
+        },
+        {
+            "name": "DIVS-06",
+            "transitions": [
+                {
+                    "read": "0B",
+                    "write": "0B",
+                    "direction": "R",
+                    "nextState": "DIVS-06"
+                },
+                {
+                    "read": "BB",
+                    "write": "0B",
+                    "direction": "L",
+                    "nextState": "DIVS-07"
+                }
+            ]
+        },
+        {
+            "name": "DIVS-07",
+            "transitions": [
+                {
+                    "read": "0B",
+                    "write": "0B",
+                    "direction": "L",
+                    "nextState": "DIVS-07"
+                },
+                {
+                    "read": "+B",
+                    "write": "+B",
+                    "direction": "L",
+                    "nextState": "DIVS-07"
+                },
+                {
+                    "read": "-B",
+                    "write": "-B",
+                    "direction": "L",
+                    "nextState": "DIVS-07"
+                },
+                {
+                    "read": "##",
+                    "write": "##",
+                    "direction": "L",
+                    "nextState": "DIVS-01"
+                }
+            ]
+        },
+        {
+            "name": "DIVS-08",
+            "transitions": [
+                {
+                    "read": "0X",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "DIVS-08"
+                },
+                {
+                    "read": "BB",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "DIVS-09"
+                },
+                {
+                    "read": "00",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "DIVS-09"
+                }
+            ]
+        },
+        {
+            "name": "DIVS-09",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "DIVS-09"
+                },
+                {
+                    "read": "##",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "DIVS-09"
+                },
+                {
+                    "read": "+B",
+                    "write": "+B",
+                    "direction": "R",
+                    "nextState": "DIVS-10"
+                },
+                {
+                    "read": "-B",
+                    "write": "-B",
+                    "direction": "R",
+                    "nextState": "DIVS-10"
+                },
+                {
+                    "read": "00",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "DIVS-09"
+                }
+            ]
+        },
+        {
+            "name": "DIVS-10",
+            "transitions": [
+                {
+                    "read": "0B",
+                    "write": "0B",
+                    "direction": "R",
+                    "nextState": "DIVS-10"
+                },
+                {
+                    "read": "BB",
+                    "write": "0B",
+                    "direction": "R",
+                    "nextState": "ADDF-01"
+                }
+            ]
+        },
+        {
+            "name": "CLNS-06",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "CLNS-06"
+                },
+                {
+                    "read": "00",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "CLNS-06"
+                },
+                {
+                    "read": "##",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "ADDF-01"
+                }
+            ]
+        },
+        {
+            "name": "ADDF-01",
+            "transitions": [
+                {
+                    "read": "0B",
+                    "write": "0B",
+                    "direction": "R",
+                    "nextState": "ADDF-01"
+                },
+                {
+                    "read": "+B",
+                    "write": "+B",
+                    "direction": "R",
+                    "nextState": "ADDF-01"
+                },
+                {
+                    "read": "-B",
+                    "write": "-B",
+                    "direction": "R",
+                    "nextState": "ADDF-01"
+                },
+                {
+                    "read": "BB",
+                    "write": "+B",
+                    "direction": "R",
+                    "nextState": "ADDF-02"
+                }
+            ]
+        },
+        {
+            "name": "ADDF-02",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "FB",
+                    "direction": "R",
+                    "nextState": "ACC"
+                }
+            ]
+        },
+        {
+            "name": "ACC",
+            "transitions": [
+                
+            ]
+        },
+        {
+            "name": "CLNS-07",
+            "transitions": [
+                {
+                    "read": "BB",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "CLNS-07"
+                },
+                {
+                    "read": "00",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "CLNS-07"
+                },
+                {
+                    "read": "##",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "CLNS-08"
+                }
+            ]
+        },
+        {
+            "name": "CLNS-08",
+            "transitions": [
+                {
+                    "read": "+B",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "CLNS-08"
+                },
+                {
+                    "read": "-B",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "CLNS-08"
+                },
+                {
+                    "read": "0B",
+                    "write": "BB",
+                    "direction": "R",
+                    "nextState": "CLNS-08"
+                },
+                {
+                    "read": "BB",
+                    "write": "BB",
+                    "direction": "L",
+                    "nextState": "ADDF-01"
+                }
+            ]
+        }
+    ]
+}

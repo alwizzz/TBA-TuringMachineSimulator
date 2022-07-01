@@ -1,0 +1,228 @@
+{
+    "operation": "Factorial",
+    "type": "MTP", 
+    "tapeCount": 3,
+    "symbols": ["0","1"],
+    "blankSymbol": "B",
+    "startState": "Q0",
+    "acceptStates": ["Q10"],
+    "states": [
+        {
+            "name": "Q0",
+            "transitions": [
+                {
+                    "read": "0BB",
+                    "write": "00B",
+                    "direction": "RRS",
+                    "nextState": "Q0"
+                },
+                {
+                    "read": "1BB",
+                    "write": "BBB",
+                    "direction": "LLS",
+                    "nextState": "Q1"
+                }
+              
+            ]
+        },
+        {
+            "name": "Q1",
+            "transitions": [
+                {
+                    "read": "00B",
+                    "write": "0BB",
+                    "direction": "SLR",
+                    "nextState": "Q2"
+                },
+                {
+                    "read": "BBB",
+                    "write": "0BB",
+                    "direction": "SSS",
+                    "nextState": "Q2"
+                }
+               
+            ]
+        },
+        {
+            "name": "Q2",
+            "transitions": [
+                {
+                    "read": "00B",
+                    "write": "000",
+                    "direction": "LSR",
+                    "nextState": "Q2"
+                },
+                {
+                    "read": "000",
+                    "write": "000",
+                    "direction": "LSR",
+                    "nextState": "Q2"
+                },
+                {
+                    "read": "B0B",
+                    "write": "B0B",
+                    "direction": "RLS",
+                    "nextState": "Q3"
+                },
+                {
+                    "read": "0BB",
+                    "write": "0BB",
+                    "direction": "SRS",
+                    "nextState": "Q7"
+                }
+               
+            ]
+        },
+        {
+            "name": "Q3",
+            "transitions": [
+                {
+                    "read": "00B",
+                    "write": "000",
+                    "direction": "RSR",
+                    "nextState": "Q3"
+                },
+                {
+                    "read": "000",
+                    "write": "000",
+                    "direction": "RSR",
+                    "nextState": "Q3"
+                },
+                {
+                    "read": "B0B",
+                    "write": "B0B",
+                    "direction": "LLS",
+                    "nextState": "Q2"
+                },
+                {
+                    "read": "0BB",
+                    "write": "0BB",
+                    "direction": "SRS",
+                    "nextState": "Q4"
+                }
+            ]
+        },
+        {
+            "name": "Q4",
+            "transitions": [
+                {
+                    "read": "00B",
+                    "write": "0BB",
+                    "direction": "SRL",
+                    "nextState": "Q5"
+                }
+               
+            ]
+        },
+        {
+            "name": "Q5",
+            "transitions": [
+              
+                {
+                    "read": "000",
+                    "write": "000",
+                    "direction": "RSL",
+                    "nextState": "Q5"
+                },
+                {
+                    "read": "B00",
+                    "write": "000",
+                    "direction": "RSL",
+                    "nextState": "Q5"
+                },
+                {
+                    "read": "B0B",
+                    "write": "B0B",
+                    "direction": "LRS",
+                    "nextState": "Q6"
+                },
+                {
+                    "read": "0B0",
+                    "write": "0B0",
+                    "direction": "SSS",
+                    "nextState": "Q10"
+                }
+            ]
+        },
+        {
+            "name": "Q6",
+            "transitions": [
+                {
+                    "read": "00B",
+                    "write": "00B",
+                    "direction": "SRS",
+                    "nextState": "Q6"
+                },
+                {
+                    "read": "0BB",
+                    "write": "0BB",
+                    "direction": "SLR",
+                    "nextState": "Q2"
+                }
+            ]
+        },
+        {
+            "name": "Q7",
+            "transitions": [
+                {
+                    "read": "00B",
+                    "write": "0BB",
+                    "direction": "SRL",
+                    "nextState": "Q8"
+                }
+            ]
+        },
+        {
+            "name": "Q8",
+            "transitions": [
+                {
+                    "read": "000",
+                    "write": "000",
+                    "direction": "LSL",
+                    "nextState": "Q8"
+                },
+                {
+                    "read": "B00",
+                    "write": "000",
+                    "direction": "LSL",
+                    "nextState": "Q8"
+                },
+                {
+                    "read": "B0B",
+                    "write": "B0B",
+                    "direction": "RRS",
+                    "nextState": "Q9"
+                },
+                {
+                    "read": "0B0",
+                    "write": "0B0",
+                    "direction": "SSS",
+                    "nextState": "Q10"
+                }
+            ]
+        },
+        {
+            "name": "Q9",
+            "transitions": [
+                {
+                    "read": "00B",
+                    "write": "00B",
+                    "direction": "SRS",
+                    "nextState": "Q9"
+                },
+                {
+                    "read": "0BB",
+                    "write": "0BB",
+                    "direction": "SLR",
+                    "nextState": "Q3"
+                }
+            ]
+        },
+        {
+            "name": "Q10",
+            "transitions": [
+               
+            ]
+        }
+    ]
+}

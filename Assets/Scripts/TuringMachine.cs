@@ -485,46 +485,39 @@ public class TuringMachine : MonoBehaviour
     {
         if (operation == "Addition")
         {
-            if (type == "STP")
-            {
-                string result = "";
 
-                string signSymbol = output.Substring(0, 1);
-                int value = output.Substring(1).Length;
+            string result = "";
+            int value = 0;
+            string signSymbol = "";
+
+            if(output.Length > 0)
+            {
+                signSymbol = output.Substring(0, 1);
+                value = output.Substring(1).Length;
                 if (signSymbol == "-") { value *= -1; }
-
-                result += value.ToString();
-
-                return result;
             }
-            else if (type == "MTR")
-            {
 
-            }
-            else if (type == "MTP")
-            {
+            result += value.ToString();
 
-            }
+            return result;
         }
 
         else if (operation == "Substraction")
         {
-            if (type == "STP" || type == "MTR")
-            {
-                string result = "";
+            string result = "";
+            int value = 0;
+            string signSymbol = "";
 
-                string signSymbol = output.Substring(0, 1);
-                int value = output.Substring(1).Length;
+            if (output.Length > 0)
+            {
+                signSymbol = output.Substring(0, 1);
+                value = output.Substring(1).Length;
                 if (signSymbol == "-") { value *= -1; }
-
-                result += value.ToString();
-
-                return result;
             }
-            else if (type == "MTP")
-            {
 
-            }
+            result += value.ToString();
+
+            return result;
         }
 
         else if (operation == "Multiplication")
@@ -555,17 +548,27 @@ public class TuringMachine : MonoBehaviour
 
         else if (operation == "Factorial")
         {
-            if (type == "STP")
+            if (type == "STP" || type == "MTR")
             {
+                string result = "";
 
-            }
-            else if (type == "MTR")
-            {
 
+                int value = output.Length - 2;
+
+                result += value.ToString();
+
+                return result;
             }
             else if (type == "MTP")
             {
+                string result = "";
 
+
+                int value = output.Length;
+
+                result += value.ToString();
+
+                return result;
             }
         }
 
@@ -577,7 +580,10 @@ public class TuringMachine : MonoBehaviour
             }
             else if (type == "MTR")
             {
-
+                string result = "";
+                int value = output.Length;
+                result += value.ToString();
+                return result;
             }
             else if (type == "MTP")
             {
@@ -615,34 +621,46 @@ public class TuringMachine : MonoBehaviour
             {
                 result += "+ 273 = ";
                 value += 273;
+                result += value.ToString();
+                result += " K"; 
             }
             else if (subOperation == "KC")
             {
                 result += "- 273 = ";
                 value -= 273;
+                result += value.ToString();
+                result += " °C";
             }
             else if (subOperation == "CF")
             {
                 result += "+ 32 = ";
                 value += 32;
+                result += value.ToString();
+                result += " °F";
             }
             else if (subOperation == "FC")
             {
                 result += "- 18 = ";
                 value -= 18;
+                result += value.ToString();
+                result += " °C";
             }
             else if (subOperation == "KF")
             {
                 result += "+ 32 - 491 = ";
                 value -= 459;
+                result += value.ToString();
+                result += " °F";
             }
             else if (subOperation == "FK")
             {
                 result += "- 18 + 273 = ";
                 value += 255;
+                result += value.ToString();
+                result += " K";
             }
 
-            result += value.ToString();
+            //result += value.ToString();
             return result;
 
         }

@@ -1,0 +1,831 @@
+{
+    "operation": "Substraction",
+    "type": "MTP", 
+    "tapeCount": 3,
+    "symbols": ["0","1","+","-"],
+    "blankSymbol": "B",
+    "startState": "Q0",
+    "acceptStates": ["Q32"],
+    "states": [
+        {
+            "name": "Q0",
+            "transitions": [
+                {
+                    "read": "+BB",
+                    "write": "+BB",
+                    "direction": "RSS",
+                    "nextState": "Q23"
+                },
+                {
+                    "read": "-BB",
+                    "write": "-BB",
+                    "direction": "RSS",
+                    "nextState": "Q23"
+                }
+              
+            ]
+        },
+        {
+            "name": "Q1",
+            "transitions": [
+                {
+                    "read": "1BB",
+                    "write": "1BB",
+                    "direction": "RSS",
+                    "nextState": "Q1"
+                },
+                {
+                    "read": "0BB",
+                    "write": "0BB",
+                    "direction": "RSS",
+                    "nextState": "Q1"
+                },
+                {
+                    "read": "+BB",
+                    "write": "+BB",
+                    "direction": "LSS",
+                    "nextState": "Q25"
+                },
+                {
+                    "read": "-BB",
+                    "write": "-BB",
+                    "direction": "LSS",
+                    "nextState": "Q26"
+                }
+               
+            ]
+        },
+        {
+            "name": "Q2",
+            "transitions": [
+                {
+                    "read": "1BB",
+                    "write": "1BB",
+                    "direction": "LSS",
+                    "nextState": "Q2"
+                },
+                {
+                    "read": "0BB",
+                    "write": "0BB",
+                    "direction": "LSS",
+                    "nextState": "Q2"
+                },
+                {
+                    "read": "+BB",
+                    "write": "+BB",
+                    "direction": "RSS",
+                    "nextState": "Q3"
+                },
+                {
+                    "read": "-BB",
+                    "write": "-BB",
+                    "direction": "RSS",
+                    "nextState": "Q3"
+                }
+               
+            ]
+        },
+        {
+            "name": "Q3",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "RSS",
+                    "nextState": "Q3"
+                },
+                {
+                    "read": "0BB",
+                    "write": "BBB",
+                    "direction": "RSS",
+                    "nextState": "Q14"
+                },
+                {
+                    "read": "1BB",
+                    "write": "BBB",
+                    "direction": "RSS",
+                    "nextState": "Q4"
+                }
+            ]
+        },
+        {
+            "name": "Q4",
+            "transitions": [
+                {
+                    "read": "1BB",
+                    "write": "1BB",
+                    "direction": "RSS",
+                    "nextState": "Q4"
+                },
+                {
+                    "read": "0BB",
+                    "write": "0BB",
+                    "direction": "RSS",
+                    "nextState": "Q4"
+                },
+                {
+                    "read": "+BB",
+                    "write": "+BB",
+                    "direction": "RSS",
+                    "nextState": "Q5"
+                },
+                {
+                    "read": "-BB",
+                    "write": "-BB",
+                    "direction": "RSS",
+                    "nextState": "Q5"
+                }
+               
+            ]
+        },
+        {
+            "name": "Q5",
+            "transitions": [
+              
+                {
+                    "read": "1BB",
+                    "write": "1BB",
+                    "direction": "RSS",
+                    "nextState": "Q5"
+                },
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "Q6"
+                }
+            ]
+        },
+        {
+            "name": "Q6",
+            "transitions": [
+                {
+                    "read": "+BB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "Q8"
+                },
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "Q8"
+                },
+                {
+                    "read": "-BB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "Q8"
+                },
+                {
+                    "read": "1BB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "Q7"
+                }
+            ]
+        },
+        {
+            "name": "Q7",
+            "transitions": [
+                {
+                    "read": "1BB",
+                    "write": "1BB",
+                    "direction": "LSS",
+                    "nextState": "Q7"
+                },
+                {
+                    "read": "0BB",
+                    "write": "0BB",
+                    "direction": "LSS",
+                    "nextState": "Q7"
+                },
+                {
+                    "read": "+BB",
+                    "write": "+BB",
+                    "direction": "RSS",
+                    "nextState": "Q21"
+                },
+                {
+                    "read": "-BB",
+                    "write": "-BB",
+                    "direction": "RSS",
+                    "nextState": "Q21"
+                },
+                 {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "Q7"
+                }
+            ]
+        },
+        {
+            "name": "Q8",
+            "transitions": [
+                {
+                    "read": "0BB",
+                    "write": "1BB",
+                    "direction": "LSS",
+                    "nextState": "Q9"
+                }
+            ]
+        },
+        {
+            "name": "Q9",
+            "transitions": [
+                {
+                    "read": "1BB",
+                    "write": "1BB",
+                    "direction": "LSS",
+                    "nextState": "Q9"
+                },
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "Q9"
+                },
+                {
+                    "read": "-BB",
+                    "write": "BBB",
+                    "direction": "RSS",
+                    "nextState": "Q18"
+                },
+                {
+                    "read": "+BB",
+                    "write": "BBB",
+                    "direction": "RSS",
+                    "nextState": "Q10"
+                }
+            ]
+        },
+        {
+            "name": "Q10",
+            "transitions": [
+               
+                {
+                    "read": "BBB",
+                    "write": "+BB",
+                    "direction": "RSS",
+                    "nextState": "Q10"
+                },
+               
+                {
+                    "read": "1BB",
+                    "write": "1BB",
+                    "direction": "LSS",
+                    "nextState": "Q11"
+                }
+            ]
+        },
+        {
+            "name": "Q11",
+            "transitions": [
+             
+                {
+                    "read": "+BB",
+                    "write": "+BB",
+                    "direction": "LSS",
+                    "nextState": "Q12"
+                },
+                {
+                    "read": "-BB",
+                    "write": "-BB",
+                    "direction": "LSS",
+                    "nextState": "Q19"
+                }
+            ]
+        },
+        {
+            "name": "Q12",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "Q13"
+                },
+               
+                {
+                    "read": "+BB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "Q12"
+                }
+            ]
+        },
+        {
+            "name": "Q13",
+            "transitions": [
+                {
+                    "read": "-BB",
+                    "write": "B-B",
+                    "direction": "RRS",
+                    "nextState": "Q13"
+                },
+                {
+                    "read": "+BB",
+                    "write": "B+B",
+                    "direction": "RRS",
+                    "nextState": "Q13"
+                },
+                {
+                    "read": "1BB",
+                    "write": "B1B",
+                    "direction": "RRS",
+                    "nextState": "Q13"
+                },
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "LLS",
+                    "nextState": "Q31"
+                }
+            ]
+        },
+        {
+            "name": "Q14",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "-BB",
+                    "direction": "RSS",
+                    "nextState": "Q15"
+                },
+                {
+                    "read": "+BB",
+                    "write": "+BB",
+                    "direction": "RSS",
+                    "nextState": "Q15"
+                },
+                {
+                    "read": "-BB",
+                    "write": "-BB",
+                    "direction": "RSS",
+                    "nextState": "Q15"
+                }
+            ]
+        },
+        {
+            "name": "Q15",
+            "transitions": [
+                {
+                    "read": "-BB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "Q15"
+                },
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "Q17"
+                },
+                {
+                    "read": "+BB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "Q13"
+                },
+                {
+                    "read": "1BB",
+                    "write": "1BB",
+                    "direction": "LSS",
+                    "nextState": "Q16"
+                }
+            ]
+        },
+        {
+            "name": "Q16",
+            "transitions": [
+                {
+                    "read": "-BB",
+                    "write": "-BB",
+                    "direction": "LSS",
+                    "nextState": "Q20"
+                },
+                {
+                    "read": "+BB",
+                    "write": "+BB",
+                    "direction": "LSS",
+                    "nextState": "Q20"
+                }
+            ]
+        },
+        {
+            "name": "Q17",
+            "transitions": [
+               
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "RSS",
+                    "nextState": "Q20"
+                },
+                {
+                    "read": "+BB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "Q24"
+                },
+                {
+                    "read": "-BB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "Q17"
+                }
+            ]
+        },
+        {
+            "name": "Q18",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "-BB",
+                    "direction": "RSS",
+                    "nextState": "Q18"
+                },
+                {
+                    "read": "1BB",
+                    "write": "1BB",
+                    "direction": "LSS",
+                    "nextState": "Q11"
+                }
+            ]
+        },
+        {
+            "name": "Q19",
+            "transitions": [
+                {
+                    "read": "-BB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "Q19"
+                },
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "Q13"
+                }
+            ]
+        },
+        {
+            "name": "Q20",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "Q20"
+                },
+                
+                {
+                    "read": "+BB",
+                    "write": "BBB",
+                    "direction": "RSS",
+                    "nextState": "Q13"
+                },
+                {
+                    "read": "-BB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "Q13"
+                }
+            ]
+        },
+        {
+            "name": "Q21",
+            "transitions": [
+                {
+                    "read": "1BB",
+                    "write": "1BB",
+                    "direction": "LSS",
+                    "nextState": "Q21"
+                },
+                {
+                    "read": "0BB",
+                    "write": "0BB",
+                    "direction": "LSS",
+                    "nextState": "Q21"
+                },
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "Q21"
+                },
+                {
+                    "read": "+BB",
+                    "write": "+BB",
+                    "direction": "LSS",
+                    "nextState": "Q22"
+                },
+                {
+                    "read": "-BB",
+                    "write": "-BB",
+                    "direction": "LSS",
+                    "nextState": "Q22"
+                }
+            ]
+        },
+        {
+            "name": "Q22",
+            "transitions": [
+                {
+                    "read": "1BB",
+                    "write": "1BB",
+                    "direction": "LSS",
+                    "nextState": "Q22"
+                },
+                {
+                    "read": "0BB",
+                    "write": "0BB",
+                    "direction": "LSS",
+                    "nextState": "Q22"
+                },
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "Q22"
+                },
+                {
+                    "read": "+BB",
+                    "write": "+BB",
+                    "direction": "RSS",
+                    "nextState": "Q3"
+                },
+                {
+                    "read": "-BB",
+                    "write": "-BB",
+                    "direction": "RSS",
+                    "nextState": "Q3"
+                }
+            ]
+        },
+        {
+            "name": "Q23",
+            "transitions": [
+                {
+                    "read": "1BB",
+                    "write": "1BB",
+                    "direction": "RSS",
+                    "nextState": "Q23"
+                },
+                {
+                    "read": "0BB",
+                    "write": "0BB",
+                    "direction": "RSS",
+                    "nextState": "Q23"
+                },
+                {
+                    "read": "+BB",
+                    "write": "-BB",
+                    "direction": "LSS",
+                    "nextState": "Q1"
+                },
+                {
+                    "read": "-BB",
+                    "write": "+BB",
+                    "direction": "LSS",
+                    "nextState": "Q1"
+                }
+            ]
+        },
+        {
+            "name": "Q24",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "Q24"
+                },
+                {
+                    "read": "-BB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "Q13"
+                },
+                {
+                    "read": "+BB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "Q13"
+                }
+            ]
+        },
+        {
+            "name": "Q25",
+            "transitions": [
+                {
+                    "read": "1BB",
+                    "write": "1BB",
+                    "direction": "LSS",
+                    "nextState": "Q25"
+                },
+                {
+                    "read": "0BB",
+                    "write": "0BB",
+                    "direction": "LSS",
+                    "nextState": "Q25"
+                },
+                {
+                    "read": "+BB",
+                    "write": "+BB",
+                    "direction": "RSS",
+                    "nextState": "Q27"
+                },
+                {
+                    "read": "-BB",
+                    "write": "-BB",
+                    "direction": "RSS",
+                    "nextState": "Q2"
+                }
+            ]
+        },
+        {
+            "name": "Q26",
+            "transitions": [
+                {
+                    "read": "1BB",
+                    "write": "1BB",
+                    "direction": "LSS",
+                    "nextState": "Q26"
+                },
+                {
+                    "read": "0BB",
+                    "write": "0BB",
+                    "direction": "LSS",
+                    "nextState": "Q26"
+                },              
+                {
+                    "read": "+BB",
+                    "write": "+BB",
+                    "direction": "RSS",
+                    "nextState": "Q2"
+                },
+                {
+                    "read": "-BB",
+                    "write": "-BB",
+                    "direction": "RSS",
+                    "nextState": "Q27"
+                }
+            ]
+        },
+        {
+            "name": "Q27",
+            "transitions": [
+                
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "RSS",
+                    "nextState": "Q27"
+                },
+                {
+                    "read": "1BB",
+                    "write": "BBB",
+                    "direction": "RSS",
+                    "nextState": "Q28"
+                },
+                {
+                    "read": "0BB",
+                    "write": "BBB",
+                    "direction": "RSS",
+                    "nextState": "Q13"
+                }
+            ]
+        },
+        {
+            "name": "Q28",
+            "transitions": [
+                {
+                    "read": "BBB",
+                    "write": "1BB",
+                    "direction": "LSS",
+                    "nextState": "Q29"
+                },
+                {
+                    "read": "1BB",
+                    "write": "1BB",
+                    "direction": "RSS",
+                    "nextState": "Q28"
+                },
+                {
+                    "read": "0BB",
+                    "write": "0BB",
+                    "direction": "RSS",
+                    "nextState": "Q28"
+                },
+                {
+                    "read": "-BB",
+                    "write": "-BB",
+                    "direction": "RSS",
+                    "nextState": "Q28"
+                },
+                {
+                    "read": "+BB",
+                    "write": "+BB",
+                    "direction": "RSS",
+                    "nextState": "Q28"
+                }
+            ]
+        },
+        {
+            "name": "Q29",
+            "transitions": [
+                {
+                    "read": "1BB",
+                    "write": "1BB",
+                    "direction": "LSS",
+                    "nextState": "Q29"
+                },
+                {
+                    "read": "+BB",
+                    "write": "+BB",
+                    "direction": "LSS",
+                    "nextState": "Q29"
+                },
+                {
+                    "read": "0BB",
+                    "write": "0BB",
+                    "direction": "LSS",
+                    "nextState": "Q29"
+                },
+                {
+                    "read": "-BB",
+                    "write": "-BB",
+                    "direction": "LSS",
+                    "nextState": "Q29"
+                },
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "LSS",
+                    "nextState": "Q30"
+                }
+            ]
+        },
+        {
+            "name": "Q30",
+            "transitions": [
+                {
+                    "read": "-BB",
+                    "write": "BBB",
+                    "direction": "RSS",
+                    "nextState": "Q27"
+                },
+                {
+                    "read": "+BB",
+                    "write": "BBB",
+                    "direction": "RSS",
+                    "nextState": "Q27"
+                },
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "RSS",
+                    "nextState": "Q27"
+                }
+            ]
+        },
+        {
+            "name": "Q31",
+            "transitions": [
+                {
+                    "read": "B-B",
+                    "write": "-BB",
+                    "direction": "LLS",
+                    "nextState": "Q31"
+                },
+                {
+                    "read": "B+B",
+                    "write": "+BB",
+                    "direction": "LLS",
+                    "nextState": "Q31"
+                },
+                {
+                    "read": "B1B",
+                    "write": "1BB",
+                    "direction": "LLS",
+                    "nextState": "Q31"
+                },
+                {
+                    "read": "BBB",
+                    "write": "BBB",
+                    "direction": "SSS",
+                    "nextState": "Q32"
+                }
+            ]
+        },
+        {
+            "name": "Q32",
+            "transitions": [
+                
+            ]
+        }
+    ]
+}

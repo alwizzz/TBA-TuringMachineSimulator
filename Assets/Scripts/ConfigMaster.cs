@@ -233,59 +233,93 @@ public class ConfigMaster : MonoBehaviour
     {
         if (operation == "Addition")
         {
-            if(machineType == "STP" || machineType == "MTR")
-            {
-                string result = "";
-                string divider = "0";
+            //if(machineType == "STP" || machineType == "MTR")
+            //{
+            //    string result = "";
+            //    string divider = "0";
 
-                result += DecimalToUnary(firstNumber, firstSign, "1");
-                result += divider;
-                result += DecimalToUnary(secondNumber, secondSign, "1");
+            //    result += DecimalToUnary(firstNumber, firstSign, "1");
+            //    result += divider;
+            //    result += DecimalToUnary(secondNumber, secondSign, "1");
 
-                inputStringText.text = result;
-                sceneLoader.SetInputString(result);
-            }
-            else if (machineType == "MTP")
-            {
+            //    inputStringText.text = result;
+            //    sceneLoader.SetInputString(result);
+            //}
+            //else if (machineType == "MTP")
+            //{
 
-            }
+            //}
+            string result = "";
+            string divider = "0";
+
+            result += DecimalToUnary(firstNumber, firstSign, "1");
+            result += divider;
+            result += DecimalToUnary(secondNumber, secondSign, "1");
+
+            inputStringText.text = result;
+            sceneLoader.SetInputString(result);
         }
 
         else if (operation == "Substraction")
         {
-            if (machineType == "STP")
-            {
-                string result = "";
-                string divider = "0";
+            //if (machineType == "STP")
+            //{
+            //    string result = "";
+            //    string divider = "0";
 
-                result += DecimalToUnary(firstNumber, firstSign, "1");
-                result += divider;
-                result += DecimalToUnary(secondNumber, secondSign, "1");
+            //    result += DecimalToUnary(firstNumber, firstSign, "1");
+            //    result += divider;
+            //    result += DecimalToUnary(secondNumber, secondSign, "1");
 
-                inputStringText.text = result;
-                sceneLoader.SetInputString(result);
-            }
-            else if (machineType == "MTR")
-            {
+            //    inputStringText.text = result;
+            //    sceneLoader.SetInputString(result);
+            //}
+            //else if (machineType == "MTR")
+            //{
 
-            }
-            else if (machineType == "MTP")
-            {
+            //}
+            //else if (machineType == "MTP")
+            //{
 
-            }
+            //}
+            string result = "";
+            string divider = "0";
+
+            result += DecimalToUnary(firstNumber, firstSign, "1");
+            result += divider;
+            result += DecimalToUnary(secondNumber, secondSign, "1");
+
+            inputStringText.text = result;
+            sceneLoader.SetInputString(result);
         }
 
         else if (operation == "Multiplication")
         {
-            string result = "";
-            string divider = "1";
+            if(machineType == "MTR" || machineType == "MTP")
+            {
+                string result = "";
+                string divider = "1";
 
-            result += DecimalToUnary(firstNumber, firstSign, "0");
-            result += divider;
-            result += DecimalToUnary(secondNumber, secondSign, "0");
+                result += DecimalToUnary(firstNumber, firstSign, "0");
+                result += divider;
+                result += DecimalToUnary(secondNumber, secondSign, "0");
 
-            inputStringText.text = result;
-            sceneLoader.SetInputString(result);
+                inputStringText.text = result;
+                sceneLoader.SetInputString(result);
+            }
+            else if(machineType == "STP")
+            {
+                string result = "";
+                string divider = "#";
+
+                result += DecimalToUnary(firstNumber, firstSign, "0");
+                result += divider;
+                result += DecimalToUnary(secondNumber, secondSign, "0");
+                result += divider;
+
+                inputStringText.text = result;
+                sceneLoader.SetInputString(result);
+            }
         }
 
         else if (operation == "Division")
@@ -303,17 +337,28 @@ public class ConfigMaster : MonoBehaviour
 
         else if (operation == "Factorial")
         {
-            if (machineType == "STP")
+            if (machineType == "STP" || machineType == "MTR")
             {
+                string result = "";
+                string divider = "1";
 
-            }
-            else if (machineType == "MTR")
-            {
+                result += divider;
+                result += DecimalToUnary(firstNumber, firstSign, "0");
+                result += divider;
 
+                inputStringText.text = result;
+                sceneLoader.SetInputString(result);
             }
             else if (machineType == "MTP")
             {
+                string result = "";
+                string divider = "1";
 
+                result += DecimalToUnary(firstNumber, firstSign, "0");
+                result += divider;
+
+                inputStringText.text = result;
+                sceneLoader.SetInputString(result);
             }
         }
 
@@ -326,6 +371,7 @@ public class ConfigMaster : MonoBehaviour
 
                 result += DecimalToUnary(firstNumber, firstSign, "0");
                 result += divider;
+                result += "#";
                 result += DecimalToUnary(secondNumber, secondSign, "0");
                 result += divider;
 
@@ -335,7 +381,16 @@ public class ConfigMaster : MonoBehaviour
             }
             else if (machineType == "MTR")
             {
+                string result = "";
+                string divider = "1";
 
+                result += DecimalToUnary(firstNumber, firstSign, "0");
+                result += divider;
+                result += DecimalToUnary(secondNumber, secondSign, "0");
+
+
+                inputStringText.text = result;
+                sceneLoader.SetInputString(result);
             }
             else if (machineType == "MTP")
             {
