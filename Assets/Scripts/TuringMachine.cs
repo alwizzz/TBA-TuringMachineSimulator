@@ -574,24 +574,6 @@ public class TuringMachine : MonoBehaviour
 
         else if (operation == "Power")
         {
-            //if (type == "STP")
-            //{
-
-            //}
-            //else if (type == "MTR")
-            //{
-            //    string result = "";
-            //    int value = output.Length;
-            //    result += value.ToString();
-            //    return result;
-            //}
-            //else if (type == "MTP")
-            //{
-            //    string result = "";
-            //    int value = output.Length;
-            //    result += value.ToString();
-            //    return result;
-            //}
 
             string result = "";
             int value = output.Length;
@@ -612,15 +594,17 @@ public class TuringMachine : MonoBehaviour
 
             string signSymbol = output.Substring(0, 1);
             int i;
-            for (i = 1; ; i++)
+            bool found = false;
+            for (i = 1; i< output.Length; i++)
             {
                 var currentChar = output[i].ToString();
                 if (currentChar == "+" || currentChar == "-")
                 {
+                    found = true;
                     break;
                 }
             }
-            value = i - 1;
+            value = (found) ? i - 1 : 0;
             if(signSymbol == "-") { value *= -1; }
             result += value.ToString();
             result += " ";

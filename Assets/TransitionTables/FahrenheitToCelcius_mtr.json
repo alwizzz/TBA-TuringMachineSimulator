@@ -1028,29 +1028,6 @@
             ]
         },
         {
-            "name": "CLNS-06",
-            "transitions": [
-                {
-                    "read": "BB",
-                    "write": "BB",
-                    "direction": "R",
-                    "nextState": "CLNS-06"
-                },
-                {
-                    "read": "00",
-                    "write": "BB",
-                    "direction": "R",
-                    "nextState": "CLNS-06"
-                },
-                {
-                    "read": "##",
-                    "write": "BB",
-                    "direction": "R",
-                    "nextState": "MING-01"
-                }
-            ]
-        },
-        {
             "name": "MING-01",
             "transitions": [
                 {
