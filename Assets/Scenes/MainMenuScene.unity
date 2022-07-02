@@ -387,9 +387,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -9.42
       objectReference: {fileID: 0}
+    - target: {fileID: 376492317, guid: 3fc087a720e609d45b2081e40e52c0e7, type: 3}
+      propertyPath: m_text
+      value: The app's tapes has a limited cells. So, to prevent index overflow,
+        the app set constraints for each operations
+      objectReference: {fileID: 0}
     - target: {fileID: 2588632268316971176, guid: 3fc087a720e609d45b2081e40e52c0e7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3060699971440799688, guid: 3fc087a720e609d45b2081e40e52c0e7, type: 3}
       propertyPath: m_Name
