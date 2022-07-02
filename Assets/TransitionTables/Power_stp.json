@@ -1,564 +1,706 @@
 {
-    "operation": "STP POWER",
-    "type": "STP", 
+    "operation": "Power",
+    "type": "STP",
     "tapeCount": 1,
-    "symbols": ["0","1","+","-","#","X"],
+    "symbols": ["0",""],
     "blankSymbol": "B",
-    "startState": "Q0",
-    "acceptStates": ["Q26"],
+    "startState": "MISC-01",
+    "acceptStates": ["ACC"],
     "states": [
         {
-            "name": "Q0",
-            "transitions": [
-                {
-                    "read": "0",
-                    "write": "B",
-                    "direction": "R",
-                    "nextState": "Q1"
-                },
-                {
-                    "read": "1",
-                    "write": "B",
-                    "direction": "R",
-                    "nextState": "Q23"
-                }
-            ]
-        },
-        {
-            "name": "Q1",
+            "name": "MISC-01",
             "transitions": [
                 {
                     "read": "0",
                     "write": "0",
-                    "direction": "R",
-                    "nextState": "Q1"
-                },
-                {
-                    "read": "1",
-                    "write": "1",
-                    "direction": "R",
-                    "nextState": "Q2"
+                    "direction": "L",
+                    "nextState": "MISC-02"
                 }
             ]
         },
         {
-            "name": "Q2",
+            "name": "MISC-02",
             "transitions": [
                 {
                     "read": "B",
-                    "write": "B",
+                    "write": "#",
                     "direction": "R",
-                    "nextState": "Q2"
-                },
-                {
-                    "read": "0",
-                    "write": "B",
-                    "direction": "R",
-                    "nextState": "Q3"
-                },
-                {
-                    "read": "1",
-                    "write": "1",
-                    "direction": "R",
-                    "nextState": "Q7"
+                    "nextState": "MISC-03"
                 }
-              
             ]
         },
         {
-            "name": "Q3",
+            "name": "MISC-03",
             "transitions": [
                 {
                     "read": "0",
                     "write": "0",
                     "direction": "R",
-                    "nextState": "Q3"
+                    "nextState": "MISC-03"
                 },
                 {
                     "read": "1",
                     "write": "1",
                     "direction": "R",
-                    "nextState": "Q4"
+                    "nextState": "CHCK-01"
                 }
-              
             ]
         },
         {
-            "name": "Q4",
+            "name": "CHCK-01",
             "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "CHCK-02"
+                }
+            ]
+        },
+        {
+            "name": "CHCK-02",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "MOVE-01"
+                },
+                {
+                    "read": "B",
+                    "write": "B",
+                    "direction": "L",
+                    "nextState": "CLNS-01"
+                }
+            ]
+        },
+        {
+            "name": "CLNS-01",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "B",
+                    "direction": "L",
+                    "nextState": "CLNS-01"
+                },
+                {
+                    "read": "1",
+                    "write": "B",
+                    "direction": "L",
+                    "nextState": "CLNS-02"
+                }
+            ]
+        },
+        {
+            "name": "CLNS-02",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "CLNS-02"
+                },
+                {
+                    "read": "#",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "ACC"
+                }
+            ]
+        },
+        {
+            "name": "MOVE-01",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "MOVE-01"
+                },
+                {
+                    "read": "B",
+                    "write": "B",
+                    "direction": "L",
+                    "nextState": "MOVE-02"
+                }
+            ]
+        },
+        {
+            "name": "MOVE-02",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "B",
+                    "direction": "L",
+                    "nextState": "MOVE-03"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "L",
+                    "nextState": "MISC-04"
+                }
+            ]
+        },
+        {
+            "name": "MOVE-03",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "MOVE-03"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "L",
+                    "nextState": "MOVE-03"
+                },
                 {
                     "read": "#",
                     "write": "#",
-                    "direction": "R",
-                    "nextState": "Q4"
-                },
-                {
-                    "read": "0",
-                    "write": "0",
-                    "direction": "R",
-                    "nextState": "Q4"
-                },
-                {
-                    "read": "1",
-                    "write": "1",
                     "direction": "L",
-                    "nextState": "Q11"
+                    "nextState": "MOVE-03"
                 },
                 {
                     "read": "B",
                     "write": "0",
-                    "direction": "L",
-                    "nextState": "Q5"
-                }
-              
-            ]
-        },
-        {
-            "name": "Q5",
-            "transitions": [
-                {
-                    "read": "0",
-                    "write": "0",
-                    "direction": "L",
-                    "nextState": "Q5"
-                },
-                {
-                    "read": "1",
-                    "write": "1",
-                    "direction": "L",
-                    "nextState": "Q6"
-                }
-              
-            ]
-        },
-        {
-            "name": "Q6",
-            "transitions": [
-                {
-                    "read": "0",
-                    "write": "0",
-                    "direction": "L",
-                    "nextState": "Q5"
-                },
-                {
-                    "read": "B",
-                    "write": "B",
                     "direction": "R",
-                    "nextState": "Q2"
+                    "nextState": "MOVE-04"
                 }
-              
             ]
         },
         {
-            "name": "Q7",
+            "name": "MOVE-04",
             "transitions": [
-                {
-                    "read": "#",
-                    "write": "#",
-                    "direction": "R",
-                    "nextState": "Q7"
-                },
                 {
                     "read": "0",
                     "write": "0",
                     "direction": "R",
-                    "nextState": "Q7"
-                },
-                {
-                    "read": "B",
-                    "write": "1",
-                    "direction": "L",
-                    "nextState": "Q8"
-                }
-              
-            ]
-        },
-        {
-            "name": "Q8",
-            "transitions": [
-                {
-                    "read": "0",
-                    "write": "0",
-                    "direction": "L",
-                    "nextState": "Q8"
-                },
-                {
-                    "read": "1",
-                    "write": "1",
-                    "direction": "L",
-                    "nextState": "Q9"
-                }
-              
-            ]
-        },
-        {
-            "name": "Q9",
-            "transitions": [
-                {
-                    "read": "B",
-                    "write": "0",
-                    "direction": "L",
-                    "nextState": "Q9"
-                },
-                {
-                    "read": "1",
-                    "write": "1",
-                    "direction": "L",
-                    "nextState": "Q10"
-                }
-              
-            ]
-        },
-        {
-            "name": "Q10",
-            "transitions": [
-                {
-                    "read": "0",
-                    "write": "0",
-                    "direction": "L",
-                    "nextState": "Q10"
-                },
-                {
-                    "read": "B",
-                    "write": "B",
-                    "direction": "R",
-                    "nextState": "Q0"
-                }
-              
-            ]
-        },
-        {
-            "name": "Q11",
-            "transitions": [
-                {
-                    "read": "B",
-                    "write": "B",
-                    "direction": "L",
-                    "nextState": "Q11"
-                },
-                {
-                    "read": "0",
-                    "write": "B",
-                    "direction": "R",
-                    "nextState": "Q12"
+                    "nextState": "MOVE-04"
                 },
                 {
                     "read": "#",
                     "write": "#",
                     "direction": "R",
-                    "nextState": "Q15"
+                    "nextState": "MOVE-04"
                 },
                 {
                     "read": "1",
                     "write": "1",
                     "direction": "R",
-                    "nextState": "Q15"
+                    "nextState": "MOVE-01"
                 }
-              
             ]
         },
         {
-            "name": "Q12",
-            "transitions": [
-                {
-                    "read": "B",
-                    "write": "B",
-                    "direction": "R",
-                    "nextState": "Q12"
-                },
-                {
-                    "read": "1",
-                    "write": "1",
-                    "direction": "R",
-                    "nextState": "Q13"
-                }
-              
-            ]
-        },
-        {
-            "name": "Q13",
-            "transitions": [
-                {
-                    "read": "0",
-                    "write": "0",
-                    "direction": "R",
-                    "nextState": "Q13"
-                },
-                {
-                    "read": "B",
-                    "write": "0",
-                    "direction": "L",
-                    "nextState": "Q14"
-                }
-              
-            ]
-        },
-        {
-            "name": "Q14",
+            "name": "MISC-04",
             "transitions": [
                 {
                     "read": "0",
                     "write": "0",
                     "direction": "L",
-                    "nextState": "Q14"
-                },
-                {
-                    "read": "1",
-                    "write": "1",
-                    "direction": "L",
-                    "nextState": "Q11"
-                }              
-            ]
-        },
-        {
-            "name": "Q15",
-            "transitions": [
-                {
-                    "read": "B",
-                    "write": "0",
-                    "direction": "R",
-                    "nextState": "Q15"
-                },
-                {
-                    "read": "1",
-                    "write": "1",
-                    "direction": "L",
-                    "nextState": "Q16"
-                }
-              
-            ]
-        },
-        {
-            "name": "Q16",
-            "transitions": [
-                {
-                    "read": "#",
-                    "write": "#",
-                    "direction": "L",
-                    "nextState": "Q16"
-                },
-                {
-                    "read": "0",
-                    "write": "0",
-                    "direction": "L",
-                    "nextState": "Q16"
-                },
-                {
-                    "read": "1",
-                    "write": "1",
-                    "direction": "L",
-                    "nextState": "Q17"
-                }
-              
-            ]
-        },
-        {
-            "name": "Q17",
-            "transitions": [
-                {
-                    "read": "0",
-                    "write": "0",
-                    "direction": "L",
-                    "nextState": "Q17"
-                },
-                {
-                    "read": "B",
-                    "write": "B",
-                    "direction": "R",
-                    "nextState": "Q2"
-                }             
-            ]
-        },
-        {
-            "name": "Q18",
-            "transitions": [
-                {
-                    "read": "0",
-                    "write": "#",
-                    "direction": "R",
-                    "nextState": "Q18"
+                    "nextState": "MISC-04"
                 },
                 {
                     "read": "#",
                     "write": "#",
                     "direction": "R",
-                    "nextState": "Q19"
+                    "nextState": "DBLE-01"
                 }
             ]
         },
         {
-            "name": "Q19",
+            "name": "DBLE-01",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "X",
+                    "direction": "R",
+                    "nextState": "DBLE-02"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "MISC-05"
+                }
+            ]
+        },
+        {
+            "name": "DBLE-02",
             "transitions": [
                 {
                     "read": "0",
                     "write": "0",
                     "direction": "R",
-                    "nextState": "Q19"
+                    "nextState": "DBLE-02"
                 },
                 {
-                    "read": "B",
+                    "read": "1",
                     "write": "1",
-                    "direction": "L",
-                    "nextState": "Q20"
+                    "direction": "R",
+                    "nextState": "DBLE-03"
                 }
-              
             ]
         },
         {
-            "name": "Q20",
+            "name": "DBLE-03",
             "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "DBLE-03"
+                },
+                {
+                    "read": "B",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "DBLE-04"
+                }
+            ]
+        },
+        {
+            "name": "DBLE-04",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "DBLE-04"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "L",
+                    "nextState": "DBLE-04"
+                },
+                {
+                    "read": "X",
+                    "write": "X",
+                    "direction": "R",
+                    "nextState": "DBLE-01"
+                }
+            ]
+        },
+        {
+            "name": "MISC-05",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "MISC-05"
+                },
+                {
+                    "read": "B",
+                    "write": "#",
+                    "direction": "L",
+                    "nextState": "MISC-06"
+                }
+            ]
+        },
+        {
+            "name": "MISC-06",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "MISC-06"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "L",
+                    "nextState": "MISC-07"
+                }
+            ]
+        },
+        {
+            "name": "MISC-07",
+            "transitions": [
+                {
+                    "read": "X",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "MISC-07"
+                },
                 {
                     "read": "#",
                     "write": "#",
                     "direction": "L",
-                    "nextState": "Q20"
-                },
-                {
-                    "read": "1",
-                    "write": "1",
-                    "direction": "L",
-                    "nextState": "Q20"
-                },
-                {
-                    "read": "0",
-                    "write": "0",
-                    "direction": "R",
-                    "nextState": "Q20"
-                },
-                {
-                    "read": "B",
-                    "write": "0",
-                    "direction": "L",
-                    "nextState": "Q21"
+                    "nextState": "MIN1-01"
                 }
             ]
         },
         {
-            "name": "Q21",
-            "transitions": [
-                {
-                    "read": "B",
-                    "write": "0",
-                    "direction": "L",
-                    "nextState": "Q21"
-                },
-                {
-                    "read": "1",
-                    "write": "1",
-                    "direction": "L",
-                    "nextState": "Q22"
-                }                                  
-            ]
-        },
-        {
-            "name": "Q22",
+            "name": "MIN1-01",
             "transitions": [
                 {
                     "read": "0",
                     "write": "0",
                     "direction": "L",
-                    "nextState": "Q22"
+                    "nextState": "MIN1-01"
                 },
                 {
                     "read": "B",
                     "write": "B",
                     "direction": "R",
-                    "nextState": "Q0"
-                }                              
+                    "nextState": "MIN1-02"
+                }
             ]
         },
         {
-            "name": "Q23",
+            "name": "MIN1-02",
             "transitions": [
                 {
                     "read": "0",
                     "write": "B",
                     "direction": "R",
-                    "nextState": "Q23"
-                },
-                {
-                    "read": "1",
-                    "write": "B",
-                    "direction": "R",
-                    "nextState": "Q24"
-                }                                   
+                    "nextState": "POWR-01"
+                }
             ]
         },
         {
-            "name": "Q24",
+            "name": "POWR-01",
             "transitions": [
+                {
+                    "read": "0",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "POWR-02"
+                },
                 {
                     "read": "#",
                     "write": "B",
                     "direction": "R",
-                    "nextState": "Q24"
-                },
-                {
-                    "read": "1",
-                    "write": "B",
-                    "direction": "R",
-                    "nextState": "Q25"
-                },
-                {
-                    "read": "0",
-                    "write": "0",
-                    "direction": "R",
-                    "nextState": "Q25"
-                },
-                {
-                    "read": "B",
-                    "write": "0",
-                    "direction": "R",
-                    "nextState": "Q26"
-                }                                                            
-            ]
-        },
-        {
-            "name": "Q25", 
-            "transitions": [
-                {
-                    "read": "0",
-                    "write": "0",
-                    "direction": "R",
-                    "nextState": "Q25"
-                },
-                {
-                    "read": "1",
-                    "write": "B",
-                    "direction": "R",
-                    "nextState": "Q22"
+                    "nextState": "CLNS-03"
                 }
-
             ]
         },
         {
-            "name": "Q26",
-            "transitions": [                    
-            ]
-        },
-        {
-            "name": "Q27",
+            "name": "POWR-02",
             "transitions": [
                 {
                     "read": "0",
                     "write": "0",
-                    "direction": "L",
-                    "nextState": "Q27"
-                },
-                {
-                    "read": "1",
-                    "write": "1",
                     "direction": "R",
-                    "nextState": "Q18"
+                    "nextState": "POWR-02"
                 },
                 {
                     "read": "#",
                     "write": "#",
                     "direction": "R",
-                    "nextState": "Q18"
-                }                                 
+                    "nextState": "POWR-03"
+                }
             ]
-        }               
+        },
+        {
+            "name": "POWR-03",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "X",
+                    "direction": "R",
+                    "nextState": "POWR-04"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "L",
+                    "nextState": "POWR-10"
+                }
+            ]
+        },
+        {
+            "name": "POWR-04",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "POWR-04"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "POWR-05"
+                }
+            ]
+        },
+        {
+            "name": "POWR-05",
+            "transitions": [
+                {
+                    "read": "Z",
+                    "write": "Z",
+                    "direction": "R",
+                    "nextState": "POWR-05"
+                },
+                {
+                    "read": "0",
+                    "write": "Y",
+                    "direction": "R",
+                    "nextState": "POWR-06"
+                },
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "L",
+                    "nextState": "POWR-09"
+                }
+            ]
+        },
+        {
+            "name": "POWR-06",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "POWR-06"
+                },
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "R",
+                    "nextState": "POWR-07"
+                }
+            ]
+        },
+        {
+            "name": "POWR-07",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "POWR-07"
+                },
+                {
+                    "read": "B",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "POWR-08"
+                }
+            ]
+        },
+        {
+            "name": "POWR-08",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "POWR-08"
+                },
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "L",
+                    "nextState": "POWR-08"
+                },
+                {
+                    "read": "Y",
+                    "write": "Y",
+                    "direction": "R",
+                    "nextState": "POWR-05"
+                }
+            ]
+        },
+        {
+            "name": "POWR-09",
+            "transitions": [
+                {
+                    "read": "Y",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "POWR-09"
+                },
+                {
+                    "read": "Z",
+                    "write": "Z",
+                    "direction": "L",
+                    "nextState": "POWR-09"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "L",
+                    "nextState": "POWR-09"
+                },
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "POWR-09"
+                },
+                {
+                    "read": "X",
+                    "write": "X",
+                    "direction": "R",
+                    "nextState": "POWR-03"
+                }
+            ]
+        },
+        {
+            "name": "POWR-10",
+            "transitions": [
+                {
+                    "read": "X",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "POWR-10"
+                },
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "R",
+                    "nextState": "POWR-11"
+                }
+            ]
+        },
+        {
+            "name": "POWR-11",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "POWR-11"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "R",
+                    "nextState": "POWR-12"
+                }
+            ]
+        },
+        {
+            "name": "POWR-12",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "Z",
+                    "direction": "R",
+                    "nextState": "POWR-12"
+                },
+                {
+                    "read": "Z",
+                    "write": "Z",
+                    "direction": "R",
+                    "nextState": "POWR-12"
+                },
+                {
+                    "read": "#",
+                    "write": "Z",
+                    "direction": "R",
+                    "nextState": "POWR-13"
+                }
+            ]
+        },
+        {
+            "name": "POWR-13",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "POWR-13"
+                },
+                {
+                    "read": "B",
+                    "write": "#",
+                    "direction": "L",
+                    "nextState": "POWR-14"
+                }
+            ]
+        },
+        {
+            "name": "POWR-14",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "L",
+                    "nextState": "POWR-14"
+                },
+                {
+                    "read": "Z",
+                    "write": "Z",
+                    "direction": "L",
+                    "nextState": "POWR-14"
+                },
+                {
+                    "read": "1",
+                    "write": "1",
+                    "direction": "L",
+                    "nextState": "POWR-14"
+                },
+                {
+                    "read": "#",
+                    "write": "#",
+                    "direction": "L",
+                    "nextState": "POWR-14"
+                },
+                {
+                    "read": "B",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "POWR-01"
+                }
+            ]
+        },
+        {
+            "name": "CLNS-03",
+            "transitions": [
+                {
+                    "read": "0",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "CLNS-03"
+                },
+                {
+                    "read": "1",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "CLNS-04"
+                }
+            ]
+        },
+        {
+            "name": "CLNS-04",
+            "transitions": [
+                {
+                    "read": "Z",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "CLNS-04"
+                },
+                {
+                    "read": "0",
+                    "write": "0",
+                    "direction": "R",
+                    "nextState": "CLNS-04"
+                },
+                {
+                    "read": "#",
+                    "write": "B",
+                    "direction": "R",
+                    "nextState": "ACC"
+                }
+            ]
+        },
+        {
+            "name": "ACC",
+            "transitions": [
+                
+            ]
+        }
     ]
 }
-

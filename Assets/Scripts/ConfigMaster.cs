@@ -364,38 +364,58 @@ public class ConfigMaster : MonoBehaviour
 
         else if (operation == "Power")
         {
-            if (machineType == "STP")
-            {
-                string result = "";
-                string divider = "1";
+            //if (machineType == "STP")
+            //{
+            //    string result = "";
+            //    string divider = "1";
 
-                result += DecimalToUnary(firstNumber, firstSign, "0");
-                result += divider;
-                result += "#";
-                result += DecimalToUnary(secondNumber, secondSign, "0");
-                result += divider;
-
-
-                inputStringText.text = result;
-                sceneLoader.SetInputString(result);
-            }
-            else if (machineType == "MTR")
-            {
-                string result = "";
-                string divider = "1";
-
-                result += DecimalToUnary(firstNumber, firstSign, "0");
-                result += divider;
-                result += DecimalToUnary(secondNumber, secondSign, "0");
+            //    result += DecimalToUnary(firstNumber, firstSign, "0");
+            //    result += divider;
+            //    result += "#";
+            //    result += DecimalToUnary(secondNumber, secondSign, "0");
+            //    result += divider;
 
 
-                inputStringText.text = result;
-                sceneLoader.SetInputString(result);
-            }
-            else if (machineType == "MTP")
-            {
+            //    inputStringText.text = result;
+            //    sceneLoader.SetInputString(result);
+            //}
+            //else if (machineType == "MTR")
+            //{
+            //    string result = "";
+            //    string divider = "1";
 
-            }
+            //    result += DecimalToUnary(firstNumber, firstSign, "0");
+            //    result += divider;
+            //    result += DecimalToUnary(secondNumber, secondSign, "0");
+
+
+            //    inputStringText.text = result;
+            //    sceneLoader.SetInputString(result);
+            //}
+            //else if (machineType == "MTP")
+            //{
+            //    string result = "";
+            //    string divider = "1";
+
+            //    result += DecimalToUnary(firstNumber, firstSign, "0");
+            //    result += divider;
+            //    result += DecimalToUnary(secondNumber, secondSign, "0");
+
+
+            //    inputStringText.text = result;
+            //    sceneLoader.SetInputString(result);
+            //}
+
+            string result = "";
+            string divider = "1";
+
+            result += DecimalToUnary(firstNumber, firstSign, "0");
+            result += divider;
+            result += DecimalToUnary(secondNumber, secondSign, "0");
+
+
+            inputStringText.text = result;
+            sceneLoader.SetInputString(result);
         }
 
         else if (operation == "BinaryLogarithm")

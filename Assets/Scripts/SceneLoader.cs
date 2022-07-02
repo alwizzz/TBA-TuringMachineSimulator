@@ -185,6 +185,8 @@ public class SceneLoader : MonoBehaviour
 
     public void AdditionButton()
     {
+        maxValue = 30;
+
         operatorSymbol = "+";
         operation = "Addition";
         hasTwoNumber = true;
@@ -194,6 +196,8 @@ public class SceneLoader : MonoBehaviour
     }
     public void SubstractionButton()
     {
+        maxValue = 30;
+
         operatorSymbol = "-";
         operation = "Substraction";
         hasTwoNumber = true;
@@ -203,6 +207,8 @@ public class SceneLoader : MonoBehaviour
     }
     public void MultiplicationButton()
     {
+        maxValue = 8;
+
         operatorSymbol = "*";
         operation = "Multiplication";
         hasTwoNumber = true;
@@ -212,6 +218,8 @@ public class SceneLoader : MonoBehaviour
     }
     public void DivisionButton()
     {
+        maxValue = 30;
+
         operatorSymbol = "/";
         operation = "Division";
         hasTwoNumber = true;
@@ -222,6 +230,8 @@ public class SceneLoader : MonoBehaviour
 
     public void FactorialButton()
     {
+        maxValue = 4;
+
         operatorSymbol = "!";
         operation = "Factorial";
         hasTwoNumber = false;
@@ -231,6 +241,8 @@ public class SceneLoader : MonoBehaviour
     }
     public void PowerButton()
     {
+        maxValue = 3;
+
         operatorSymbol = "^";
         operation = "Power";
         hasTwoNumber = true;
@@ -240,6 +252,8 @@ public class SceneLoader : MonoBehaviour
     }
     public void BinaryLogarithmButton()
     {
+        maxValue = 80;
+
         operatorSymbol = "L";
         operation = "BinaryLogarithm";
         hasTwoNumber = false;
@@ -249,6 +263,8 @@ public class SceneLoader : MonoBehaviour
     }
     public void TemperatureConversionButton()
     {
+        maxValue = 5;
+
         operatorSymbol = "T";
         operation = "TemperatureConversion";
         hasTwoNumber = false;

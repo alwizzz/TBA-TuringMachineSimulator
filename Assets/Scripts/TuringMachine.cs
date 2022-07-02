@@ -33,14 +33,14 @@ public class TuringMachine : MonoBehaviour
     SceneLoader sceneLoader;
 
     // PROPERTIES
-    string operation;
+    public string operation;
     string operationString;
     string type;
     string blankSymbol;
     int currentIndex;
     TransitionTable.State currentState;
-    [SerializeField] string currentStateName; 
-    [SerializeField] string currentSymbol;
+    public string currentStateName; 
+    public string currentSymbol;
     // STP PROPERTIES
     [Header("STP")]
     [SerializeField] Boxes boxesSTP;
@@ -574,21 +574,29 @@ public class TuringMachine : MonoBehaviour
 
         else if (operation == "Power")
         {
-            if (type == "STP")
-            {
+            //if (type == "STP")
+            //{
 
-            }
-            else if (type == "MTR")
-            {
-                string result = "";
-                int value = output.Length;
-                result += value.ToString();
-                return result;
-            }
-            else if (type == "MTP")
-            {
+            //}
+            //else if (type == "MTR")
+            //{
+            //    string result = "";
+            //    int value = output.Length;
+            //    result += value.ToString();
+            //    return result;
+            //}
+            //else if (type == "MTP")
+            //{
+            //    string result = "";
+            //    int value = output.Length;
+            //    result += value.ToString();
+            //    return result;
+            //}
 
-            }
+            string result = "";
+            int value = output.Length;
+            result += value.ToString();
+            return result;
         }
 
         else if (operation == "BinaryLogarithm")
